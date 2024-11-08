@@ -1,0 +1,133 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #faf8f3;
+  color: #333;
+  line-height: 1.6;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  padding: 40px 20px;
+}
+.hero .hero-image {
+  flex: 1;
+  display: inline-block;
+  padding: 15px;
+  border-radius: 50%;
+  border: 3px solid #f39c12;
+  width: 70%;
+  min-width: 250px;
+}
+.hero .hero-image img {
+  width: 100%;
+  border-bottom-right-radius: 20%;
+  transform: rotate(-15deg);
+}
+.hero .hero-info {
+  flex: 2;
+  padding-left: 40px;
+}
+.hero .hero-info h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #000;
+}
+.hero .hero-info p {
+  font-size: 1rem;
+  margin-top: 20px;
+  color: #333;
+}
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+  }
+  .hero .hero-info {
+    padding-top: 55px;
+  }
+}
+
+.products-section {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  padding: 40px;
+}
+.products-section .product {
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  position: relative;
+  transition: transform 0.35s ease, box-shadow 0.5s ease;
+}
+.products-section .product:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+.products-section .product .product-image {
+  position: relative;
+  padding: 20px;
+}
+.products-section .product .product-image picture, .products-section .product .product-image img {
+  width: auto;
+  border-radius: 10px;
+}
+.products-section .product .product-image .tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #333;
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+.products-section .product .product-image .tag.NEW {
+  background-color: #f39c12;
+}
+.products-section .product .product-image .tag.LIMITED {
+  background-color: #c0392b;
+}
+.products-section .product .product-info .scent-family {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.products-section .product .product-info h3 {
+  font-size: 1.2rem;
+  margin: 8px 0;
+  color: #333;
+}
+.products-section .product .product-info .description {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 12px;
+}
+.products-section .product .product-info .price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #f39c12;
+}
+.products-section .product .product-info .add-to-cart {
+  background-color: #495aaa;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+.products-section .product .product-info .add-to-cart:hover {
+  background-color: #858585;
+}/*# sourceMappingURL=index.css.map */
