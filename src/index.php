@@ -14,9 +14,7 @@
         <!-- Navbar -->
         <?php $basePath = '.';?>
         <?php include $basePath . '/components/navbar.php';?>
-
-        <!-- Cart -->
-        <?php include $basePath . '/components/cart.php';?>
+      
 
         <!-- Fetch all products -->
         <?php
@@ -27,10 +25,11 @@
             // Fetch products from the database
             $stmt = $pdo->query("SELECT * FROM products");
             $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($products as $product):
-                echo $product;
-            endforeach
         ?>
+
+
+        <!-- Cart -->
+        <?php include $basePath . '/components/cart.php';?>
         
         <main>
             <section class="hero">
