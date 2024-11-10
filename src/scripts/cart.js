@@ -83,15 +83,16 @@ export function updateCart() {
 }
 
 
-export function removeItem() {
-    const productId = $(this).data('id');
+export function removeItem(productId) {
+    console.log("click");
+    // const productId = $(this).data('id');
     let cart = getCart();
     
     // Remove the item from the cart array
     cart = cart.filter(item => item.id !== productId);
     
     // Save the updated cart back to localStorage
-    localStorage.setItem('cart', JSON.stringify(cart));
+    saveCart(cart);
     
     // Update the cart display
     updateCart();  

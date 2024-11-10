@@ -5,6 +5,10 @@ import $ from 'jquery';
 $(() => {
     // Set up the checkout button functionality
     $(".add-to-cart").on("click", addToCart);
-    $(".remove-item").on("click", removeItem);
+    $("#cartItems").on("click", ".remove-item", function() {
+        const productId = $(this).data('id');
+        console.log("Removing item with ID:", productId);
+        removeItem(productId); // You can call the removeItem function or handle logic here
+    });
     $("#closeCart").on("click", closeCart);
 });
