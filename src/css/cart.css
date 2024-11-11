@@ -30,6 +30,19 @@
   font-size: 24px;
   margin-bottom: 20px;
 }
+.cart-popover .clear-btn {
+  position: relative;
+  float: right;
+  background-color: #f02f2f;
+  color: #fff;
+  border: none;
+  width: 50px;
+  height: 20px;
+}
+.cart-popover .clear-btn:hover {
+  background-color: #444;
+  cursor: pointer;
+}
 .cart-popover .cart-items .cart-item {
   display: flex;
   align-items: center;

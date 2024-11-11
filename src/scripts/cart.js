@@ -84,8 +84,6 @@ export function updateCart() {
 
 
 export function removeItem(productId) {
-    console.log("click");
-    // const productId = $(this).data('id');
     let cart = getCart();
     
     // Remove the item from the cart array
@@ -100,7 +98,7 @@ export function removeItem(productId) {
 
 export function clearCart() {
     localStorage.removeItem('cart');
-    updateCartDisplay();
+    updateCart();
 }
 
 export function closeCart() {
