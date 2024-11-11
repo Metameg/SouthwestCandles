@@ -1,5 +1,5 @@
 import { handleCheckout } from './checkout';
-import { addToCart, removeItem, closeCart } from './cart';
+import { addToCart, removeItem, closeCart, clearCart } from './cart';
 import $ from 'jquery';
 
 $(() => {
