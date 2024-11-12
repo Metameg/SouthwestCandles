@@ -30,6 +30,9 @@
   font-size: 24px;
   margin-bottom: 20px;
 }
+.cart-popover #emptyCartMsg {
+  display: none;
+}
 .cart-popover .clear-btn {
   position: relative;
   float: right;

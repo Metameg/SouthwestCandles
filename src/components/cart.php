@@ -6,7 +6,8 @@
             <!-- Cart Items added dynamically in JS -->
         </div> 
 
-        <div class="cart-summary">
+        <!-- <p id="emptyCartMsg">Your cart is empty!</p> -->
+        <div id="cartSummary" class="cart-summary">
             <span class="subtotal-label">Subtotal</span>
             <span class="subtotal-price">$440</span>
         </div>

@@ -58,7 +58,8 @@ export function updateCart() {
     cartItemsList.empty(); 
 
     if (cart.length === 0) {
-        cartItemsList.innerHTML = '<li>Your cart is empty</li>';
+        cartItemsList.html('<p>Your cart is empty</p>');
+        document.getElementById("cartSummary").style.display = "none";
     } else {
         cart.forEach(item => {
             const cartItem = $('<div></div>').addClass('cart-item');
