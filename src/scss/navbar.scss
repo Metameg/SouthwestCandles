@@ -3,13 +3,13 @@
 header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 20px;
+    align-items: flex-start;
+    padding: 34px;
     background-color: $background-color;
     
     .logo img {
-		width: 200px;
-		height: 200px;
+		width: 150px;
+		height: 150px;
 		object-fit: contain; // Ensures the image scales without distortion
 	}
   
@@ -33,7 +33,7 @@ header {
 			}
 		}
 		
-		.cart {
+		#cartNavBtn {
 			font-weight: bold;
 		}
     }

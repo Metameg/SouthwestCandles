@@ -24,7 +24,7 @@ function getIndexPath() {
         <ul>
             <li><a href="#">Shop</a></li>
             <li><a href="#">About</a></li>
-            <li><a href="#" class="cart">Cart</a></li>
+            <li><a href="#" id="cartNavBtn">Cart</a></li>
         </ul>
     </nav>
 </header>

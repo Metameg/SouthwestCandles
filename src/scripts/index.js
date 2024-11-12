@@ -1,15 +1,19 @@
 import { handleCheckout } from './checkout';
-import { addToCart, removeItem, closeCart, clearCart } from './cart';
+import Cart  from './cart';
+// import { addToCart, removeItem, openCartModal, closeCart, clearCart } from './cart';
 import $ from 'jquery';
 
+const cart = new Cart();
 $(() => {
     // Set up the checkout button functionality
-    $(".add-to-cart").on("click", addToCart);
+    $("#cartNavBtn").on("click", () => cart.openCartModal());
+    $(".add-to-cart").on("click", function () {
+        cart.addItem(this);
+    });
     $("#cartItems").on("click", ".remove-item", function() {
         const productId = $(this).data('id');
-        console.log("Removing item with ID:", productId);
-        removeItem(productId); // You can call the removeItem function or handle logic here
+        cart.removeItem(productId); // You can call the removeItem function or handle logic here
     });
-    $("#closeCart").on("click", closeCart);
-    $("#clearCart").on("click", clearCart);
+    $("#closeCart").on("click", () => cart.closeCart());
+    $("#clearCart").on("click", () => cart.clearCart());
 });

@@ -43,7 +43,7 @@
   height: 20px;
 }
 .cart-popover .clear-btn:hover {
-  background-color: #444;
+  background-color: #a52d2d;
   cursor: pointer;
 }
 .cart-popover .cart-items .cart-item {

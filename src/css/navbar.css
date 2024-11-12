@@ -1,13 +1,13 @@
 header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 20px;
+  align-items: flex-start;
+  padding: 34px;
   background-color: #faf8f3;
 }
 header .logo img {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -29,6 +29,6 @@ header nav ul a:hover {
   color: #fff;
   border-color: #f39c12;
 }
-header nav ul .cart {
+header nav ul #cartNavBtn {
   font-weight: bold;
 }/*# sourceMappingURL=navbar.css.map */
