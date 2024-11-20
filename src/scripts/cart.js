@@ -10,6 +10,12 @@ import $ from 'jquery'
 class Cart {
     constructor() {
         this.cart = this.getCart(); // Initialize cart from storage
+        this.prices = {
+            "4oz": 9.00,
+            "8oz": 12.00,
+            "16oz": 23.00,
+            "default": 12.00
+        }
     }
 
     // Method to get the cart from localStorage or initialize it if empty
@@ -39,15 +45,60 @@ class Cart {
                         <span class="order-id">${item.id}</span>
                         <span class="color">Dark Blue</span>
                     </div>
-                    <div class="quantity">
-                        <button class="decrease">-</button>
-                        <span class="count">${item.quantity}</span>
-                        <button class="increase">+</button>
+                    <div class="order-details">
+                        <div class="quantity">
+                            <button class="decrease">-</button>
+                            <span class="count">${item.quantity}</span>
+                            <button class="increase">+</button>
+                        </div>
+
+                        <div class="size-btns">
+                            <div class="size-option">
+                                <input type="radio" id="sz4_${item.id}" name="${item.id}Radios" class="size-btn" value="4"  ${item.selectedSize === "4oz" ? "checked" : ""}>
+                                <label for="sz4">4oz</label>
+                                <div class="sz-price">$9</div>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="sz8_${item.id}" name="${item.id}Radios" class="size-btn" value="8"  ${item.selectedSize === "8oz" ? "checked" : ""}>
+                                <label for="sz8">8oz</label>
+                                <div class="sz-price">$12</div>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="sz16_${item.id}" name="${item.id}Radios" class="size-btn" value="16"  ${item.selectedSize === "16oz" ? "checked" : ""}>
+                                <label for="sz16">16oz</label>
+                                <div class="sz-price">$23</div>
+                            </div> 
+                        </div>
                     </div>
-                    <span class="price">${item.price}</span>
+                    <span class="price"> $${(item.price * item.quantity).toFixed(2)}</span>
                     <button class="remove-item" data-id="${item.id}">X</button>
                 `);
                 cartItemsList.append(cartItem);
+
+                // Add change event listener for size radio buttons
+                cartItem.find(".size-btn").on("change", (e) => {
+                    const selectedValue = $(e.target).val();
+                    item.selectedSize = `${selectedValue}oz`;
+                    item.price = this.prices[`${selectedValue}oz`];
+                    this.saveCart(); 
+                    this.updateCart();
+                });
+
+                // Add click event listener for increase button
+                cartItem.find(".increase").on("click", () => {
+                    item.quantity += 1; 
+                    this.saveCart(); 
+                    this.updateCart(); 
+                });
+
+                // Add click event listener for decrease button
+                cartItem.find(".decrease").on("click", () => {
+                    if (item.quantity > 1) { 
+                        item.quantity -= 1; 
+                        this.saveCart(); 
+                        this.updateCart(); 
+                    }
+                });
             });
 
         }
@@ -68,26 +119,18 @@ class Cart {
         
         // Extract product details
         const productName = productElement.find("h3").text();
-        const productPrice = parseFloat(productElement.find(".price").text().slice(1));
+        const productPrice = this.prices["default"]; 
         const productImage = productElement.find("img").attr("src");
 
-        // Check if the item already exists in the cart
-        const existingItemIndex = this.cart.findIndex(item => item.name === productName);
-
-        if (existingItemIndex >= 0) {
-            // If item exists, increase the quantity
-            this.cart[existingItemIndex].quantity += 1;
-        } else {
-            // If it's a new item, add it to the cart
-            this.cart.push({
-                id: Date.now(),  // Generate a unique ID based on current time
-                name: productName,
-                price: productPrice,
-                image: productImage,
-                quantity: 1
-            });
-        }
-
+        this.cart.push({
+            id: Date.now(),  // Generate a unique ID based on current time
+            name: productName,
+            price: productPrice,
+            image: productImage,
+            quantity: 1,
+            selectedSize: "8oz"
+        });
+    
         // Save the updated cart to storage
         this.saveCart(this.cart);
         this.updateCart();
@@ -96,7 +139,7 @@ class Cart {
         this.openCartModal();
     }
 
-    // Method to remove an item from the cart
+    
     removeItem(productId) {
         this.cart = this.cart.filter(item => item.id !== productId);
         this.saveCart();

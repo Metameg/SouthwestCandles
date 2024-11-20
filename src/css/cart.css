@@ -24,11 +24,27 @@
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   display: block;
+  margin: 15px;
+  max-height: 90%;
+  overflow-y: auto;
 }
 .cart-popover h2 {
   text-align: center;
   font-size: 24px;
   margin-bottom: 20px;
+}
+.cart-popover .close-btn {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: none;
+  border: none;
+  font-size: 32px;
+  color: #f44336;
+  cursor: pointer;
+}
+.cart-popover .close-btn:hover {
+  color: #333;
 }
 .cart-popover #emptyCartMsg {
   display: none;
@@ -73,30 +89,67 @@
   font-size: 14px;
   color: #444;
 }
-.cart-popover .cart-items .cart-item .quantity {
+.cart-popover .cart-items .cart-item .order-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+}
+.cart-popover .cart-items .cart-item .order-details .quantity {
   display: flex;
   align-items: center;
-  margin-right: 20px;
 }
-.cart-popover .cart-items .cart-item .quantity button {
+.cart-popover .cart-items .cart-item .order-details .quantity button {
   background: none;
   border: 1px solid #ddd;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   font-size: 16px;
   color: #333;
   cursor: pointer;
 }
-.cart-popover .cart-items .cart-item .quantity button:hover {
+.cart-popover .cart-items .cart-item .order-details .quantity button:hover {
   border-color: #333;
 }
-.cart-popover .cart-items .cart-item .quantity .count {
+.cart-popover .cart-items .cart-item .order-details .quantity .count {
   padding: 0 10px;
   font-size: 16px;
 }
+.cart-popover .cart-items .cart-item .order-details .size-btns {
+  display: flex;
+  gap: 3px;
+  margin-top: 5px;
+  font-size: 1.1rem;
+}
+.cart-popover .cart-items .cart-item .order-details .size-btns .size-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+.cart-popover .cart-items .cart-item .order-details .size-btns .size-option input[type=radio] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #333;
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
+}
+.cart-popover .cart-items .cart-item .order-details .size-btns .size-option input[type=radio]:checked {
+  background-color: #495aaa;
+  border-color: #858585;
+}
+.cart-popover .cart-items .cart-item .order-details .size-btns .size-option .sz-price {
+  font-size: 1.1rem;
+  color: #008f34;
+  margin: 0 5px;
+}
 .cart-popover .cart-items .cart-item .price {
-  font-size: 16px;
+  font-size: 1.5rem;
   color: #6a5acd;
   font-weight: bold;
   margin-right: 20px;
@@ -105,11 +158,35 @@
   background: none;
   border: none;
   font-size: 20px;
-  color: #888;
+  color: #F44336;
   cursor: pointer;
 }
 .cart-popover .cart-items .cart-item .remove-item:hover {
   color: #333;
+}
+@media (max-width: 480px) {
+  .cart-popover .cart-items .cart-item {
+    flex-direction: column;
+  }
+  .cart-popover .cart-items .cart-item img {
+    margin: 0;
+  }
+  .cart-popover .cart-items .cart-item .item-details {
+    text-align: center;
+  }
+  .cart-popover .cart-items .cart-item .order-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cart-popover .cart-items .cart-item .price {
+    align-self: flex-end;
+    margin: 0;
+  }
+  .cart-popover .cart-items .cart-item .remove-item {
+    position: absolute;
+    right: 20px;
+  }
 }
 .cart-popover .cart-summary {
   display: flex;
@@ -124,17 +201,20 @@
 }
 .cart-popover .cart-summary .subtotal-price {
   font-size: 24px;
-  color: #6a5acd;
-  font-weight: bold;
+  color: #000;
+  font-weight: 900;
 }
 .cart-popover .cart-actions {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Create a 2x2 grid */
+  grid-template-areas: "empty top-right" "bottom-left checkout";
+  gap: 10px;
   padding-top: 10px;
+  /* Map the grid areas to specific buttons */
 }
 .cart-popover .cart-actions .back-to-shop,
-.cart-popover .cart-actions .checkout {
-  width: 48%;
+.cart-popover .cart-actions .checkout,
+.cart-popover .cart-actions .clear-btn {
   padding: 10px;
   font-size: 16px;
   border-radius: 8px;
@@ -145,6 +225,7 @@
   background-color: #333;
   color: #fff;
   border: none;
+  grid-area: bottom-left;
 }
 .cart-popover .cart-actions .back-to-shop:hover {
   background-color: #444;
@@ -153,7 +234,32 @@
   background-color: #6a5acd;
   color: #fff;
   border: none;
+  grid-area: bottom-right;
 }
 .cart-popover .cart-actions .checkout:hover {
   background-color: #5a4eb8;
+}
+.cart-popover .cart-actions .clear-btn {
+  background-color: #f02f2f;
+  color: #fff;
+  border: none;
+  width: 100%; /* Make it full-width within the grid cell */
+  height: auto;
+  font-size: 16px;
+  grid-area: top-right;
+}
+.cart-popover .cart-actions .clear-btn:hover {
+  background-color: #a52d2d;
+}
+.cart-popover .cart-actions .empty {
+  grid-area: empty; /* Top-left is empty */
+}
+.cart-popover .cart-actions .top-right {
+  grid-area: top-right;
+}
+.cart-popover .cart-actions .bottom-left {
+  grid-area: bottom-left;
+}
+.cart-popover .cart-actions .checkout {
+  grid-area: checkout;
 }/*# sourceMappingURL=cart.css.map */

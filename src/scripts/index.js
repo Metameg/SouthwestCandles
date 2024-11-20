@@ -15,5 +15,6 @@ $(() => {
         cart.removeItem(productId); // You can call the removeItem function or handle logic here
     });
     $("#closeCart").on("click", () => cart.closeCart());
+    $("#closePopover").on("click", () => cart.closeCart());
     $("#clearCart").on("click", () => cart.clearCart());
 });
