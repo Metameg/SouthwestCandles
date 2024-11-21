@@ -59,8 +59,9 @@
                         <div class="product-info">
                             <h3><?php echo htmlspecialchars($product['name']); ?></h3>
                             <p class="description"><?php echo htmlspecialchars($product['description']); ?></p>
-                            <p><i>From  </i> <span class="price">$11.99</span></p>
+                            <p><i>From  </i> <span class="price">$8.00</span></p>
                             <button class="add-to-cart">Add To Cart</button>
+                            <span class="item-id"><?php echo htmlspecialchars($product['id']); ?></span>
                         </div>
                     </div>
                 <?php endforeach; ?>

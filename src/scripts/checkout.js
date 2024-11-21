@@ -3,13 +3,9 @@ import { loadStripe } from '@stripe/stripe-js';
 export const stripePromise = loadStripe('pk_test_51QHonuBzPFeYbIr4JLEEpJQbGR7P0WFb9dJH4HhjdXyq2DJqIh6I3TaWZLQ49ffz0VYtDupbBgByT6SVsYZpo7Rw00jwB23EOF');
 
 export async function handleCheckout() {
-    // $('#checkout-button').on('click', async function () {
     const stripe = await stripePromise;
-    const name = 'test_product';
-    const amount = '100.00';
-    console.log("click");
-
-    fetch('plugins/payments/charge.php', {
+    
+    fetch('plugins/payments/checkout.php', {
         method: 'POST',
         body: JSON.stringify({
             name: name,
@@ -20,7 +16,6 @@ export async function handleCheckout() {
         }
     })
     .then(function(response) {
-        // console.log(response.json());
         return response.json();
     })
     .then(function(session) {
@@ -35,5 +30,5 @@ export async function handleCheckout() {
     .catch(function(error) {
         console.log('Fetch Error :-S', error);
     });
-    // });
+
 };

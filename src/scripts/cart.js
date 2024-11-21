@@ -54,24 +54,24 @@ class Cart {
 
                         <div class="size-btns">
                             <div class="size-option">
-                                <input type="radio" id="sz4_${item.id}" name="${item.id}Radios" class="size-btn" value="4"  ${item.selectedSize === "4oz" ? "checked" : ""}>
+                                <input type="radio" id="sz4_${item.data_id}" name="${item.data_id}Radios" class="size-btn" value="4"  ${item.selectedSize === "4oz" ? "checked" : ""}>
                                 <label for="sz4">4oz</label>
                                 <div class="sz-price">$9</div>
                             </div>
                             <div class="size-option">
-                                <input type="radio" id="sz8_${item.id}" name="${item.id}Radios" class="size-btn" value="8"  ${item.selectedSize === "8oz" ? "checked" : ""}>
+                                <input type="radio" id="sz8_${item.data_id}" name="${item.data_id}Radios" class="size-btn" value="8"  ${item.selectedSize === "8oz" ? "checked" : ""}>
                                 <label for="sz8">8oz</label>
                                 <div class="sz-price">$12</div>
                             </div>
                             <div class="size-option">
-                                <input type="radio" id="sz16_${item.id}" name="${item.id}Radios" class="size-btn" value="16"  ${item.selectedSize === "16oz" ? "checked" : ""}>
+                                <input type="radio" id="sz16_${item.data_id}" name="${item.data_id}Radios" class="size-btn" value="16"  ${item.selectedSize === "16oz" ? "checked" : ""}>
                                 <label for="sz16">16oz</label>
                                 <div class="sz-price">$23</div>
                             </div> 
                         </div>
                     </div>
                     <span class="price"> $${(item.price * item.quantity).toFixed(2)}</span>
-                    <button class="remove-item" data-id="${item.id}">X</button>
+                    <button class="remove-item" data-id="${item.data_id}">X</button>
                 `);
                 cartItemsList.append(cartItem);
 
@@ -121,9 +121,11 @@ class Cart {
         const productName = productElement.find("h3").text();
         const productPrice = this.prices["default"]; 
         const productImage = productElement.find("img").attr("src");
+        const productId = productElement.find('.item-id').text();
 
         this.cart.push({
-            id: Date.now(),  // Generate a unique ID based on current time
+            id: productId,
+            data_id: Date.now(),  // Generate a unique ID based on current time
             name: productName,
             price: productPrice,
             image: productImage,
@@ -141,7 +143,7 @@ class Cart {
 
     
     removeItem(productId) {
-        this.cart = this.cart.filter(item => item.id !== productId);
+        this.cart = this.cart.filter(item => item.data_id !== productId);
         this.saveCart();
         this.updateCart();
     }
@@ -163,6 +165,34 @@ class Cart {
         $("#cartOverlay").fadeOut(() => {
             $("#cartOverlay").css("display", "none");
         })
+    }
+
+    checkout() {
+        fetch('plugins/payments/checkout.php', {
+            method: 'POST',
+            body: JSON.stringify({
+                name: name,
+                amount: amount
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8'
+            }
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(session) {
+            console.log(session);
+            return stripe.redirectToCheckout({ sessionId: session.id });
+        })
+        .then(function(result) {
+            if (result.error) {
+            alert(result.error.message);
+            }
+        })
+        .catch(function(error) {
+            console.log('Fetch Error :-S', error);
+        });
     }
 }
 

@@ -77,7 +77,7 @@ body {
   padding: 20px;
 }
 .products-section .product .product-image picture, .products-section .product .product-image img {
-  width: auto;
+  width: 100%;
   border-radius: 10px;
 }
 .products-section .product .product-image .tag {
@@ -96,6 +96,10 @@ body {
 }
 .products-section .product .product-image .tag.LIMITED {
   background-color: #c0392b;
+}
+.products-section .product .product-info {
+  display: flex;
+  flex-direction: column;
 }
 .products-section .product .product-info .scent-family {
   font-size: 0.8rem;
@@ -130,4 +134,10 @@ body {
 }
 .products-section .product .product-info .add-to-cart:hover {
   background-color: #858585;
+}
+.products-section .product .product-info .item-id {
+  font-size: 0.8rem;
+  font-style: italic;
+  align-self: flex-end;
+  margin-top: 5px;
 }/*# sourceMappingURL=index.css.map */

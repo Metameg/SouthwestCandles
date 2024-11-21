@@ -14,6 +14,7 @@ $(() => {
         const productId = $(this).data('id');
         cart.removeItem(productId); // You can call the removeItem function or handle logic here
     });
+    $("#checkoutCart").on("click", () => handleCheckout());
     $("#closeCart").on("click", () => cart.closeCart());
     $("#closePopover").on("click", () => cart.closeCart());
     $("#clearCart").on("click", () => cart.clearCart());
