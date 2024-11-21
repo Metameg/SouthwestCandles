@@ -1,6 +1,6 @@
 import { loadStripe } from '@stripe/stripe-js';
 import $ from 'jquery'
-
+import { getRelativeRootPath } from './utils';
 
 // export const stripePromise = loadStripe('pk_test_51QHonuBzPFeYbIr4JLEEpJQbGR7P0WFb9dJH4HhjdXyq2DJqIh6I3TaWZLQ49ffz0VYtDupbBgByT6SVsYZpo7Rw00jwB23EOF');
 
@@ -173,7 +173,8 @@ class Cart {
 
         const form = document.createElement('form');
         form.method = 'POST';
-        form.action = 'pages/checkout.php';
+        form.action = getRelativeRootPath('') + 'src/pages/checkout.php';
+        console.log(form.action);
     
         // Create an input to hold the cart data as JSON
         const input = document.createElement('input');
