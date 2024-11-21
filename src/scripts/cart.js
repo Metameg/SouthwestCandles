@@ -170,8 +170,23 @@ class Cart {
 
     checkout() {
         const cart = this.getCart();
-        const params = new URLSearchParams({ cart: JSON.stringify(cart) });
-        window.location.href = `plugins/payments/checkout.php?${params.toString()}`;
+
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'plugins/payments/checkout.php';
+    
+        // Create an input to hold the cart data as JSON
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'cart'; // This will be the key on the PHP side
+        input.value = JSON.stringify(cart);
+    
+        // Append input to the form and submit
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+        // const params = new URLSearchParams({ cart: JSON.stringify(cart) });
+        // window.location.href = `plugins/payments/checkout.php?${params.toString()}`;
     }
 }
 

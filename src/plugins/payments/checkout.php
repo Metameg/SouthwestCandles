@@ -1,39 +1,34 @@
 <!DOCTYPE html>
 
 <?php
-    // Include the database connection
-    include '../../db.php';
+// Get the cart data from the POST request
+$cartJson = $_POST['cart'] ?? '[]'; // Use an empty JSON array as default
+$cart = json_decode($cartJson, true); // Decode the JSON into a PHP array
 
-    function getProductPrice($product_id) {
-        // This could be a database query or a predefined list of products with prices
-        $products = [
-            1 => 10.99, // Product ID => Price
-            2 => 5.49,
-            3 => 20.00
-        ];
-    
-        return isset($products[$product_id]) ? $products[$product_id] : 0;
+// Validate the cart
+if (!is_array($cart)) {
+    $cart = [];
+}
+
+// Example of processing the cart (calculate prices, etc.)
+// For this example, assume you fetch product data by ID
+function getProductPrice($product_id) {
+    $products = [
+        1 => 10.99,
+        2 => 5.49,
+        3 => 20.00
+    ];
+    return $products[$product_id] ?? 0;
+}
+
+$totalPrice = 0;
+foreach ($cart as $item) {
+    if (isset($item['product_id'], $item['quantity']) && $item['quantity'] > 0) {
+        $totalPrice += getProductPrice($item['product_id']) * $item['quantity'];
     }
-    
-    // Get cart data from the query string
-    $cartJson = $_GET['cart'] ?? '[]';
-    $cart = json_decode($cartJson, true);
-    
-    // Validate and process cart data
-    if (!is_array($cart)) {
-        $cart = [];
-    }
-    
-    $totalPrice = 0;
-    foreach ($cart as $item) {
-        if (isset($item['product_id'], $item['quantity']) && $item['quantity'] > 0) {
-            // Fetch product price using product_id
-            $price = getProductPrice($item['product_id']);
-            // Calculate the total price for this item (price * quantity)
-            $totalPrice += $price * $item['quantity'];
-        }
-    }
+}
 ?>
+
 <html lang="en">
     <head>
     <meta charset="UTF-8">
