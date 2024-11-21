@@ -1,6 +1,6 @@
 <div id="cartOverlay" class="cart-overlay">
     <div id="cartPopover" class="cart-popover">
-        <button id="closePopover" class="close-btn">×</button>
+        <button id="closePopover" class="close-btn">x</button>
         <h2>Your Shopping Cart</h2>
         <div id="cartItems" class="cart-items">
             <!-- Cart Items added dynamically in JS -->
