@@ -26,6 +26,7 @@ class Cart {
     // Method to save the cart back to localStorage
     saveCart() {
         localStorage.setItem('cart', JSON.stringify(this.cart));
+        console.log( JSON.parse(localStorage.getItem('cart')));
     }
 
     // Method to update the cart display in the DOM
@@ -168,31 +169,9 @@ class Cart {
     }
 
     checkout() {
-        fetch('plugins/payments/checkout.php', {
-            method: 'POST',
-            body: JSON.stringify({
-                name: name,
-                amount: amount
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8'
-            }
-        })
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(session) {
-            console.log(session);
-            return stripe.redirectToCheckout({ sessionId: session.id });
-        })
-        .then(function(result) {
-            if (result.error) {
-            alert(result.error.message);
-            }
-        })
-        .catch(function(error) {
-            console.log('Fetch Error :-S', error);
-        });
+        const cart = this.getCart();
+        const params = new URLSearchParams({ cart: JSON.stringify(cart) });
+        window.location.href = `plugins/payments/checkout.php?${params.toString()}`;
     }
 }
 
