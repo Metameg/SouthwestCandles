@@ -173,7 +173,7 @@ class Cart {
 
         const form = document.createElement('form');
         form.method = 'POST';
-        form.action = 'plugins/payments/checkout.php';
+        form.action = 'pages/checkout.php';
     
         // Create an input to hold the cart data as JSON
         const input = document.createElement('input');
