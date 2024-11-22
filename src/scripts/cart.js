@@ -123,6 +123,7 @@ class Cart {
         const productPrice = this.prices["default"]; 
         const productImage = productElement.find("img").attr("src");
         const productId = productElement.find('.item-id').text();
+        const productTag = productElement.find('.tag').text();
 
         this.cart.push({
             id: productId,
@@ -131,7 +132,8 @@ class Cart {
             price: productPrice,
             image: productImage,
             quantity: 1,
-            selectedSize: "8oz"
+            selectedSize: "8oz",
+            tag: productTag
         });
     
         // Save the updated cart to storage

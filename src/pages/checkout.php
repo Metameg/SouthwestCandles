@@ -37,25 +37,45 @@ $totalPrice = calcTotal($cart);
         <?php include $basePath . '/components/cart.php';?>
         
         <main>
+
             <div class="checkout-page">
                 <h1>Getting your order</h1>
                 <div class="checkout-container">
-                    <div class="shipping-details">
+                    <div class="shipping-summary">
                         <h2>Shipping Details</h2>
-                        <div class="shipping-summary">
+                        <div class="cart-summary">
 
-                            <?php foreach ($cart as $item): ?>
-                                <div class="item">
-                                    <img src="../<?php echo htmlspecialchars($item['image']); ?>" alt="Placeholder candle product image">
-                                    <div class="details">
-                                        <p><?php echo htmlspecialchars($item['name']); ?></p>
-                                        <p><strong>Tomorrow, November 22</strong> <span class="free">FREE</span></p>
+                            <?php if (!empty($cart)): ?>
+                                <?php foreach ($cart as $item): ?>
+                                    <div class="item">
+                                        <img src="../<?php echo htmlspecialchars($item['image']); ?>" alt="Placeholder candle product image">
+                                            <h3><?php echo htmlspecialchars($item['name']); ?></h3>
+                                            <div class="size-dropdown">
+                                                <label for="sizeDropdown">Size</label>
+                                        
+                                                <select id="sizeDropdown">
+                                                    <option value="4oz" <?php echo ($item['selectedSize'] == '4oz') ? 'selected' : ''; ?>>
+                                                        4oz
+                                                    </option>
+                                                    <option value="8oz" <?php echo ($item['selectedSize'] == '8oz') ? 'selected' :  ''; ?>>
+                                                        8oz
+                                                    </option>
+                                                    <option value="16oz" <?php echo ($item['selectedSize'] == '16oz') ? 'selected' : ''; ?>>
+                                                        16oz
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <p><strong>$<?php echo htmlspecialchars(number_format($item['price'], 2)); ?></strong></p>
+                                        <!-- </div> -->
                                     </div>
-                                </div>
-                            <?php endforeach; ?>
+                                <?php endforeach; ?>
+
+                            <?php else: ?>
+                                <p>Your cart is empty or invalid.</p>
+                            <?php endif; ?>
                         </div>
 
-                        <form class="shipping-form">
+                        <form action="" class="shipping-form">
                             <div class="form-row">
                                 <input type="text" placeholder="First Name" required>
                                 <input type="text" placeholder="Last Name" required>
@@ -80,8 +100,8 @@ $totalPrice = calcTotal($cart);
                     <div class="order-summary">
                         <h2>Order Summary</h2>
                         <div class="summary-item">
-                            <p>Item Subtotal</p>
-                            <p>$69.99</p>
+                            <p>Item(s) Subtotal</p>
+                            <p>$<?php echo number_format($totalPrice, 2) ?></p>
                         </div>
                         <div class="summary-item">
                             <p>Shipping</p>
@@ -99,22 +119,7 @@ $totalPrice = calcTotal($cart);
                     </div>
                 </div>
             </div>
-
-            <h1>Your Cart</h1>
-            <?php if (!empty($cart)): ?>
-                <ul>
-                    <?php foreach ($cart as $item): ?>
-                        <li class="cart-item">
-                            <strong><?php echo htmlspecialchars($item['name']); ?></strong> - 
-                            Quantity: <?php echo htmlspecialchars($item['quantity']); ?> - 
-                            Price: $<?php echo htmlspecialchars(number_format($item['price'], 2)); ?>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            <?php else: ?>
-                <p>Your cart is empty or invalid.</p>
-            <?php endif; ?>
-            <p>Total: $<?php echo number_format($totalPrice, 2) ?></p>
+           
         </main>
     </body>
 </html>
