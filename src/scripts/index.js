@@ -1,4 +1,5 @@
 import { handleCheckout } from './checkout';
+import './stripePaymentElements';
 import Cart  from './cart';
 // import { addToCart, removeItem, openCartModal, closeCart, clearCart } from './cart';
 import $ from 'jquery';

@@ -1,9 +1,9 @@
 import { loadStripe } from '@stripe/stripe-js';
 
-export const stripePromise = loadStripe('pk_test_51QHonuBzPFeYbIr4JLEEpJQbGR7P0WFb9dJH4HhjdXyq2DJqIh6I3TaWZLQ49ffz0VYtDupbBgByT6SVsYZpo7Rw00jwB23EOF');
+
 
 export async function handleCheckout() {
-    const stripe = await stripePromise;
+    const stripe = await loadStripe('pk_test_51QHonuBzPFeYbIr4JLEEpJQbGR7P0WFb9dJH4HhjdXyq2DJqIh6I3TaWZLQ49ffz0VYtDupbBgByT6SVsYZpo7Rw00jwB23EOF');;
     
     fetch('plugins/payments/checkout.php', {
         method: 'POST',

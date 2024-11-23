@@ -11,8 +11,22 @@ if (!is_array($cart)) {
 }
 
 include '../plugins/payments/price_calculator.php';
+include '../plugins/payments/payment_intent.php';
 
 $totalPrice = calcTotal($cart);
+echo $totalPrice;
+$rprom = createPaymentIntent($totalPrice);
+if (isset($rprom['error'])) {
+    // Handle the error case
+    echo "Error creating PaymentIntent: " . $rprom['error'];
+} elseif (isset($rprom['clientSecret'])) {
+    // Access the client secret
+    $clientSecret = $rprom['clientSecret'];
+    echo "Client Secret: " . $clientSecret; // For demonstration (don't echo in production)
+} else {
+    // Handle unexpected cases
+    echo "Unexpected response from createPaymentIntent.";
+}
 ?>
 
 <html lang="en">
@@ -24,7 +38,11 @@ $totalPrice = calcTotal($cart);
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/cart.css">
     <link rel="stylesheet" href="../css/checkout.css">
-    <script src="/dist/bundle.js"></script>
+    
+    <script>
+        // Pass the client secret to the frontend
+        const stripeClientSecret = <?php echo json_encode($rprom['clientSecret']); ?>;
+    </script>
     </head>
     <body>
 
@@ -76,6 +94,7 @@ $totalPrice = calcTotal($cart);
                         </div>
 
                         <form action="" class="shipping-form">
+
                             <div class="form-row">
                                 <input type="text" placeholder="First Name" required>
                                 <input type="text" placeholder="Last Name" required>
@@ -94,7 +113,11 @@ $totalPrice = calcTotal($cart);
                                 <input type="checkbox" id="billing-address" checked>
                                 <label for="billing-address">Use as billing address</label>
                             </div>
-                            <button class="apply-button">Apply</button>
+
+                            <div id="paymentOptions">
+                                <!-- Load Strip Payment Options from stripe.js api -->
+                            </div>
+                            <button id="payNow" class="apply-button">Apply</button>
                         </form>
                     </div>
                     <div class="order-summary">
@@ -119,7 +142,9 @@ $totalPrice = calcTotal($cart);
                     </div>
                 </div>
             </div>
-           
+
+
         </main>
+        <script src="/dist/bundle.js"></script>
     </body>
 </html>

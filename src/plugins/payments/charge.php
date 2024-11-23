@@ -1,5 +1,4 @@
 <?php
-// require_once('./php/init.php');
 require_once('../../../vendor/autoload.php');
 
 $dotenv_file_path = __DIR__ . '/../../../.env';

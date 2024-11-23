@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "@stripe/stripe-js": "^4.9.0",
-    "jquery": "^3.7.1"
+    "jquery": "^3.7.1",
+    "stripe": "^17.4.0"
   },
   "scripts": {
     "build": "webpack",
