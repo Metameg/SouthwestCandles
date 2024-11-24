@@ -13,7 +13,7 @@ function getRootPath() {
 
 <header>
     <div class="logo">
-        <a href="<?php echo getRootPath(); ?>/src/index.php">
+        <a href="<?php echo getRootPath(); ?>src/index.php">
             <picture>
                 <source srcset="<?php echo getRootPath();?>src/assets/images/webp/logo.webp" type="image/webp">
                 <img src="<?php echo getRootPath();?>src/assets/images/logo.png" alt="Soutwest Candles Logo">

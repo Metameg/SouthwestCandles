@@ -117,7 +117,7 @@ if (isset($rprom['error'])) {
                             <div id="paymentOptions">
                                 <!-- Load Strip Payment Options from stripe.js api -->
                             </div>
-                            <button id="payNow" class="apply-button">Apply</button>
+                            <button id="payNow" class="apply-button">Pay Now</button>
                         </form>
                     </div>
                     <div class="order-summary">

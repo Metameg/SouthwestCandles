@@ -1,7 +1,6 @@
 import { handleCheckout } from './checkout';
-import './stripePaymentElements';
+// import './stripePaymentElements';
 import Cart  from './cart';
-// import { addToCart, removeItem, openCartModal, closeCart, clearCart } from './cart';
 import $ from 'jquery';
 
 const cart = new Cart();
@@ -19,4 +18,9 @@ $(() => {
     $("#closeCart").on("click", () => cart.closeCart());
     $("#closePopover").on("click", () => cart.closeCart());
     $("#clearCart").on("click", () => cart.clearCart());
+
+    // Only load Stripe Payment Elements on the checkout.php page
+    if (window.location.pathname.endsWith('checkout.php')) {
+        import('./stripePaymentElements')
+    }
 });

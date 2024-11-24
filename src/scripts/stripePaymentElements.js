@@ -9,7 +9,7 @@ import { loadStripe } from '@stripe/stripe-js';
 
     async function load() {
         
-        if (!paymentElement || stripeClientSecret == '') {
+        if (!paymentElement || !stripeClientSecret) {
             console.error('Payment options or client secret is missing.');
             return;
         }
@@ -54,7 +54,7 @@ import { loadStripe } from '@stripe/stripe-js';
             },
         });
 
-        if (sResult.error) {
+        if (!!sResult.error) {
             alert(sResult.error.message);
             return;
         }
