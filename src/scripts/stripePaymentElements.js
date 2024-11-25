@@ -3,6 +3,7 @@ import { loadStripe } from '@stripe/stripe-js';
 (function () {
     const STRIPE_PUBLIC_KEY = 'pk_test_51QHonuBzPFeYbIr4JLEEpJQbGR7P0WFb9dJH4HhjdXyq2DJqIh6I3TaWZLQ49ffz0VYtDupbBgByT6SVsYZpo7Rw00jwB23EOF'; // Replace with your Stripe public key
     const paymentElement = document.getElementById('paymentOptions');
+    const addressElement = document.getElementById('addressElement');
     const btn = document.getElementById('payNow');
     let stripe;
     let elements;
@@ -42,6 +43,11 @@ import { loadStripe } from '@stripe/stripe-js';
         });
 
         s_payEl.mount(paymentElement);
+
+        const s_addressEl = elements.create("address", {
+            mode: "shipping",
+        });
+        s_addressEl.mount(addressElement);
     }
 
     // Handle the payment submission

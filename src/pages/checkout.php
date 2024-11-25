@@ -93,7 +93,7 @@ if (isset($rprom['error'])) {
 
                         <div  class="shipping-form">
 
-                            <div class="form-row">
+                            <!-- <div class="form-row">
                                 <input type="text" placeholder="First Name" required>
                                 <input type="text" placeholder="Last Name" required>
                             </div>
@@ -103,15 +103,17 @@ if (isset($rprom['error'])) {
                                 <input type="text" placeholder="City" required>
                                 <select>
                                     <option value="">State</option>
-                                    <!-- Add state options -->
                                 </select>
                                 <input type="text" placeholder="ZIP Code" required>
                             </div>
                             <div class="checkbox-row">
                                 <input type="checkbox" id="billing-address" checked>
                                 <label for="billing-address">Use as billing address</label>
-                            </div>
+                            </div> -->
 
+                            <div id="addressElement">
+                                <!-- Load Strip Payment Options from stripe.js api -->
+                            </div>
                             <div id="paymentOptions">
                                 <!-- Load Strip Payment Options from stripe.js api -->
                             </div>
