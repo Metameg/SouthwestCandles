@@ -14,7 +14,6 @@ include '../plugins/payments/price_calculator.php';
 include '../plugins/payments/payment_intent.php';
 
 $totalPrice = calcTotal($cart);
-echo $totalPrice;
 $rprom = createPaymentIntent($totalPrice);
 if (isset($rprom['error'])) {
     // Handle the error case
@@ -22,7 +21,6 @@ if (isset($rprom['error'])) {
 } elseif (isset($rprom['clientSecret'])) {
     // Access the client secret
     $clientSecret = $rprom['clientSecret'];
-    echo "Client Secret: " . $clientSecret; // For demonstration (don't echo in production)
 } else {
     // Handle unexpected cases
     echo "Unexpected response from createPaymentIntent.";
@@ -93,7 +91,7 @@ if (isset($rprom['error'])) {
                             <?php endif; ?>
                         </div>
 
-                        <form action="" class="shipping-form">
+                        <div  class="shipping-form">
 
                             <div class="form-row">
                                 <input type="text" placeholder="First Name" required>
@@ -117,9 +115,8 @@ if (isset($rprom['error'])) {
                             <div id="paymentOptions">
                                 <!-- Load Strip Payment Options from stripe.js api -->
                             </div>
-                            <button id="payNow" class="apply-button">Pay Now</button>
-                        </form>
-                    </div>
+                            
+                        </div>
                     <div class="order-summary">
                         <h2>Order Summary</h2>
                         <div class="summary-item">
@@ -140,6 +137,7 @@ if (isset($rprom['error'])) {
                         </div>
                         <p class="savings">You're saving $60 on your order today!</p>
                     </div>
+                    <button id="payNow" class="paynow-button">Pay Now</button>
                 </div>
             </div>
 

@@ -90,18 +90,6 @@
   font-size: 0.9rem;
   color: #555;
 }
-.checkout-container .shipping-summary .shipping-form .apply-button {
-  padding: 0.75rem;
-  background-color: #007bff;
-  color: #ffffff;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-.checkout-container .shipping-summary .shipping-form .apply-button:hover {
-  background-color: #0056b3;
-}
 .checkout-container .shipping-summary .shipping-form .helper-text {
   font-size: 0.8rem;
   color: #888;
@@ -139,6 +127,19 @@
   font-size: 0.9rem;
   color: green;
   text-align: center;
+}
+.checkout-container .paynow-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.checkout-container .paynow-button:hover {
+  background-color: #0056b3;
 }
 @media (max-width: 768px) {
   .checkout-container {
