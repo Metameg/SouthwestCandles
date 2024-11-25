@@ -63,6 +63,7 @@ import { loadStripe } from '@stripe/stripe-js';
 
     // Handle the payment submission
     btn.addEventListener('click', async () => {
+        console.log("paying...");
         const sResult = await stripe.confirmPayment({
             elements,
             redirect: 'if_required',
@@ -86,8 +87,8 @@ import { loadStripe } from '@stripe/stripe-js';
         if (success) {
             success.textContent += ` ${sResult.paymentIntent.id}`;
             success.classList.remove('hide');
-            updateRecepientEmail(paymentIntentId, email.value);
         }
+        updateRecepientEmail(paymentIntentId, email.value);
 
     });
 
@@ -109,7 +110,8 @@ import { loadStripe } from '@stripe/stripe-js';
     async function updateRecepientEmail(paymentIntentId, email) {
          // Send the updated email to the backend
          try {
-            const response = await fetch('/update-email', {
+            console.log('here');
+            const response = await fetch('../plugins/payments/updateIntent.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -119,6 +121,7 @@ import { loadStripe } from '@stripe/stripe-js';
                     paymentIntentId: paymentIntentId
                  }),
             });
+            console.log('thier');
 
             const result = await response.json();
             if (result.success) {

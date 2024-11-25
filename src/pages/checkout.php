@@ -27,16 +27,6 @@ try {
     // Handle the exception
     echo $e->getMessage();
 }
-// if (isset($rprom['error'])) {
-//     // Handle the error case
-//     echo "Error creating PaymentIntent: " . $rprom['error'];
-// } elseif (isset($rprom['clientSecret'])) {
-//     // Access the client secret
-//     $clientSecret = $rprom['clientSecret'];
-// } else {
-//     // Handle unexpected cases
-//     echo "Unexpected response from createPaymentIntent.";
-// }
 ?>
 
 <html lang="en">

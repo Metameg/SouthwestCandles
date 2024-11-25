@@ -1,5 +1,5 @@
 <?php
-require_once('../../vendor/autoload.php');
+require_once('../../../vendor/autoload.php');
 
 $dotenv_file_path = __DIR__ . '/../../../.env';
 if (file_exists($dotenv_file_path)) {
@@ -31,7 +31,8 @@ try {
     // $charge = \Stripe\Charge::update($chargeId, [
     //     'receipt_email' => $email,
     // ]);
-    $paymentIntent->update(['receipt_email' => $email]);
+    $paymentIntent->receipt_email = $email;
+    $paymentIntent->save();
 
     // Return success response
     echo json_encode(['success' => true, 'message' => 'Email updated successfully.']);
