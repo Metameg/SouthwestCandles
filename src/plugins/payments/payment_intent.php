@@ -18,12 +18,17 @@ function createPaymentIntent($amount, $currency = 'USD') {
             'amount' => $amount * 100,
             'currency' => $currency,
             'automatic_payment_methods' => ['enabled' => true],
+            'description' => 'Thanks for your purchase!',
+            // FIXME - use dynamic email provided by customer in 
+            'receipt_email' => 'metameg8@gmail.com',
         ]);
 
         // Return the client secret
         return [
             'clientSecret' => $paymentIntent->client_secret,
+            'paymentIntentId' => $paymentIntent->id
         ];
+        
     } catch (\Stripe\Exception\ApiErrorException $e) {
         // Handle error
         return [

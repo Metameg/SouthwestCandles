@@ -15,16 +15,28 @@ include '../plugins/payments/payment_intent.php';
 
 $totalPrice = calcTotal($cart);
 $rprom = createPaymentIntent($totalPrice);
-if (isset($rprom['error'])) {
-    // Handle the error case
-    echo "Error creating PaymentIntent: " . $rprom['error'];
-} elseif (isset($rprom['clientSecret'])) {
-    // Access the client secret
+
+try {
+    if (!isset($rprom['clientSecret']) || !isset($rprom['paymentIntentId'])) {
+        throw new Exception("Missing required keys in the response.");
+    }
+
     $clientSecret = $rprom['clientSecret'];
-} else {
-    // Handle unexpected cases
-    echo "Unexpected response from createPaymentIntent.";
+    $intentId = $rprom['paymentIntentId'];
+} catch (Exception $e) {
+    // Handle the exception
+    echo $e->getMessage();
 }
+// if (isset($rprom['error'])) {
+//     // Handle the error case
+//     echo "Error creating PaymentIntent: " . $rprom['error'];
+// } elseif (isset($rprom['clientSecret'])) {
+//     // Access the client secret
+//     $clientSecret = $rprom['clientSecret'];
+// } else {
+//     // Handle unexpected cases
+//     echo "Unexpected response from createPaymentIntent.";
+// }
 ?>
 
 <html lang="en">
@@ -39,7 +51,8 @@ if (isset($rprom['error'])) {
     
     <script>
         // Pass the client secret to the frontend
-        const stripeClientSecret = <?php echo json_encode($rprom['clientSecret']); ?>;
+        const stripeClientSecret = <?php echo json_encode($clientSecret); ?>;
+        const paymentIntentId = <?php echo json_encode($intentId); ?>;
     </script>
     </head>
     <body>
@@ -56,6 +69,7 @@ if (isset($rprom['error'])) {
 
             <div class="checkout-page">
                 <h1>Getting your order</h1>
+                <input type="email" id="email" placeholder="Enter your email" />
                 <div class="checkout-container">
                     <div class="shipping-summary">
                         <h2>Shipping Details</h2>
