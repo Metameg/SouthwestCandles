@@ -5,7 +5,7 @@ import { loadStripe } from '@stripe/stripe-js';
     const paymentElement = document.getElementById('paymentOptions');
     const addressElement = document.getElementById('addressElement');
     const email = document.getElementById('email');
-    const btn = document.getElementById('payNow');
+    const pay_btn = document.getElementById('payNow');
     let stripe;
     let elements;
 
@@ -43,37 +43,54 @@ import { loadStripe } from '@stripe/stripe-js';
               // Extract potentially complete address
               const address = event.value.address;
             }
-          })
+        })
     }
 
     // Handle the payment submission
-    btn.addEventListener('click', async () => {
-        console.log("paying...");
-        const sResult = await stripe.confirmPayment({
-            elements,
-            redirect: 'if_required',
-            confirmParams: {
-                return_url: 'http://localhost:3000/src/index.php', // Replace with your return URL
-            },
-        });
+    pay_btn.addEventListener('click', async () => {
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const success = document.querySelector('.success-msg');
+        const error = document.querySelector('.error-msg');
 
-        if (!!sResult.error) {
-            alert(sResult.error.message);
-            return;
-        }
-
-        const container = document.querySelector('.container');
-        const success = document.querySelector('.success');
-
-        if (container) {
-            container.classList.add('hide');
-        }
-
-        if (success) {
+        try {
+            // Show the overlay
+            loadingOverlay.style.display = 'flex';
+    
+            // Start the payment process
+            const sResult = await stripe.confirmPayment({
+                elements,
+                redirect: 'if_required',
+                confirmParams: {
+                    return_url: 'http://localhost:3000/src/index.php', // Replace with your return URL
+                },
+            });
+    
+            // Hide the overlay
+            loadingOverlay.style.display = 'none';
+    
+            // Handle payment result
+            if (sResult.error) {
+                error.textContent = sResult.error.message;
+                error.style.display = "block";
+                return;
+            }
+    
+            // Update success message and email
+            
             success.textContent += ` ${sResult.paymentIntent.id}`;
-            success.classList.remove('hide');
+            success.style.display = "block";
+            error.style.display = "none";
+            updateRecepientEmail(paymentIntentId, email.value);
+            
+            // Disable the pay button after payment is confirmed
+            pay_btn.disabled = true;
+            pay_btn.classList.add('disabled');
+            
+        } catch (error) {
+            // Hide the overlay in case of errors
+            loadingOverlay.style.display = 'none';
+            console.error('Error during payment:', error);
         }
-        updateRecepientEmail(paymentIntentId, email.value);
 
     });
 
@@ -105,18 +122,11 @@ import { loadStripe } from '@stripe/stripe-js';
                     paymentIntentId: paymentIntentId
                  }),
             });
-            console.log('thier');
 
             const result = await response.json();
-            if (result.success) {
-                alert('Email updated successfully!');
-            } else {
-                alert('Failed to update email: ' + result.error);
-            }
 
         } catch (error) {
             console.error('Error updating email:', error);
-            alert('An error occurred while updating the email.');
         }
     }
     // Initialize the payment flow

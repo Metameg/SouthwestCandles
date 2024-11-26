@@ -47,6 +47,11 @@ try {
     </head>
     <body>
 
+        <!-- Loading Spinner -->
+        <div id="loadingOverlay" class="loading-overlay">
+            <div class="spinner"></div>
+        </div>
+
         <!-- Navbar -->
         <?php $basePath = '../';?>
         <?php include $basePath . '/components/navbar.php';?>
@@ -123,10 +128,22 @@ try {
                             <h3>Total</h3>
                             <h3>$75.76</h3>
                         </div>
-                        <p class="savings">You're saving $60 on your order today!</p>
                     </div>
+
                     <button id="payNow" class="paynow-button">Pay Now</button>
+                    
+                    <div class="success-msg">
+                        Payment Success! We will send a receipt to the provided email shortly. 
+                        Please keep this confirmation number for your records. 
+                        <br />
+                        <!-- Confirmation will be created dynamically in script -->
+                        
+                    </div>
+                    <div class="error-msg">
+                        <!-- Error will be sent from script -->
+                    </div>
                 </div>
+
             </div>
 
 
