@@ -19,7 +19,7 @@
         <!-- Fetch all products -->
         <?php
             // Include the database connection
-            include 'db.php';
+            include '../db.php';
 
             $pdo = getPDO();
             // Fetch products from the database

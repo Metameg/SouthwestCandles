@@ -1,8 +1,8 @@
 <?php
 // db.php
 function getPDO() {
-    require_once('../vendor/autoload.php');
-    $dotenv_file_path = __DIR__ . '/../.env';
+    require_once('vendor/autoload.php');
+    $dotenv_file_path = __DIR__ . '/.env';
     if (file_exists($dotenv_file_path)) {
         $dotenv = Dotenv\Dotenv::createImmutable(dirname($dotenv_file_path));
         $dotenv->load();

@@ -10,8 +10,8 @@ if (!is_array($cart)) {
     $cart = [];
 }
 
-include '../plugins/payments/price_calculator.php';
-include '../plugins/payments/payment_intent.php';
+include '../../plugins/payments/price_calculator.php';
+include '../../plugins/payments/payment_intent.php';
 
 $totalPrice = calcTotal($cart);
 $rprom = createPaymentIntent($totalPrice);
@@ -96,24 +96,6 @@ try {
                         </div>
 
                         <div  class="shipping-form">
-
-                            <!-- <div class="form-row">
-                                <input type="text" placeholder="First Name" required>
-                                <input type="text" placeholder="Last Name" required>
-                            </div>
-                            <input type="text" placeholder="Address" required>
-                            <p class="helper-text">Military (APO/FPO) | International Customers</p>
-                            <div class="form-row">
-                                <input type="text" placeholder="City" required>
-                                <select>
-                                    <option value="">State</option>
-                                </select>
-                                <input type="text" placeholder="ZIP Code" required>
-                            </div>
-                            <div class="checkbox-row">
-                                <input type="checkbox" id="billing-address" checked>
-                                <label for="billing-address">Use as billing address</label>
-                            </div> -->
 
                             <div id="addressElement">
                                 <!-- Load Strip Payment Options from stripe.js api -->

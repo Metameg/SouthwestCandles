@@ -16,29 +16,14 @@ import { loadStripe } from '@stripe/stripe-js';
             return;
         }
 
-        // Fetch the payment intent from the server
-        // const rprom = fetch('/plugins/payments/payment_intent', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({
-        //         amount: totalPrice * 100, // Amount in cents
-        //     }),
-        // });
-
         // Load the Stripe library
         stripe = await loadStripe(STRIPE_PUBLIC_KEY);
-
-        // const res = await rprom;
-        // const data = await res.json();
 
         // Initialize Stripe Elements with the client secret
         elements = stripe.elements({
             clientSecret: stripeClientSecret,
             loader: 'auto',
         });
-
 
         // Payment Element
         const s_payEl = elements.create('payment', {
@@ -110,8 +95,7 @@ import { loadStripe } from '@stripe/stripe-js';
     async function updateRecepientEmail(paymentIntentId, email) {
          // Send the updated email to the backend
          try {
-            console.log('here');
-            const response = await fetch('../plugins/payments/updateIntent.php', {
+            const response = await fetch('../../plugins/payments/updateIntent.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
