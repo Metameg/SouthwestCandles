@@ -7,6 +7,7 @@ import cart from './cart';
     const addressElement = document.getElementById('addressElement');
     const email = document.getElementById('email');
     const pay_btn = document.getElementById('payNow');
+    const backBtn = document.getElementById('continueShoppingLink');
     let stripe;
     let elements;
 
@@ -69,7 +70,7 @@ import cart from './cart';
             // Hide the overlay
             loadingOverlay.style.display = 'none';
     
-            // Handle payment result
+            // Handle payment result error
             if (sResult.error) {
                 if (shouldRedirect(sResult.paymentIntent)) {
                     window.location.href = `http://localhost:3000/src/pages/thank-you.php?success=false&error=${encodeURIComponent(sResult.error.message)}`;
@@ -79,11 +80,12 @@ import cart from './cart';
                 }
                 return;
             }
-    
+
             if (shouldRedirect(sResult.paymentIntent)) {
                 // Redirect for successful payments
                 window.location.href = `http://localhost:3000/src/pages/thank-you.php?success=true&paymentIntentId=${sResult.paymentIntent.id}`;
             } else {
+                // Redirect for unsuccessful payments
                 success.textContent += ` ${sResult.paymentIntent.id}`;
                 success.style.display = "block";
                 error.style.display = "none";
@@ -118,6 +120,10 @@ import cart from './cart';
         }
     });
 
+    backBtn.addEventListener('click', async (e) => {
+        cancelIntent(paymentIntentId);
+    });
+
     function validateEmail(email) {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return regex.test(email);
@@ -134,7 +140,7 @@ import cart from './cart';
     async function updateRecepientEmail(paymentIntentId, email) {
          // Send the updated email to the backend
          try {
-            const response = await fetch('../../plugins/payments/updateIntent.php', {
+            const response = await fetch('../../plugins/payments/update_intent_email.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -149,6 +155,26 @@ import cart from './cart';
 
         } catch (error) {
             console.error('Error updating email:', error);
+        }
+    }
+
+    async function cancelIntent(paymentIntentId) {
+        const response = await fetch('../../plugins/payments/cancel_intent.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                paymentIntentId: paymentIntentId
+             }),
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            console.log('Payment Intent canceled:', result);
+        } else {
+            const error = await response.json();
+            console.error('Error canceling intent:', error);
         }
     }
     // Initialize the payment flow
