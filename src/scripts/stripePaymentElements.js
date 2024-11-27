@@ -1,4 +1,5 @@
 import { loadStripe } from '@stripe/stripe-js';
+import cart from './cart';
 
 (function () {
     const STRIPE_PUBLIC_KEY = 'pk_test_51QHonuBzPFeYbIr4JLEEpJQbGR7P0WFb9dJH4HhjdXyq2DJqIh6I3TaWZLQ49ffz0VYtDupbBgByT6SVsYZpo7Rw00jwB23EOF'; // Replace with your Stripe public key
@@ -86,6 +87,7 @@ import { loadStripe } from '@stripe/stripe-js';
                 success.textContent += ` ${sResult.paymentIntent.id}`;
                 success.style.display = "block";
                 error.style.display = "none";
+                cart.clearCart();
             }
 
             // Update email

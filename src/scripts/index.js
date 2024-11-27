@@ -1,9 +1,9 @@
 import { handleCheckout } from './checkout';
 // import './stripePaymentElements';
-import Cart  from './cart';
+import cart  from './cart';
 import $ from 'jquery';
 
-const cart = new Cart();
+// const cart = new Cart();
 $(() => {
     // Set up the checkout button functionality
     $("#cartNavBtn").on("click", () => cart.openCartModal());
@@ -19,8 +19,16 @@ $(() => {
     $("#closePopover").on("click", () => cart.closeCart());
     $("#clearCart").on("click", () => cart.clearCart());
 
-    // Only load Stripe Payment Elements on the checkout.php page
+    // Only load correct modules
     if (window.location.pathname.endsWith('checkout.php')) {
         import('./stripePaymentElements')
+    }
+    if (window.location.pathname.endsWith('thank-you.php')) {
+        import('./thankYou').then(() => {
+            console.log("Thank you module loaded successfully!");
+        })
+        .catch((err) => {
+            console.error("Error loading thank you module:", err);
+        });
     }
 });
