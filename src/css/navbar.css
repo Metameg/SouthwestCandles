@@ -29,6 +29,12 @@ header nav ul a:hover {
   color: #fff;
   border-color: #f39c12;
 }
+header nav ul #continueShoppingLink {
+  border: none;
+  text-decoration: underline;
+  color: #495aaa;
+  font-size: 1.2rem;
+}
 header nav ul #cartNavBtn {
   font-weight: bold;
 }/*# sourceMappingURL=navbar.css.map */

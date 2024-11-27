@@ -9,6 +9,9 @@ function getRootPath() {
     
     return $path;
 }
+
+$currentFile = basename($_SERVER['PHP_SELF']);
+$isCheckoutPage = ($currentFile === 'checkout.php');
 ?>
 
 <header>
@@ -24,7 +27,12 @@ function getRootPath() {
         <ul>
             <li><a href="#">Shop</a></li>
             <li><a href="#">About</a></li>
-            <li><a href="#" id="cartNavBtn">Cart</a></li>
+            <?php if ($isCheckoutPage): ?>
+                <!-- Link to index.php if on checkout.php -->
+                <li><a id="continueShoppingLink" href="<?php echo getRootPath(); ?>src/index.php">&#8592; Continue Shopping</a></li>
+            <?php else: ?>
+                <li><a href="#" id="cartNavBtn">Cart</a></li>
+            <?php endif; ?>
         </ul>
     </nav>
 </header>
