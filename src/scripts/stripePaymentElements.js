@@ -61,7 +61,7 @@ import { loadStripe } from '@stripe/stripe-js';
                 elements,
                 redirect: 'if_required',
                 confirmParams: {
-                    return_url: 'http://localhost:3000/src/index.php', // Replace with your return URL
+                    return_url: 'http://localhost:3000/src/pages/thank-you.php', 
                 },
             });
     
@@ -70,21 +70,33 @@ import { loadStripe } from '@stripe/stripe-js';
     
             // Handle payment result
             if (sResult.error) {
-                error.textContent = sResult.error.message;
-                error.style.display = "block";
+                if (shouldRedirect(sResult.paymentIntent)) {
+                    window.location.href = `http://localhost:3000/src/pages/thank-you.php?success=false&error=${encodeURIComponent(sResult.error.message)}`;
+                } else {
+                    error.textContent = sResult.error.message;
+                    error.style.display = "block";
+                }
                 return;
             }
     
-            // Update success message and email
-            
-            success.textContent += ` ${sResult.paymentIntent.id}`;
-            success.style.display = "block";
-            error.style.display = "none";
+            if (shouldRedirect(sResult.paymentIntent)) {
+                // Redirect for successful payments
+                window.location.href = `http://localhost:3000/src/pages/thank-you.php?success=true&paymentIntentId=${sResult.paymentIntent.id}`;
+            } else {
+                success.textContent += ` ${sResult.paymentIntent.id}`;
+                success.style.display = "block";
+                error.style.display = "none";
+            }
+
+            // Update email
             updateRecepientEmail(paymentIntentId, email.value);
             
-            // Disable the pay button after payment is confirmed
-            pay_btn.disabled = true;
-            pay_btn.classList.add('disabled');
+            // Disable the pay button after payment is confirmed 
+            // (button doesn't exist on thank-you page)
+            if (pay_btn) {
+                pay_btn.disabled = true;
+                pay_btn.classList.add('disabled');
+            }
             
         } catch (error) {
             // Hide the overlay in case of errors
@@ -107,6 +119,14 @@ import { loadStripe } from '@stripe/stripe-js';
     function validateEmail(email) {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return regex.test(email);
+    }
+
+    function shouldRedirect(paymentIntent) {
+        // Example: Redirect only for certain payment methods
+        const requiresAction = paymentIntent?.status === 'requires_action';
+    
+        // Add logic for redirection criteria
+        return requiresAction;
     }
 
     async function updateRecepientEmail(paymentIntentId, email) {

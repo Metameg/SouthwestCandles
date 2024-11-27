@@ -33,8 +33,7 @@ try {
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Southwest Candle Products</title>
-    <link rel="stylesheet" href="../css/index.css">
+    <title>Checkout | Southwest Candle Products</title>
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/cart.css">
     <link rel="stylesheet" href="../css/checkout.css">
@@ -131,7 +130,7 @@ try {
                     </div>
 
                     <button id="payNow" class="paynow-button">Pay Now</button>
-                    
+
                     <div class="success-msg">
                         Payment Success! We will send a receipt to the provided email shortly. 
                         Please keep this confirmation number for your records. 
