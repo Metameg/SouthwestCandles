@@ -10,11 +10,14 @@ if (!is_array($cart)) {
     $cart = [];
 }
 
-include '../../plugins/payments/price_calculator.php';
+
+
+include '../../plugins/payments/utilities.php';
 include '../../plugins/payments/payment_intent.php';
 
-$totalPrice = calcTotal($cart);
-$rprom = createPaymentIntent($totalPrice);
+$cart = consolidateCart($cart);
+$subtotal = calcSubtotal($cart);
+$rprom = createPaymentIntent($subtotal);
 
 try {
     if (!isset($rprom['clientSecret']) || !isset($rprom['paymentIntentId'])) {
@@ -74,21 +77,11 @@ try {
                                     <div class="item">
                                         <img src="../<?php echo htmlspecialchars($item['image']); ?>" alt="Placeholder candle product image">
                                             <h3><?php echo htmlspecialchars($item['name']); ?></h3>
-                                            <div class="size-dropdown">
-                                                <label for="sizeDropdown">Size</label>
-                                        
-                                                <select id="sizeDropdown">
-                                                    <option value="4oz" <?php echo ($item['selectedSize'] == '4oz') ? 'selected' : ''; ?>>
-                                                        4oz
-                                                    </option>
-                                                    <option value="8oz" <?php echo ($item['selectedSize'] == '8oz') ? 'selected' :  ''; ?>>
-                                                        8oz
-                                                    </option>
-                                                    <option value="16oz" <?php echo ($item['selectedSize'] == '16oz') ? 'selected' : ''; ?>>
-                                                        16oz
-                                                    </option>
-                                                </select>
-                                            </div>
+                                            
+                                            <p>Size<br /><br /><?php echo htmlspecialchars($item['selectedSize']); ?></p>
+
+                                            <p>QTY:<br /><br /><?php echo htmlspecialchars($item['quantity']); ?></p>
+                                            
                                             <p><strong>$<?php echo htmlspecialchars(number_format($item['price'], 2)); ?></strong></p>
                                         <!-- </div> -->
                                     </div>
@@ -113,19 +106,23 @@ try {
                         <h2>Order Summary</h2>
                         <div class="summary-item">
                             <p>Item(s) Subtotal</p>
-                            <p>$<?php echo number_format($totalPrice, 2) ?></p>
+                            <p>$<?php echo number_format($subtotal, 2) ?></p>
                         </div>
                         <div class="summary-item">
                             <p>Shipping</p>
-                            <p>FREE</p>
+                            <p>$5.00</p>
                         </div>
                         <div class="summary-item">
-                            <p>Estimated Sales Tax</p>
-                            <p>$5.77</p>
+                            <p>Estimated Tax</p>
+                            <p id="taxAmount">$0.00 
+                                <!-- Updated Dynamically in Stripe JS -->
+                            </p>
                         </div>
                         <div class="total">
                             <h3>Total</h3>
-                            <h3>$75.76</h3>
+                            <h3 id="totalAmount">$<?php echo number_format($subtotal, 2) ?>
+                                <!-- Updated Dynamically in Stripe JS -->
+                            </h3>
                         </div>
                     </div>
 

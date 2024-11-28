@@ -41,11 +41,12 @@ import cart from './cart';
 
         // FIXME - address will be stored here. send it to order processor
         s_addressEl.on('change', (event) => {
-            if (event.complete){
+            // if (event.complete){
               // Extract potentially complete address
-              const address = event.value.address;
-            }
-        })
+            const address = event.value.address;
+            triggerTaxCalculation(address);
+            // }
+        });
     }
 
     // Handle the payment submission
@@ -124,18 +125,6 @@ import cart from './cart';
         cancelIntent(paymentIntentId);
     });
 
-    function validateEmail(email) {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(email);
-    }
-
-    function shouldRedirect(paymentIntent) {
-        // Example: Redirect only for certain payment methods
-        const requiresAction = paymentIntent?.status === 'requires_action';
-    
-        // Add logic for redirection criteria
-        return requiresAction;
-    }
 
     async function updateRecepientEmail(paymentIntentId, email) {
          // Send the updated email to the backend
@@ -158,6 +147,40 @@ import cart from './cart';
         }
     }
 
+    async function triggerTaxCalculation(address) {
+        if (!address) return;
+    
+        // Pass the address to your backend for tax calculation
+        const response = await fetch('../../plugins/payments/calc_price.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+                cart: cart.getCart(),
+                address: address 
+            }),
+        });
+
+        // Check if the HTTP request was successful
+        if (!response.ok) {
+            const error = await response.json();
+            console.error('Network error calculating price:', error);
+            return;
+        }
+
+        // Parse the JSON response
+        const result = await response.json();
+
+        // Check if the backend logic succeeded
+        if (!result.success) {
+            console.error('Error calculating price:', result.error);
+            return;
+        }
+
+        updateCartSummary(result.estimated_tax, result.total_price);
+    }
+
     async function cancelIntent(paymentIntentId) {
         const response = await fetch('../../plugins/payments/cancel_intent.php', {
             method: 'POST',
@@ -177,6 +200,27 @@ import cart from './cart';
             console.error('Error canceling intent:', error);
         }
     }
+
+    // Helper Functions
+    function validateEmail(email) {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+
+    function shouldRedirect(paymentIntent) {
+        // Example: Redirect only for certain payment methods
+        const requiresAction = paymentIntent?.status === 'requires_action';
+    
+        // Add logic for redirection criteria
+        return requiresAction;
+    }
+
+    function updateCartSummary(tax, total) {
+        document.getElementById('taxAmount').textContent = `$${(tax / 100).toFixed(2)}`;
+        document.getElementById('totalAmount').textContent = `$${(total / 100).toFixed(2)}`;
+    }
+
+
     // Initialize the payment flow
     load();
 })();
