@@ -34,7 +34,6 @@ body {
   }
 }
 .checkout-page {
-  max-width: 1200px;
   padding: 1rem;
   background: #faf8f3;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -53,6 +52,7 @@ body {
 }
 .checkout-container .shipping-summary {
   flex: 2;
+  padding: 4rem;
 }
 .checkout-container .shipping-summary h2 {
   font-size: 1.5rem;
@@ -135,6 +135,7 @@ body {
   background: #f1f1f1;
   padding: 1rem;
   border-radius: 4px;
+  flex: 1;
 }
 .checkout-container .order-summary h2 {
   font-size: 1.5rem;
@@ -188,4 +189,9 @@ body {
   font-size: 0.9rem;
   color: #df1b41;
   text-align: center;
+}
+@media (max-width: 768px) {
+  .checkout-container {
+    flex-direction: column;
+  }
 }/*# sourceMappingURL=checkout.css.map */

@@ -102,6 +102,7 @@ try {
                             </div>
                             
                         </div>
+                    </div>
                     <div class="order-summary">
                         <h2>Order Summary</h2>
                         <div class="summary-item">
@@ -124,21 +125,20 @@ try {
                                 <!-- Updated Dynamically in Stripe JS -->
                             </h3>
                         </div>
-                    </div>
 
-                    <button id="payNow" class="paynow-button">Pay Now</button>
+                        <button id="payNow" class="paynow-button">Pay Now</button>
 
-                    <div class="success-msg">
-                        Payment Success! We will send a receipt to the provided email shortly. 
-                        Please keep this confirmation number for your records. 
-                        <br />
-                        <!-- Confirmation will be created dynamically in script -->
-                        
+                        <div class="success-msg">
+                            Payment Success! We will send a receipt to the provided email shortly. 
+                            Please keep this confirmation number for your records. 
+                            <br />
+                            <!-- Confirmation will be created dynamically in script -->
+                            
+                        </div>
+                        <div class="error-msg">
+                            <!-- Error will be sent from script -->
+                        </div>
                     </div>
-                    <div class="error-msg">
-                        <!-- Error will be sent from script -->
-                    </div>
-                </div>
 
             </div>
 

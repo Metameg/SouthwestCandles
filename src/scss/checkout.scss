@@ -36,7 +36,6 @@ body {
 }
 
 .checkout-page {
-    max-width: 1200px;
     padding: 1rem;
     background: $background-color;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -56,6 +55,7 @@ body {
 
     .shipping-summary {
         flex: 2;
+        padding: 4rem;
 
         h2 {
             font-size: 1.5rem;
@@ -152,6 +152,7 @@ body {
         background: #f1f1f1;
         padding: 1rem;
         border-radius: 4px;
+        flex: 1;
 
         h2 {
             font-size: 1.5rem;
@@ -216,7 +217,7 @@ body {
         text-align: center;
     }
 
-    // @media (max-width: 768px) {
-    //     // flex-direction: column;
-    // }
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
 }
