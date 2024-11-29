@@ -59,6 +59,5 @@ echo json_encode([
     'success' => true,
     'estimated_tax' => $calculation['tax_amount_exclusive'],
     'total_price' => $calculation['amount_total'],
-    'calculation' => $calculation
 ]);
 ?>

@@ -122,7 +122,6 @@ import cart from './cart';
                 success.textContent += ` ${sResult.paymentIntent.id}`;
                 success.style.display = "block";
                 error.style.display = "none";
-                console.log(s_payEl);
                 disableFields(s_payEl);
                 cart.clearCart();
             }
