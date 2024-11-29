@@ -68,6 +68,7 @@ body {
             gap: 1rem;
             margin-bottom: 1rem;
             flex-direction: column;
+            margin-bottom: 5.2rem;
 
             .item {
                 display: flex;
@@ -77,6 +78,8 @@ body {
                 background: white;
                 padding: 25px;
                 border: #000 solid 1px;
+                min-width: fit-content;
+
                 img {
                     width: 60px;
                     height: 60px;
@@ -90,6 +93,10 @@ body {
                     select {
                         padding: 8px;
                     }
+                }
+
+                h3 {
+                    white-space: nowrap;
                 }
 
                 p {

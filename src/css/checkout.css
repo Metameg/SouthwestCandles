@@ -64,6 +64,7 @@ body {
   gap: 1rem;
   margin-bottom: 1rem;
   flex-direction: column;
+  margin-bottom: 5.2rem;
 }
 .checkout-container .shipping-summary .cart-summary .item {
   display: flex;
@@ -73,6 +74,8 @@ body {
   background: white;
   padding: 25px;
   border: #000 solid 1px;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
 }
 .checkout-container .shipping-summary .cart-summary .item img {
   width: 60px;
@@ -85,6 +88,9 @@ body {
 }
 .checkout-container .shipping-summary .cart-summary .item .size-dropdown select {
   padding: 8px;
+}
+.checkout-container .shipping-summary .cart-summary .item h3 {
+  white-space: nowrap;
 }
 .checkout-container .shipping-summary .cart-summary .item p {
   margin: 0;

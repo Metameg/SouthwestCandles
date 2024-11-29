@@ -10,6 +10,8 @@ import cart from './cart';
     const backBtn = document.getElementById('continueShoppingLink');
     let stripe;
     let elements;
+    let s_payEl; 
+    let s_addressEl; 
 
     async function load() {
         
@@ -21,20 +23,48 @@ import cart from './cart';
         // Load the Stripe library
         stripe = await loadStripe(STRIPE_PUBLIC_KEY);
 
+        // Appearance of Stripe Elements
+        const appearance = {
+            theme: 'stripe',
+          
+            variables: {
+                colorPrimary: '#495aaa',
+                colorBackground: '#faf8f3',
+                colorText: '#30313d',
+                colorDanger: '#df1b41',
+                // fontFamily: 'Ideal Sans, system-ui, sans-serif',
+                spacingUnit: '8px',
+                borderRadius: '0',
+            },
+
+            rules: {
+                '.Input': {
+                    border: '1px solid #000',
+                },
+                '.Input:disabled': {
+                    backgroundColor: '#000',
+                },
+          
+                // See all supported class names and selector syntax below
+            }
+        };
+
         // Initialize Stripe Elements with the client secret
         elements = stripe.elements({
             clientSecret: stripeClientSecret,
+            appearance: appearance,
             loader: 'auto',
         });
 
         // Payment Element
-        const s_payEl = elements.create('payment', {
+        s_payEl = elements.create('payment', {
             layout: 'tabs',
+            
         });
         s_payEl.mount(paymentElement);
 
         // Address Element
-        const s_addressEl = elements.create("address", {
+        s_addressEl = elements.create("address", {
             mode: "shipping",
         });
         s_addressEl.mount(addressElement);
@@ -74,7 +104,7 @@ import cart from './cart';
             // Hide the overlay
             loadingOverlay.style.display = 'none';
     
-            // Handle payment result error
+            // Unsuccessful Payments
             if (sResult.error) {
                 if (shouldRedirect(sResult.paymentIntent)) {
                     window.location.href = `http://localhost:3000/src/pages/thank-you.php?success=false&error=${encodeURIComponent(sResult.error.message)}`;
@@ -85,14 +115,15 @@ import cart from './cart';
                 return;
             }
 
+            // Successful Payments
             if (shouldRedirect(sResult.paymentIntent)) {
-                // Redirect for successful payments
                 window.location.href = `http://localhost:3000/src/pages/thank-you.php?success=true&paymentIntentId=${sResult.paymentIntent.id}`;
             } else {
-                // Redirect for unsuccessful payments
                 success.textContent += ` ${sResult.paymentIntent.id}`;
                 success.style.display = "block";
                 error.style.display = "none";
+                console.log(s_payEl);
+                disableFields(s_payEl);
                 cart.clearCart();
             }
 
@@ -220,6 +251,22 @@ import cart from './cart';
     function updateCartSummary(tax, total) {
         document.getElementById('taxAmount').textContent = `$${(tax / 100).toFixed(2)}`;
         document.getElementById('totalAmount').textContent = `$${(total / 100).toFixed(2)}`;
+    }
+
+    function disableFields(s_element) {
+        // Change the appearance of the read-only fields
+        const styles = {
+            base: {
+                backgroundColor: '#f0f0f0', 
+                color: '#a5a5a5', 
+                cursor: 'not-allowed', 
+            },
+            invalid: {
+                color: '#ff4d4f', 
+            },
+        };
+
+        s_element.update({ readOnly: true, style: styles });
     }
 
 

@@ -69,7 +69,7 @@ try {
                 <input type="email" id="email" placeholder="Enter your email" />
                 <div class="checkout-container">
                     <div class="shipping-summary">
-                        <h2>Shipping Details</h2>
+                        <h2>Cart Summary</h2>
                         <div class="cart-summary">
 
                             <?php if (!empty($cart)): ?>
