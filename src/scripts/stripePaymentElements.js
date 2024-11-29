@@ -39,13 +39,16 @@ import cart from './cart';
         });
         s_addressEl.mount(addressElement);
 
-        // FIXME - address will be stored here. send it to order processor
+        // When the address changes, calculate tax
         s_addressEl.on('change', (event) => {
-            // if (event.complete){
-              // Extract potentially complete address
-            const address = event.value.address;
-            triggerTaxCalculation(address);
-            // }
+            s_addressEl.getValue()
+                .then(function(result) {
+                    if (result.complete) {
+                        // console.log("address complete");
+                        const address = event.value.address;
+                        triggerTaxCalculation(address);
+                    }
+                });
         });
     }
 
@@ -116,7 +119,6 @@ import cart from './cart';
         const email = e.target.value;
         // Validate email format
         if (!validateEmail(email)) {
-            alert('Please enter a valid email address.');
             return;
         }
     });

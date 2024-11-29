@@ -65,7 +65,7 @@ try {
         <main>
 
             <div class="checkout-page">
-                <h1>Getting your order</h1>
+                <!-- <h1>Getting your order</h1> -->
                 <input type="email" id="email" placeholder="Enter your email" />
                 <div class="checkout-container">
                     <div class="shipping-summary">
@@ -104,39 +104,41 @@ try {
                         </div>
                     </div>
                     <div class="order-summary">
-                        <h2>Order Summary</h2>
-                        <div class="summary-item">
-                            <p>Item(s) Subtotal</p>
-                            <p>$<?php echo number_format($subtotal, 2) ?></p>
-                        </div>
-                        <div class="summary-item">
-                            <p>Shipping</p>
-                            <p>$5.00</p>
-                        </div>
-                        <div class="summary-item">
-                            <p>Estimated Tax</p>
-                            <p id="taxAmount">$0.00 
-                                <!-- Updated Dynamically in Stripe JS -->
-                            </p>
-                        </div>
-                        <div class="total">
-                            <h3>Total</h3>
-                            <h3 id="totalAmount">$<?php echo number_format($subtotal, 2) ?>
-                                <!-- Updated Dynamically in Stripe JS -->
-                            </h3>
-                        </div>
+                        <div class="order-details">
+                            <h2>Order Summary</h2>
+                            <div class="summary-item">
+                                <p>Item(s) Subtotal</p>
+                                <p>$<?php echo number_format($subtotal, 2) ?></p>
+                            </div>
+                            <div class="summary-item">
+                                <p>Shipping</p>
+                                <p class="free-price">FREE</p>
+                            </div>
+                            <div class="summary-item">
+                                <p>Estimated Tax</p>
+                                <p id="taxAmount">$0.00 
+                                    <!-- Updated Dynamically in Stripe JS -->
+                                </p>
+                            </div>
+                            <div class="total">
+                                <h3>Total</h3>
+                                <h3 id="totalAmount">$<?php echo number_format($subtotal, 2) ?>
+                                    <!-- Updated Dynamically in Stripe JS -->
+                                </h3>
+                            </div>
 
-                        <button id="payNow" class="paynow-button">Pay Now</button>
+                            <button id="payNow" class="paynow-button">Pay Now</button>
 
-                        <div class="success-msg">
-                            Payment Success! We will send a receipt to the provided email shortly. 
-                            Please keep this confirmation number for your records. 
-                            <br />
-                            <!-- Confirmation will be created dynamically in script -->
-                            
-                        </div>
-                        <div class="error-msg">
-                            <!-- Error will be sent from script -->
+                            <div class="success-msg">
+                                Payment Success! We will send a receipt to the provided email shortly. 
+                                Please keep this confirmation number for your records. 
+                                <br />
+                                <!-- Confirmation will be created dynamically in script -->
+                                
+                            </div>
+                            <div class="error-msg">
+                                <!-- Error will be sent from script -->
+                            </div>
                         </div>
                     </div>
 

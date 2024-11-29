@@ -133,26 +133,29 @@ body {
 }
 .checkout-container .order-summary {
   background: #f1f1f1;
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 4px;
   flex: 1;
 }
-.checkout-container .order-summary h2 {
+.checkout-container .order-summary .order-details h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   color: #333;
 }
-.checkout-container .order-summary .summary-item {
+.checkout-container .order-summary .order-details .summary-item {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
 }
-.checkout-container .order-summary .summary-item p {
+.checkout-container .order-summary .order-details .summary-item p {
   margin: 0;
   font-size: 1rem;
   color: #555;
 }
-.checkout-container .order-summary .total {
+.checkout-container .order-summary .order-details .summary-item .free-price {
+  color: green;
+}
+.checkout-container .order-summary .order-details .total {
   display: flex;
   justify-content: space-between;
   font-size: 1.2rem;

@@ -150,34 +150,41 @@ body {
 
     .order-summary {
         background: #f1f1f1;
-        padding: 1rem;
+        padding: 2rem;
         border-radius: 4px;
         flex: 1;
 
-        h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #333;
-        }
+        .order-details {
 
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-
-            p {
-                margin: 0;
-                font-size: 1rem;
-                color: #555;
+            h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                color: #333;
             }
-        }
 
-        .total {
-            display: flex;
-            justify-content: space-between;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #333;
+            .summary-item {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 1rem;
+
+                p {
+                    margin: 0;
+                    font-size: 1rem;
+                    color: #555;
+                }
+
+                .free-price {
+                    color: green;
+                }
+            }
+
+            .total {
+                display: flex;
+                justify-content: space-between;
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: #333;
+            }
         }
     }
 

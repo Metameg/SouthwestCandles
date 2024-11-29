@@ -51,7 +51,7 @@ $calculation = \Stripe\Tax\Calculation::create([
         'address_source' => 'shipping',
     ],
     'shipping_cost' => [
-        'amount' => 500, // Shipping cost in cents
+        'amount' => 0, // Shipping cost in cents
     ]
 ]);
 
