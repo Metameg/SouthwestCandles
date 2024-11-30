@@ -128,14 +128,6 @@ try {
                             </div>
 
                             <button id="payNow" class="paynow-button">Pay Now</button>
-
-                            <div class="success-msg">
-                                Payment Success! We will send a receipt to the provided email shortly. 
-                                Please keep this confirmation number for your records. 
-                                <br />
-                                <!-- Confirmation will be created dynamically in script -->
-                                
-                            </div>
                             <div class="error-msg">
                                 <!-- Error will be sent from script -->
                             </div>

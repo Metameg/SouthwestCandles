@@ -2,15 +2,16 @@ import cart from './cart';
 
 (function () {
     const urlParams = new URLSearchParams(window.location.search);
-    const paymentIntent = urlParams.get('payment_intent');
+    const paymentIntent = urlParams.get('payment_intent') ? urlParams.get('payment_intent') : urlParams.get('paymentIntentId');
     const redirectStatus = urlParams.get('redirect_status');
-
+    const success = urlParams.get('success');
     const successContainer = document.querySelector('.success-container');
     const errorContainer = document.querySelector('.error-container');
     const successMessage = document.querySelector('.success-msg');
     const errorMessage = document.querySelector('.error-msg');
 
-    if (redirectStatus === 'succeeded') {
+    if (redirectStatus === 'succeeded' || success == 'true') {
+        console.log("success");
         successMessage.innerHTML = `Payment Success! <br><br>
         We will send a receipt to the provided email shortly. <br>
         Please keep this confirmation number for your records: <br><br>
@@ -21,8 +22,9 @@ import cart from './cart';
         errorContainer.style.display = 'none';
         errorMessage.style.display = 'none';
         cart.clearCart();
-        
+
     } else {
+        console.log("failed");
         errorMessage.textContent = `Payment failed or requires further action. Please try again.`;
         successContainer.style.display = 'none';
         successMessage.style.display = 'none';

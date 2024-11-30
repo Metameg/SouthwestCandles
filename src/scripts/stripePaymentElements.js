@@ -85,7 +85,6 @@ import cart from './cart';
     // Handle the payment submission
     pay_btn.addEventListener('click', async () => {
         const loadingOverlay = document.getElementById('loadingOverlay');
-        const success = document.querySelector('.success-msg');
         const error = document.querySelector('.error-msg');
 
         try {
@@ -104,37 +103,26 @@ import cart from './cart';
             // Hide the overlay
             loadingOverlay.style.display = 'none';
     
-            // Unsuccessful Payments
+            // Unsuccessful Card Payments
             if (sResult.error) {
-                if (shouldRedirect(sResult.paymentIntent)) {
-                    window.location.href = `http://localhost:3000/src/pages/thank-you.php?success=false&error=${encodeURIComponent(sResult.error.message)}`;
-                } else {
                     error.textContent = sResult.error.message;
                     error.style.display = "block";
-                }
                 return;
             }
+         
 
-            // Successful Payments
-            if (shouldRedirect(sResult.paymentIntent)) {
-                window.location.href = `http://localhost:3000/src/pages/thank-you.php?success=true&paymentIntentId=${sResult.paymentIntent.id}`;
+            // Other payment states
+            if (sResult.paymentIntent.status === 'succeeded') {
+                window.location.href = `http://localhost:3000/src/pages/thank-you.php?success=true&paymentIntentId=${sResult.paymentIntent.id}`;;
+            } else if (sResult.paymentIntent.status === 'requires_action') {
+                // Handle further actions if required (e.g., Cash App validation)
+                console.log('Waiting...');
             } else {
-                success.textContent += ` ${sResult.paymentIntent.id}`;
-                success.style.display = "block";
-                error.style.display = "none";
-                disableFields(s_payEl);
-                cart.clearCart();
+                window.location.href = `http://localhost:3000/src/pages/thank-you.php?success=false&error=${encodeURIComponent(sResult.error.message)}`;
             }
 
             // Update email
             updateRecepientEmail(paymentIntentId, email.value);
-            
-            // Disable the pay button after payment is confirmed 
-            // (button doesn't exist on thank-you page)
-            if (pay_btn) {
-                pay_btn.disabled = true;
-                pay_btn.classList.add('disabled');
-            }
             
         } catch (error) {
             // Hide the overlay in case of errors
