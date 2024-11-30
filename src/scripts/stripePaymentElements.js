@@ -8,6 +8,8 @@ import cart from './cart';
     const email = document.getElementById('email');
     const pay_btn = document.getElementById('payNow');
     const backBtn = document.getElementById('continueShoppingLink');
+    let firstChange = true;
+    let previousZipCode = null;
     let stripe;
     let elements;
     let s_payEl; 
@@ -69,16 +71,32 @@ import cart from './cart';
         });
         s_addressEl.mount(addressElement);
 
+
         // When the address changes, calculate tax
         s_addressEl.on('change', (event) => {
-            s_addressEl.getValue()
-                .then(function(result) {
-                    if (result.complete) {
-                        // console.log("address complete");
-                        const address = event.value.address;
-                        triggerTaxCalculation(address);
-                    }
-                });
+            const address = event.value.address;
+            const requiredFields = ['line1', 'city', 'state', 'postal_code', 'country'];
+
+            // Check if all fields are filled, allowing 'state' to be empty
+            const isComplete = requiredFields.every((field) => {
+                // Allow state to be empty, other fields must be non-empty
+                if (address['country'] != 'US' && (field === 'state' || field === 'postal_code')) {
+                    return true; // Skip the check for 'state'
+                }
+                return address[field] && address[field].trim() !== ''; // Check other fields
+            });
+        
+            
+            if (isComplete) {
+                s_addressEl.getValue()
+                    .then((result) => {
+                        if (result.complete) {
+                            console.log("Address complete");
+                            const address = result.value.address;
+                            triggerTaxCalculation(address);
+                        }
+                    }); 
+            }
         });
     }
 
@@ -116,7 +134,7 @@ import cart from './cart';
                 window.location.href = `http://localhost:3000/src/pages/thank-you.php?success=true&paymentIntentId=${sResult.paymentIntent.id}`;;
             } else if (sResult.paymentIntent.status === 'requires_action') {
                 // Handle further actions if required (e.g., Cash App validation)
-                console.log('Waiting...');
+                console.log('Waiting for 3rd party authentication...');
             } else {
                 window.location.href = `http://localhost:3000/src/pages/thank-you.php?success=false&error=${encodeURIComponent(sResult.error.message)}`;
             }
@@ -227,35 +245,11 @@ import cart from './cart';
         return regex.test(email);
     }
 
-    function shouldRedirect(paymentIntent) {
-        // Example: Redirect only for certain payment methods
-        const requiresAction = paymentIntent?.status === 'requires_action';
-    
-        // Add logic for redirection criteria
-        return requiresAction;
-    }
 
     function updateCartSummary(tax, total) {
         document.getElementById('taxAmount').textContent = `$${(tax / 100).toFixed(2)}`;
         document.getElementById('totalAmount').textContent = `$${(total / 100).toFixed(2)}`;
     }
-
-    function disableFields(s_element) {
-        // Change the appearance of the read-only fields
-        const styles = {
-            base: {
-                backgroundColor: '#f0f0f0', 
-                color: '#a5a5a5', 
-                cursor: 'not-allowed', 
-            },
-            invalid: {
-                color: '#ff4d4f', 
-            },
-        };
-
-        s_element.update({ readOnly: true, style: styles });
-    }
-
 
     // Initialize the payment flow
     load();
