@@ -55,8 +55,8 @@ try {
         </div>
 
         <!-- Navbar -->
-        <?php $basePath = '../';?>
-        <?php include $basePath . '/components/navbar.php';?>
+        <!-- <?php $basePath = '../';?>
+        <?php include $basePath . '/components/navbar.php';?> -->
 
 
         <!-- Cart -->
@@ -75,15 +75,21 @@ try {
                             <?php if (!empty($cart)): ?>
                                 <?php foreach ($cart as $item): ?>
                                     <div class="item">
-                                        <img src="../<?php echo htmlspecialchars($item['image']); ?>" alt="Placeholder candle product image">
-                                            <h3><?php echo htmlspecialchars($item['name']); ?></h3>
-                                            
-                                            <p>Size<br /><br /><?php echo htmlspecialchars($item['selectedSize']); ?></p>
+                                        <div class="item-details">
+                                            <div class="item-header">
+                                                <img src="../<?php echo htmlspecialchars($item['image']); ?>" alt="Placeholder candle product image">
 
-                                            <p>QTY:<br /><br /><?php echo htmlspecialchars($item['quantity']); ?></p>
+                                                <h3><?php echo htmlspecialchars($item['name']); ?> - <i><?php echo htmlspecialchars($item['description']); ?> </i></h3>
+                                            </div>
                                             
-                                            <p><strong>$<?php echo htmlspecialchars(number_format($item['price'], 2)); ?></strong></p>
-                                        <!-- </div> -->
+                                            <div class="item-pricing-info">
+                                                <p><strong>Size: <?php echo htmlspecialchars($item['selectedSize']); ?></strong></p>
+
+                                                <p><strong>Qty: <?php echo htmlspecialchars($item['quantity']); ?></strong></p>
+                                                
+                                                <p><strong>$<?php echo htmlspecialchars(number_format($item['price'], 2)); ?></strong></p>
+                                            </div>
+                                        </div>
                                     </div>
                                 <?php endforeach; ?>
 
@@ -104,6 +110,9 @@ try {
                         </div>
                     </div>
                     <div class="order-summary">
+                        <div class="img-container">
+                            <img src="../assets/images/svg/checkout-basket.svg">
+                        </div>
                         <div class="order-details">
                             <h2>Order Summary</h2>
                             <div class="summary-item">

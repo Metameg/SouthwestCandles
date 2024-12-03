@@ -117,6 +117,7 @@ class Cart {
         const productImage = productElement.find("img").attr("src");
         const productId = productElement.find('.item-id').text();
         const productTag = productElement.find('.tag').text();
+        const productDescription = productElement.find('.description').text();
 
         this.cart.push({
             id: productId,
@@ -124,6 +125,7 @@ class Cart {
             name: productName,
             price: productPrice,
             image: productImage,
+            description: productDescription,
             quantity: 1,
             selectedSize: "8oz",
             tag: productTag

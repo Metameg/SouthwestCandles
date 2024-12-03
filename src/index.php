@@ -34,11 +34,11 @@
         <main>
             <section class="hero">
                 <div class="hero-image">
-                <picture>
-                    <source srcset="assets/images/webp/three_candle_lids.webp" type="image/webp">
-                    <source srcset="assets/images/three_candle_lids.jpg" type="image/jpeg">
-                    <img src="assets/images/candle_glow.jpg" alt="Product candles displayed on table">
-                </picture>
+                    <picture>
+                        <source srcset="assets/images/webp/three_candle_lids.webp" type="image/webp">
+                        <source srcset="assets/images/three_candle_lids.jpg" type="image/jpeg">
+                        <img src="assets/images/candle_glow.jpg" alt="Product candles displayed on table">
+                    </picture>
                 </div>
                 <div class="hero-info">
                     <h1>Handmade Candle Scents</h1>

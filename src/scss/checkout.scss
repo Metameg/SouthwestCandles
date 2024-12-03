@@ -51,6 +51,7 @@ body {
 
 .checkout-container {
     display: flex;
+    flex-direction: column;
     gap: 2rem;
 
     .shipping-summary {
@@ -63,58 +64,104 @@ body {
             margin-bottom: 1rem;
         }
 
+
         .cart-summary {
             display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
             flex-direction: column;
+            gap: 1.5rem;
+            background-color: #f5f0e6; // Matches the beige background from the image
             margin-bottom: 5.2rem;
+            padding: 1rem 0;
 
             .item {
                 display: flex;
-                gap: 1rem;
-                justify-content: space-around;
                 align-items: center;
-                background: white;
-                padding: 25px;
-                border: #000 solid 1px;
-                min-width: fit-content;
-
+                justify-content: space-between;
+                padding: 1rem;
+                background: #fff; // White background for each item
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        
                 img {
-                    width: 60px;
-                    height: 60px;
-                    border-radius: 4px;
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 6px;
+                    object-fit: cover; // Ensures the image maintains its aspect ratio
+                }
+        
+                .item-details {
+                    flex: 1;
+                    margin-left: 1rem;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+
+                    .item-header {
+                        display: flex
+                        ;
+                            align-items: center;
+                            gap: 1.2rem;
+                        h3 {
+                            font-size: 1rem;
+                            margin: 0;
+                            color: #333;
+                        }
+                    }
+        
+                    .item-pricing-info {
+                        display: flex;
+                        gap: 1.2rem;
+
+                        p {
+                            font-size: 0.9rem;
+                            margin: 0.2rem 0;
+                            color: #555;
+            
+                            strong {
+                                color: #000; // Bold and darker text for emphasis
+                            }
+                        }
+                    }
+
+                    
                 }
 
-                .size-dropdown {
-                    display: flex;
+                @media (max-width: 768px) {
                     flex-direction: column;
-                    
-                    select {
-                        padding: 8px;
+                    .item-details {
+                        display: block;
+
+                        .item-header {
+                            flex-direction: column;
+                            margin-bottom: 10px;
+                        }
+                        .item-pricing-info {
+                            flex-direction: column;
+                        }
                     }
                 }
-
-                h3 {
-                    white-space: nowrap;
-                }
-
-                p {
-                    margin: 0;
-                    font-size: 1.1rem;
-                    font-weight: 500;
-                    text-align: center;
-                }
-
+        
                 @media (max-width: 480px) {
                     flex-direction: column;
+                    align-items: flex-start;
+        
                     img {
                         width: 100%;
                         height: auto;
                     }
+        
+                    .item-details {
+                        margin-left: 0;
+                        margin-top: 1rem;
+        
+                        p {
+                            text-align: left;
+                        }
+                    }
                 }
             }
         }
+        
 
         .shipping-form {
             display: flex;
@@ -160,9 +207,15 @@ body {
         padding: 2rem;
         border-radius: 4px;
         flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        .img-container {
+            margin: 0 auto;
+        }
 
         .order-details {
-
             h2 {
                 font-size: 1.5rem;
                 margin-bottom: 1rem;
@@ -221,9 +274,5 @@ body {
         font-size: 0.9rem;
         color: $text-danger;
         text-align: center;
-    }
-
-    @media (max-width: 768px) {
-        flex-direction: column;
     }
 }
