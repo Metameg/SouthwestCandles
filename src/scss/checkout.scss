@@ -69,9 +69,7 @@ body {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
-            background-color: #f5f0e6; // Matches the beige background from the image
             margin-bottom: 5.2rem;
-            padding: 1rem 0;
 
             .item {
                 display: flex;
@@ -97,10 +95,10 @@ body {
                     align-items: center;
 
                     .item-header {
-                        display: flex
-                        ;
-                            align-items: center;
-                            gap: 1.2rem;
+                        display: flex;
+                        align-items: center;
+                        gap: 1.2rem;
+
                         h3 {
                             font-size: 1rem;
                             margin: 0;
@@ -115,10 +113,9 @@ body {
                         p {
                             font-size: 0.9rem;
                             margin: 0.2rem 0;
-                            color: #555;
             
                             strong {
-                                color: #000; // Bold and darker text for emphasis
+                                color: #000; 
                             }
                         }
                     }

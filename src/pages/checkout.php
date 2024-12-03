@@ -83,9 +83,9 @@ try {
                                             </div>
                                             
                                             <div class="item-pricing-info">
-                                                <p><strong>Size: <?php echo htmlspecialchars($item['selectedSize']); ?></strong></p>
+                                                <p>Size: <?php echo htmlspecialchars($item['selectedSize']); ?></p>
 
-                                                <p><strong>Qty: <?php echo htmlspecialchars($item['quantity']); ?></strong></p>
+                                                <p>Qty: <?php echo htmlspecialchars($item['quantity']); ?></p>
                                                 
                                                 <p><strong>$<?php echo htmlspecialchars(number_format($item['price'], 2)); ?></strong></p>
                                             </div>

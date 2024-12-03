@@ -64,9 +64,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  background-color: #f5f0e6;
   margin-bottom: 5.2rem;
-  padding: 1rem 0;
 }
 .checkout-container .shipping-summary .cart-summary .item {
   display: flex;
@@ -108,7 +106,6 @@ body {
 .checkout-container .shipping-summary .cart-summary .item .item-details .item-pricing-info p {
   font-size: 0.9rem;
   margin: 0.2rem 0;
-  color: #555;
 }
 .checkout-container .shipping-summary .cart-summary .item .item-details .item-pricing-info p strong {
   color: #000;
