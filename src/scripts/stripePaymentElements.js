@@ -8,8 +8,6 @@ import cart from './cart';
     const email = document.getElementById('email');
     const pay_btn = document.getElementById('payNow');
     const backBtn = document.getElementById('continueShoppingLink');
-    let firstChange = true;
-    let previousZipCode = null;
     let stripe;
     let elements;
     let s_payEl; 
@@ -71,32 +69,34 @@ import cart from './cart';
         });
         s_addressEl.mount(addressElement);
 
+        // Check if Address is in Focus
+        let isAddressInFocus = false;
+        s_addressEl.on('focus', (event) => {
+            isAddressInFocus = true;
+        });
+
+        s_addressEl.on('blur', (event) => {
+            isAddressInFocus = false;
+        
+            // Check the address completeness after a short delay to account for user input
+            
+            if (!isAddressInFocus) {
+                s_addressEl.getValue().then((result) => {
+                    checkAndTriggerTaxCalculation(result.value);
+                });
+            }
+            
+        });
 
         // When the address changes, calculate tax
         s_addressEl.on('change', (event) => {
-            const address = event.value.address;
-            const requiredFields = ['line1', 'city', 'state', 'postal_code', 'country'];
-
-            // Check if all fields are filled, allowing 'state' to be empty
-            const isComplete = requiredFields.every((field) => {
-                // Allow state to be empty, other fields must be non-empty
-                if (address['country'] != 'US' && (field === 'state' || field === 'postal_code')) {
-                    return true; // Skip the check for 'state'
-                }
-                return address[field] && address[field].trim() !== ''; // Check other fields
-            });
         
-            
-            if (isComplete) {
-                s_addressEl.getValue()
-                    .then((result) => {
-                        if (result.complete) {
-                            console.log("Address complete");
-                            const address = result.value.address;
-                            triggerTaxCalculation(address);
-                        }
-                    }); 
+            // Check the address completeness after a short delay to account for user input
+           
+            if (!isAddressInFocus) {
+                checkAndTriggerTaxCalculation(event.value);
             }
+             
         });
     }
 
@@ -240,6 +240,24 @@ import cart from './cart';
     }
 
     // Helper Functions
+    function checkAndTriggerTaxCalculation(eventValue) {
+        const address = eventValue.address;
+        const requiredFields = ['line1', 'city', 'state', 'postal_code', 'country'];
+
+        const isComplete = requiredFields.every((field) => {
+            if (address['country'] !== 'US' && (field === 'state' || field === 'postal_code')) {
+                return true; // Skip the check for 'state' and 'postal_code' for non-US addresses
+            }
+            return address[field] && address[field].trim() !== ''; // Check other fields
+        });
+
+        if (isComplete) {
+            console.log("Address complete");
+            triggerTaxCalculation(address);
+        }
+    }
+
+
     function validateEmail(email) {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return regex.test(email);
