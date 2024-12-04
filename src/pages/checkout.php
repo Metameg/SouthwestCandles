@@ -65,9 +65,9 @@ try {
         <main>
 
             <div class="checkout-page">
-                <!-- <h1>Getting your order</h1> -->
-                <input type="email" id="email" placeholder="Enter your email" />
+                <h1>Getting your order</h1>
                 <div class="checkout-container">
+
                     <div class="shipping-summary">
                         <h2>Cart Summary</h2>
                         <div class="cart-summary">
@@ -97,12 +97,21 @@ try {
                                 <p>Your cart is empty or invalid.</p>
                             <?php endif; ?>
                         </div>
+                        
+                        <div class="personal-info">
+                            <h2>Personal Info</h2>
+                            <input type="email" id="email" placeholder="Enter your email" />
+                            <p id="emailErrorMsg" class="error-msg">Invalid Email</p>
+                        </div>
 
                         <div  class="shipping-form">
-
+                            
+                            <h2>Shipping Address</h2>
                             <div id="addressElement">
                                 <!-- Load Strip Payment Options from stripe.js api -->
                             </div>
+                            
+                            <h2>Payment Info</h2>
                             <div id="paymentOptions">
                                 <!-- Load Strip Payment Options from stripe.js api -->
                             </div>
@@ -110,9 +119,9 @@ try {
                         </div>
                     </div>
                     <div class="order-summary">
-                        <div class="img-container">
+                        <!-- <div class="img-container">
                             <img src="../assets/images/svg/checkout-basket.svg">
-                        </div>
+                        </div> -->
                         <div class="order-details">
                             <h2>Order Summary</h2>
                             <div class="summary-item">
@@ -137,7 +146,7 @@ try {
                             </div>
 
                             <button id="payNow" class="paynow-button">Pay Now</button>
-                            <div class="error-msg">
+                            <div id="payErrorMsg" class="error-msg">
                                 <!-- Error will be sent from script -->
                             </div>
                         </div>

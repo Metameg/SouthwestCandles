@@ -103,7 +103,7 @@ import cart from './cart';
     // Handle the payment submission
     pay_btn.addEventListener('click', async () => {
         const loadingOverlay = document.getElementById('loadingOverlay');
-        const error = document.querySelector('.error-msg');
+        const error = document.getElementById('payErrorMsg');
 
         try {
             // Show the overlay
@@ -153,9 +153,15 @@ import cart from './cart';
     // Update email address on the charge (for receipt purposes) 
     email.addEventListener('change', async (e) => {
         const email = e.target.value;
+        const error = document.getElementById('emailErrorMsg');
         // Validate email format
         if (!validateEmail(email)) {
+            error.style.display = 'block';
             return;
+        }
+
+        else {
+            error.style.display = 'none';
         }
     });
 

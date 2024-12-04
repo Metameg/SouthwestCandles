@@ -142,6 +142,21 @@ body {
     text-align: left;
   }
 }
+.checkout-container .shipping-summary .personal-info {
+  margin-bottom: 5.2rem;
+}
+.checkout-container .shipping-summary .personal-info input {
+  width: 91%;
+  padding: 24px;
+  background: #faf8f3;
+  transition: background-color 0.15s ease, border 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
+  border: 1px solid #000;
+}
+.checkout-container .shipping-summary .personal-info input:invalid {
+  color: #df1b41;
+  border-color: #df1b41;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.03), 0px 3px 6px rgba(0, 0, 0, 0.02), 0 0 0 1px var(--colorDanger);
+}
 .checkout-container .shipping-summary .shipping-form {
   display: flex;
   flex-direction: column;
@@ -231,5 +246,4 @@ body {
   margin-top: 1rem;
   font-size: 0.9rem;
   color: #df1b41;
-  text-align: center;
 }/*# sourceMappingURL=checkout.css.map */
