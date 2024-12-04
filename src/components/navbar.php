@@ -15,24 +15,35 @@ $isCheckoutPage = ($currentFile === 'checkout.php');
 ?>
 
 <header>
-    <div class="logo">
-        <a href="<?php echo getRootPath(); ?>src/index.php">
-            <picture>
-                <source srcset="<?php echo getRootPath();?>src/assets/images/webp/logo.webp" type="image/webp">
-                <img src="<?php echo getRootPath();?>src/assets/images/logo.png" alt="Soutwest Candles Logo">
-            </picture>
-        </a>
-    </div>
     <nav>
-        <ul>
-            <li><a href="#">Shop</a></li>
-            <li><a href="#">About</a></li>
-            <?php if ($isCheckoutPage): ?>
-                <!-- Link to index.php if on checkout.php -->
-                <li><a id="continueShoppingLink" href="<?php echo getRootPath(); ?>src/index.php">&#8592; Continue Shopping</a></li>
-            <?php else: ?>
-                <li><a href="#" id="cartNavBtn">Cart</a></li>
-            <?php endif; ?>
-        </ul>
+        
+        <div class="logo">
+            <a href="<?php echo getRootPath(); ?>src/index.php">
+                <picture>
+                    <source srcset="<?php echo getRootPath();?>src/assets/images/webp/logo.webp" type="image/webp">
+                    <img src="<?php echo getRootPath();?>src/assets/images/logo.png" alt="Soutwest Candles Logo">
+                </picture>
+            </a>
+        </div>
+        <div class="nav-links">
+            <div id="cartContainer">
+                <?php if ($isCheckoutPage): ?>
+                    <!-- Link to index.php if on checkout.php -->
+                    <li><a id="continueShoppingLink" href="<?php echo getRootPath(); ?>src/index.php">&#8592; Continue Shopping</a></li>
+                <?php else: ?>
+                    <li><a href="#" id="cartNavBtn"><img src="<?php echo getRootPath();?>src/assets/images/svg/cart.svg" alt="Cart Icon" width="30" height="30"></a></li>
+                <?php endif; ?>
+            </div>
+            <ul>
+                <li class="nav-link"><a href="#">Shop</a></li>
+                <li class="nav-link"><a href="#">About</a></li>
+                
+            </ul>
+            <div id="hamburgerMenu" class="hamburger-menu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
     </nav>
 </header>

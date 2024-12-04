@@ -5,6 +5,17 @@ import $ from 'jquery';
 
 // const cart = new Cart();
 $(() => {
+    // const hamburgerMenu = document.querySelector('.hamburger-menu');
+    // const navMenu = document.querySelector('nav ul');
+
+    $('#hamburgerMenu').on("click", () => {
+        document.getElementById('hamburgerMenu').classList.toggle('open');
+        document.querySelector('nav ul').classList.toggle('open');
+    });
+    // hamburgerMenu.addEventListener('click', () => {
+    //     navMenu.classList.toggle('open');
+    // });
+
     // Set up the checkout button functionality
     $("#cartNavBtn").on("click", () => cart.openCartModal());
     $(".add-to-cart").on("click", function () {

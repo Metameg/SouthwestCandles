@@ -2,21 +2,67 @@
 
 header {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 34px;
-    background-color: $background-color;
-    
-    .logo img {
-		width: 150px;
-		height: 150px;
-		object-fit: contain; // Ensures the image scales without distortion
-	}
+	position: fixed;
+	z-index: 999;
+	width: 100%;
+	background-color: $background-secondary-color;
   
+	nav {
+		padding: 0 40px;
+		display: flex;
+		width: 100%;
+		align-items: center;
+		justify-content: space-between;
+
+		.logo {
+            flex-shrink: 0; /* Prevent the logo from shrinking */
+            img {
+                width: 120px;
+                height: auto;
+                object-fit: contain;
+            }
+        }
+
+		.nav-links {
+			display: flex;
+			align-items: center;
+
+			#cartContainer {
+                list-style: none;
+
+                #cartNavBtn {
+                    font-weight: bold;
+                    background-color: $primary-color;
+                    padding: 5px 10px;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+					display: flex;
+					width: 50px;
+					height: 40px;
+					justify-content: center;
+					align-items: center;
+
+                    &:hover {
+                        background-color: darken($primary-color, 10%);
+                    }
+                }
+
+				#continueShoppingLink {
+					color: $button-color;
+					font-size: 1rem;
+					text-decoration: none;
+				}
+            }
+		}
+	}
+
     nav ul {
 		list-style: none;
 		display: flex;
 		gap: 20px;
+		transition: transform 0.3s ease-in-out;
 		
 		a {
 			text-decoration: none;
@@ -40,8 +86,126 @@ header {
 			font-size: 1.2rem;
 		}
 		
-		#cartNavBtn {
-			font-weight: bold;
+    }
+
+	.hamburger-menu {
+		position: relative;
+		display: none;
+		flex-direction: column;
+		justify-content: space-around;
+		width: 30px;
+		height: 30px;
+		cursor: pointer;
+		z-index: 2;
+
+		div {
+			width: 100%;
+			height: 3px;
+			background-color: $header-color;
+			transition: 0.3s;
+			transform-origin: center;
 		}
+
+		&.open {
+			height: 16px;
+			div:nth-child(1) {
+				transform: rotate(45deg) translateY(7px);
+			}
+	
+			div:nth-child(2) {
+				opacity: 0; 
+			}
+	
+			div:nth-child(3) {
+				transform: rotate(-45deg) translateY(-7px);
+			}
+		}
+	}
+
+	#cartContainer {
+        position: relative;
+		list-style: none;
+        z-index: 3;
+		margin-left: 15px;
+		right: 24px;
+
+        #cartNavBtn {
+            font-weight: bold;
+            background-color: $primary-color;
+            padding: 5px 10px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: darken($primary-color, 10%);
+            }
+        }
+    }
+
+
+	@media (max-width: 768px) {
+        nav ul {
+            position: fixed;
+            top: 0;
+            right: 0;
+            flex-direction: column;
+            background-color: $background-color;
+            width: 80%;
+            height: 100vh;
+            max-width: 300px;
+            transform: translateX(100%);
+            visibility: hidden;
+            opacity: 0;
+            border: 1px solid $header-color;
+            padding: 1rem;
+			align-items: center;
+			justify-content: center;
+			gap: 1rem; 
+			margin: 0 auto;
+			z-index: 1;
+
+            a {
+				margin: 0;
+				padding: 1rem 0;
+				text-align: center;
+				border: none;
+				width: 100%; // Stretch items to full width
+				background-color: $primary-color; // Add background color if needed
+				color: $header-color;
+				font-size: 1.2rem;
+	
+				&:hover {
+					background-color: darken($primary-color, 10%);
+					color: white;
+				}
+			}
+        }
+
+        nav ul.open {
+            transform: translateX(0);
+            visibility: visible;
+            opacity: 1;
+			
+			.nav-link {
+				width: 100%;
+
+				a {
+					display: inline-block;
+					width: 100%;
+				}
+			}
+        }
+
+        nav .hamburger-menu {
+            display: flex;
+        }
+
+		#cartContainer {
+            top: 4px;
+			right: 12px;
+			margin: 0;
+        }
     }
 }

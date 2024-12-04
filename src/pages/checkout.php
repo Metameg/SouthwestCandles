@@ -10,8 +10,6 @@ if (!is_array($cart)) {
     $cart = [];
 }
 
-
-
 include '../../plugins/payments/utilities.php';
 include '../../plugins/payments/payment_intent.php';
 
@@ -27,8 +25,8 @@ try {
     $clientSecret = $rprom['clientSecret'];
     $intentId = $rprom['paymentIntentId'];
 } catch (Exception $e) {
-    // Handle the exception
-    echo $e->getMessage();
+    // Handle the exception (for testing purposes)
+    // echo $e->getMessage();
 }
 ?>
 
@@ -40,6 +38,7 @@ try {
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/cart.css">
     <link rel="stylesheet" href="../css/checkout.css">
+    <script src="/dist/bundle.js"></script>
     
     <script>
         // Pass the client secret to the frontend
@@ -55,8 +54,8 @@ try {
         </div>
 
         <!-- Navbar -->
-        <!-- <?php $basePath = '../';?>
-        <?php include $basePath . '/components/navbar.php';?> -->
+        <?php $basePath = '../';?>
+        <?php include $basePath . '/components/navbar.php';?> 
 
 
         <!-- Cart -->
@@ -65,7 +64,7 @@ try {
         <main>
 
             <div class="checkout-page">
-                <h1>Getting your order</h1>
+                <!-- <h1>Getting your order</h1> -->
                 <div class="checkout-container">
 
                     <div class="shipping-summary">
@@ -156,6 +155,6 @@ try {
 
 
         </main>
-        <script src="/dist/bundle.js"></script>
+        
     </body>
 </html>
