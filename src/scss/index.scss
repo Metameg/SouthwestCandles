@@ -34,6 +34,14 @@ body {
     line-height: 1.6;
 }
 
+.section-header {
+    font-family: 'syne', 'serif';
+    color: $text-color;
+    font-size: 1.6rem;
+    margin-top: 3rem;
+    margin-left: 3rem;
+}
+
 // Hero Section
 .hero {
     display: flex;
@@ -41,11 +49,16 @@ body {
     align-items: flex-start;
     padding: 40px 20px;
     padding-top: 230px;
-    background: url('../assets/images/tilted_on_table.jpg') no-repeat;
+    background-image:  url("../assets/images/pink-candle-symmetric.jpg");
+    @supports (background-image: url("../assets/images/webp/pink-candle-symmetric-high.webp")){
+        background-image: url("../assets/images/webp/pink-candle-symmetric-high.webp");
+    }
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     height: 100vh;
     min-height: fit-content;
+    justify-content: center;
     
     .hero-overlay {
         position: absolute; 
@@ -79,9 +92,12 @@ body {
         flex: 2;
         text-align: center;
         z-index: 2;
+        background: rgb(0 0 0 / 48%);
+        max-width: fit-content;
+        border: 3px solid #f39c12;
 
         h1 {
-            font-family: "chango";
+            font-family: 'chango', 'serif';
             font-size: 2.5rem;
             font-weight: 800;
             color: white;
@@ -89,7 +105,7 @@ body {
 
             .title-offcolor {
                 font-size: 2.7rem;
-                color: $text-danger;
+                color: $logo-color;
             }
         }
 
@@ -100,16 +116,16 @@ body {
         }
 
         .cta-1 {
-            font-family: "tangerine";
+            font-family: "tangerine", 'serif';
             font-size: 3.2rem;
             color: $primary-color
         }
         .cta-2 {
-            font-family: "syne";
+            font-family: "syne", 'serif';
             font-size: 2.6rem;
         }
         .cta-3 {
-            font-family: "shrikhand";
+            font-family: "shrikhand", 'serif';
             font-size: 4.0rem;
         }
 
@@ -141,25 +157,21 @@ body {
     }
 }
 
-.products-section {
+
+.products-section, .featured-products {
     display: grid;
     gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     padding: 40px;
+
 
     .product {
         background-color: #fff;
         padding: 20px;
         text-align: center;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
+        border: 2px solid black;
         position: relative;
-        transition: transform 0.35s ease, box-shadow 0.5s ease;
-
-        &:hover {
-            transform: scale(1.05); 
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
-        }
         
         .product-image {
             position: relative;
@@ -194,6 +206,8 @@ body {
         .product-info {
             display: flex;
             flex-direction: column;
+            background-color: aliceblue;
+
             .scent-family {
                 font-size: 0.8rem;
                 color: #888;

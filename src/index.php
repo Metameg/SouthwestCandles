@@ -25,6 +25,10 @@
             // Fetch products from the database
             $stmt = $pdo->query("SELECT * FROM products");
             $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            // Fetch featured products
+            $stmt = $pdo->query("SELECT * FROM products WHERE featured = 1");
+            $featuredProducts = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
 
 
@@ -50,8 +54,26 @@
                 </div>
             </section>
 
-            <section class="">
-                
+            <h2 class="section-header">Featured Products</h2>
+            <section class="featured-products">
+                <?php foreach ($featuredProducts as $product): ?>
+                    <div class="product">
+                        <div class="product-image">
+                            <!-- <picture> -->
+                                <!-- <source srcset="assets/images/webp/candle_glow.webp" type="image/webp"> -->
+                                <img src="<?php echo htmlspecialchars($product['image_url']); ?>" alt="Placeholder candle product image">
+                            <!-- </picture> -->
+                            <span class="tag <?php echo htmlspecialchars($product['tag']); ?>"><?php echo htmlspecialchars($product['tag']); ?></span>
+                        </div>
+                        <div class="product-info">
+                            <h3><?php echo htmlspecialchars($product['name']); ?></h3>
+                            <p class="description"><?php echo htmlspecialchars($product['description']); ?></p>
+                            <p><i>From  </i> <span class="price">$8.00</span></p>
+                            <button class="add-to-cart">Add To Cart</button>
+                            <span class="item-id"><?php echo htmlspecialchars($product['id']); ?></span>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </section>
 
             <section class="products-section">
