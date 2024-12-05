@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "tangerine";
+  src: url("../assets/fonts/Tangerine-Bold.ttf");
+}
+@font-face {
+  font-family: "syne";
+  src: url("../assets/fonts/Syne-Medium.ttf");
+}
+@font-face {
+  font-family: "shrikhand";
+  src: url("../assets/fonts/Shrikhand-Regular.ttf");
+}
+@font-face {
+  font-family: "chango";
+  src: url("../assets/fonts/Chango-Regular.ttf");
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -14,13 +30,15 @@ body {
 .hero {
   display: flex;
   position: relative;
-  align-items: center;
+  align-items: flex-start;
   padding: 40px 20px;
   padding-top: 230px;
   background: url("../assets/images/tilted_on_table.jpg") no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
 }
 .hero .hero-overlay {
   position: absolute;
@@ -31,30 +49,21 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
-.hero .hero-image {
-  flex: 1;
-  display: inline-block;
-  padding: 15px;
-  border-radius: 50%;
-  border: 3px solid #f39c12;
-  width: 70%;
-  min-width: 250px;
-}
-.hero .hero-image img {
-  width: 100%;
-  border-bottom-right-radius: 20%;
-  transform: rotate(-15deg);
-  padding: 24px;
-}
 .hero .hero-info {
   flex: 2;
   text-align: center;
   z-index: 2;
 }
 .hero .hero-info h1 {
+  font-family: "chango";
   font-size: 2.5rem;
   font-weight: 800;
   color: white;
+  padding-bottom: 1rem;
+}
+.hero .hero-info h1 .title-offcolor {
+  font-size: 2.7rem;
+  color: #df1b41;
 }
 .hero .hero-info .cta-1, .hero .hero-info .cta-2, .hero .hero-info .cta-3 {
   margin: 10px 0;
@@ -62,14 +71,17 @@ body {
   color: white;
 }
 .hero .hero-info .cta-1 {
-  font-size: 1.2rem;
-}
-.hero .hero-info .cta-2 {
-  font-size: 1.6rem;
+  font-family: "tangerine";
+  font-size: 3.2rem;
   color: #f39c12;
 }
+.hero .hero-info .cta-2 {
+  font-family: "syne";
+  font-size: 2.6rem;
+}
 .hero .hero-info .cta-3 {
-  font-size: 2rem;
+  font-family: "shrikhand";
+  font-size: 4rem;
 }
 .hero .hero-info .shop-now-btn {
   display: inline-block;

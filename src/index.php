@@ -42,7 +42,7 @@
                     </picture>
                 </div> -->
                 <div class="hero-info">
-                    <h1>Southwest Candles</h1>
+                    <h1><span class="title-offcolor">SOUTHWEST</span> Candles</h1>
                     <p class="cta-1">Limited Edition Seasonals</p>
                     <p class="cta-2">Five Featured Seasonals</p>
                     <p class="cta-3">ALL YEAR 'ROUND</p>
