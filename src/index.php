@@ -33,17 +33,25 @@
         
         <main>
             <section class="hero">
-                <div class="hero-image">
+                <div class="hero-overlay"></div>
+                <!-- <div class="hero-image">
                     <picture>
-                        <source srcset="assets/images/webp/three_candle_lids.webp" type="image/webp">
-                        <source srcset="assets/images/three_candle_lids.jpg" type="image/jpeg">
-                        <img src="assets/images/candle_glow.jpg" alt="Product candles displayed on table">
+                        <source srcset="assets/images/webp/pink-candle-symmetric.webp" type="image/webp">
+                        <source srcset="assets/images/pink-candle-symmetric.jpg" type="image/jpeg">
+                        <img src="assets/images/pink-candle-symmetric.jpg" alt="Product candles displayed on table">
                     </picture>
-                </div>
+                </div> -->
                 <div class="hero-info">
-                    <h1>Handmade Candle Scents</h1>
-                    <p>At Southwest Candles, our hand-poured scents are like little trips in a jar. From desert sunsets to cozy mountain cabins, each candle is crafted to take you somewhere special—no passport needed. Just light up, relax, and let us handle the getaway!</p>
+                    <h1>Southwest Candles</h1>
+                    <p class="cta-1">Limited Edition Seasonals</p>
+                    <p class="cta-2">Five Featured Seasonals</p>
+                    <p class="cta-3">ALL YEAR 'ROUND</p>
+                    <a href="#" class="shop-now-btn">Shop Now</a>
                 </div>
+            </section>
+
+            <section class="">
+                
             </section>
 
             <section class="products-section">

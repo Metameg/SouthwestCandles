@@ -1,0 +1,1 @@
+At Southwest Candles, our hand-poured scents are like little trips in a jar. From desert sunsets to cozy mountain cabins, each candle is crafted to take you somewhere special—no passport needed. Just light up, relax, and let us handle the getaway!</p>
