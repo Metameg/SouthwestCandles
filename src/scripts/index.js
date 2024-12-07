@@ -2,14 +2,29 @@ import cart  from './cart';
 import $ from 'jquery';
 
 $(() => {
-    $('#hamburgerMenu').on("click", () => {
+    $('#hamburgerMenu').on("click", (event) => {
+        event.stopPropagation();
         document.getElementById('hamburgerMenu').classList.toggle('open');
         document.querySelector('nav ul').classList.toggle('open');
         document.getElementById('dropdown').classList.remove('open');
     });
     
-    $("#productsLink").on("click", () => {
+    $("#productsLink").on("click", (event) => {
+        event.stopPropagation();
         document.getElementById('dropdown').classList.toggle('open');
+    });
+
+    // Close dropdown if clicking outside of it
+    $(document).on("click", () => {
+        const dropdown = document.getElementById('dropdown');
+        const hamburger = document.getElementById('hamburgerMenu');
+        if (dropdown.classList.contains('open')) {
+            dropdown.classList.remove('open');
+        }
+        if (hamburger.classList.contains('open')) {
+            hamburger.classList.remove('open');
+            document.querySelector('nav ul').classList.toggle('open');
+        }
     });
     
     // Set up the checkout button functionality

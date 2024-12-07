@@ -37,9 +37,9 @@ $isCheckoutPage = ($currentFile === 'checkout.php');
             <ul>
                 <li id="productsLink" class="nav-link"><a>Products &#x25BC</a>
                     <ul id="dropdown" class="dropdown">
-                        <li><a href="#">Fruit Loops</a></li>
-                        <li><a href="#">Candle 1</a></li>
-                        <li><a href="#">Candle 2</a></li>
+                        <li><a href="#">Limited Edition</a></li>
+                        <li><a href="#">Seasonal</a></li>
+                        <li><a href="#">Fruity</a></li>
                     </ul>
                 </li>
                 <li class="nav-link"><a href="#">About</a></li>
