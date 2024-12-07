@@ -3,7 +3,7 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Southwest Candle Products</title>
+    <title>Carrie's Candle Products</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/cart.css">
@@ -21,14 +21,21 @@
             // Include the database connection
             include '../db.php';
 
-            $pdo = getPDO();
-            // Fetch products from the database
-            $stmt = $pdo->query("SELECT * FROM products");
-            $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            
-            // Fetch featured products
-            $stmt = $pdo->query("SELECT * FROM products WHERE featured = 1");
-            $featuredProducts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            try {
+                $pdo = getPDO();
+                // Fetch products from the database
+                $stmt = $pdo->query("SELECT * FROM products");
+                $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                // Fetch featured products
+                $stmt = $pdo->query("SELECT * FROM products WHERE featured = 1");
+                $featuredProducts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (Exception $e) {
+                // Display the error message
+                echo "Error: " . $e->getMessage();
+                // Optionally, display the stack trace for more debugging details
+                echo "<pre>" . $e->getTraceAsString() . "</pre>";
+            }
         ?>
 
 
@@ -46,7 +53,7 @@
                     </picture>
                 </div> -->
                 <div class="hero-info">
-                    <h1><span class="title-offcolor">SOUTHWEST</span> Candles</h1>
+                    <h1><span class="title-offcolor">CARRIE'S</span> Candles</h1>
                     <p class="cta-1">Limited Edition Seasonals</p>
                     <p class="cta-2">Five Featured Seasonals</p>
                     <p class="cta-3">ALL YEAR 'ROUND</p>

@@ -38,7 +38,7 @@ body {
 .hero {
   display: flex;
   position: relative;
-  align-items: flex-start;
+  align-items: center;
   padding: 40px 20px;
   padding-top: 230px;
   background-image: url("../assets/images/pink-candle-symmetric.jpg");

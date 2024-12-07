@@ -25,6 +25,63 @@ header nav .nav-links {
   display: flex;
   align-items: center;
 }
+header nav .nav-links ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+header nav .nav-links .nav-link {
+  position: relative;
+  cursor: pointer;
+}
+header nav .nav-links .nav-link a {
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+  color: #000;
+  padding: 5px 10px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+header nav .nav-links .nav-link a:hover {
+  background-color: #f39c12;
+  color: #fff;
+  border-color: #f39c12;
+}
+header nav .nav-links .nav-link .dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #faf8f3;
+  list-style: none;
+  display: none;
+  flex-direction: column;
+  padding: 10px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 2;
+  border: solid black 3px;
+  width: 220px;
+}
+header nav .nav-links .nav-link .dropdown li a {
+  padding: 10px 20px;
+  display: block;
+  white-space: nowrap;
+  text-decoration: none;
+  color: #000;
+  transition: background-color 0.3s;
+  border: none;
+}
+header nav .nav-links .nav-link .dropdown li a:hover {
+  background-color: #f39c12;
+  color: #fff;
+}
+header nav .nav-links .nav-link .dropdown.open {
+  cursor: auto;
+  display: flex;
+}
 header nav .nav-links #cartContainer {
   list-style: none;
 }
@@ -49,31 +106,6 @@ header nav .nav-links #cartContainer #continueShoppingLink {
   color: #495aaa;
   font-size: 1rem;
   text-decoration: none;
-}
-header nav ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  transition: transform 0.3s ease-in-out;
-}
-header nav ul a {
-  text-decoration: none;
-  color: #000;
-  padding: 5px 10px;
-  border: 1px solid #000;
-  border-radius: 5px;
-  transition: 0.3s;
-}
-header nav ul a:hover {
-  background-color: #f39c12;
-  color: #fff;
-  border-color: #f39c12;
-}
-header nav ul #continueShoppingLink {
-  border: none;
-  text-decoration: underline;
-  color: #495aaa;
-  font-size: 1.2rem;
 }
 header .hamburger-menu {
   position: relative;
@@ -129,7 +161,7 @@ header #cartContainer #cartNavBtn:hover {
     top: 0;
     right: 0;
     flex-direction: column;
-    background-color: #faf8f3;
+    background-color: #d9d0b5;
     width: 80%;
     height: 100vh;
     max-width: 300px;
@@ -137,7 +169,6 @@ header #cartContainer #cartNavBtn:hover {
     visibility: hidden;
     opacity: 0;
     border: 1px solid #000;
-    padding: 1rem;
     align-items: center;
     justify-content: center;
     gap: 1rem;
@@ -169,6 +200,20 @@ header #cartContainer #cartNavBtn:hover {
   header nav ul.open .nav-link a {
     display: inline-block;
     width: 100%;
+  }
+  header nav ul.open .nav-link .dropdown {
+    position: static;
+    width: 100%;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+  }
+  header nav ul.open .nav-link .dropdown li a {
+    padding: 10px;
+    border-bottom: 1px solid #000;
+  }
+  header nav ul.open .nav-link .dropdown li a:last-child {
+    border-bottom: none;
   }
   header nav .hamburger-menu {
     display: flex;
