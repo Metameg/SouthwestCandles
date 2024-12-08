@@ -82,6 +82,21 @@
                 </div>
             </section>
 
+            <section class="promo-section">
+                <div class="promo-image">
+                    <picture>
+                        <source srcset="assets/images/webp/tilted_on_table.webp" type="image/webp">
+                        <source srcset="assets/images/tilted_on_table.jpg" type="image/jpeg">
+                        <img src="assets/images/tilted_on_table.jpg" alt="Product candles displayed on table">
+                    </picture>
+                </div>
+                <div class="promo-content">
+                    <h3>New fragrances added.</h3>
+                    <h1>New Year Sale.<br>Up to <span>10%<span> Off.</h1>
+                    <a href="#" class="promo-link">Shop here</a>
+                </div>
+            </section>
+
             <h2 class="section-header">Featured Products</h2>
             <section class="featured-products">
                 <?php foreach ($featuredProducts as $product): ?>
