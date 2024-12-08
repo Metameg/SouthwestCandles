@@ -57,7 +57,28 @@
                     <p class="cta-1">Limited Edition Seasonals</p>
                     <p class="cta-2">Five Featured Seasonals</p>
                     <p class="cta-3">ALL YEAR 'ROUND</p>
-                    <a href="#" class="shop-now-btn">Shop Now</a>
+                    <a href="#" class="primary-btn">Shop Now</a>
+                </div>
+            </section>
+
+            <section class="about-section">
+                <h2 class="about-title">Carrie's Promise</h2>
+                <div class="about-content">
+                    <div class="about-item">
+                        <h3>Handcrafted with Love</h3>
+                        <p>Every candle is lovingly handcrafted to bring warmth, light, and beautiful scents into your home.</p>
+                    </div>
+                    <div class="about-item">
+                        <h3>Home Manufactured</h3>
+                        <p>Carrie's home collection is designed, developed, produced, tested, packed, and shipped by Carrie herself in her shop located in Houston, TX </p>
+                    </div>
+                    <div class="about-item">
+                        <h3>Affordability is #1 Concern</h3>
+                        <p>With candles ranging from $9 to $23, Our goal is to provide luxury-quality candles at prices that are accessible for everyone.</p>
+                    </div>
+                </div>
+                <div class="button-container">
+                    <a href="#" class="primary-btn">Contact</a>
                 </div>
             </section>
 

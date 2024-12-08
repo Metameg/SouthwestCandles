@@ -35,6 +35,23 @@ body {
   margin-left: 3rem;
 }
 
+.primary-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  color: #fff;
+  background-color: #f39c12;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.primary-btn:hover {
+  background-color: #c87f0a;
+  transform: scale(1.05);
+}
+
 .hero {
   display: flex;
   position: relative;
@@ -102,22 +119,6 @@ body {
   font-family: "shrikhand", "serif";
   font-size: 4rem;
 }
-.hero .hero-info .shop-now-btn {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 1.2rem;
-  color: #fff;
-  background-color: #f39c12;
-  border: none;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-.hero .hero-info .shop-now-btn:hover {
-  background-color: #c87f0a;
-  transform: scale(1.05);
-}
 @media (max-width: 768px) {
   .hero {
     flex-direction: column;
@@ -125,6 +126,61 @@ body {
   .hero .hero-info {
     padding-top: 55px;
   }
+}
+
+.about-section {
+  text-align: center;
+  background-color: #fdf6e5;
+  padding: 40px 20px;
+}
+.about-section .about-title {
+  font-family: "syne", serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #8b724d;
+  margin-bottom: 20px;
+}
+.about-section .about-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+.about-section .about-content .about-item {
+  max-width: 300px;
+  text-align: center;
+}
+.about-section .about-content .about-item h3 {
+  font-family: "chango", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #8b724d;
+  margin-bottom: 10px;
+}
+.about-section .about-content .about-item p {
+  font-family: "serif";
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #4d4d4d;
+}
+.about-section .button-container {
+  margin-top: 20px;
+}
+.about-section .button-container .learn-more-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #8b724d;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+.about-section .button-container .learn-more-button:hover {
+  background-color: #705a3a;
 }
 
 .products-section, .featured-products {
