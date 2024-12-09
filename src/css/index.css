@@ -187,7 +187,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #fff;
+  background-color: #d9d0b5;
 }
 .promo-section .promo-image {
   flex: 2;
@@ -291,7 +291,7 @@ body {
 .products-section .product .product-info, .featured-products .product .product-info {
   display: flex;
   flex-direction: column;
-  background-color: aliceblue;
+  background-color: #faf8f3;
 }
 .products-section .product .product-info .scent-family, .featured-products .product .product-info .scent-family {
   font-size: 0.8rem;

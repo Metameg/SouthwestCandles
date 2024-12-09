@@ -230,7 +230,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #fff;
+    background-color: $background-secondary-color;
   
     .promo-image {
         flex: 2;
@@ -345,7 +345,7 @@ body {
         .product-info {
             display: flex;
             flex-direction: column;
-            background-color: aliceblue;
+            background-color: $background-color;
 
             .scent-family {
                 font-size: 0.8rem;

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/footer.css">
     <script src="/dist/bundle.js"></script>
     </head>
     <body>
@@ -82,21 +83,6 @@
                 </div>
             </section>
 
-            <section class="promo-section">
-                <div class="promo-image">
-                    <picture>
-                        <source srcset="assets/images/webp/tilted_on_table.webp" type="image/webp">
-                        <source srcset="assets/images/tilted_on_table.jpg" type="image/jpeg">
-                        <img src="assets/images/tilted_on_table.jpg" alt="Product candles displayed on table">
-                    </picture>
-                </div>
-                <div class="promo-content">
-                    <h3>New fragrances added.</h3>
-                    <h1>New Year Sale.<br>Up to <span>10%<span> Off.</h1>
-                    <a href="#" class="promo-link">Shop here</a>
-                </div>
-            </section>
-
             <h2 class="section-header">Featured Products</h2>
             <section class="featured-products">
                 <?php foreach ($featuredProducts as $product): ?>
@@ -119,27 +105,23 @@
                 <?php endforeach; ?>
             </section>
 
-            <section class="products-section">
-                <?php foreach ($products as $product): ?>
-                    <div class="product">
-                        <div class="product-image">
-                            <!-- <picture> -->
-                                <!-- <source srcset="assets/images/webp/candle_glow.webp" type="image/webp"> -->
-                                <img src="<?php echo htmlspecialchars($product['image_url']); ?>" alt="Placeholder candle product image">
-                            <!-- </picture> -->
-                            <span class="tag <?php echo htmlspecialchars($product['tag']); ?>"><?php echo htmlspecialchars($product['tag']); ?></span>
-                        </div>
-                        <div class="product-info">
-                            <h3><?php echo htmlspecialchars($product['name']); ?></h3>
-                            <p class="description"><?php echo htmlspecialchars($product['description']); ?></p>
-                            <p><i>From  </i> <span class="price">$8.00</span></p>
-                            <button class="add-to-cart">Add To Cart</button>
-                            <span class="item-id"><?php echo htmlspecialchars($product['id']); ?></span>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-                
+            <section class="promo-section">
+                <div class="promo-image">
+                    <picture>
+                        <source srcset="assets/images/webp/tilted_on_table.webp" type="image/webp">
+                        <source srcset="assets/images/tilted_on_table.jpg" type="image/jpeg">
+                        <img src="assets/images/tilted_on_table.jpg" alt="Product candles displayed on table">
+                    </picture>
+                </div>
+                <div class="promo-content">
+                    <h3>New fragrances added.</h3>
+                    <h1>New Year Sale.<br>Up to <span>10%<span> Off.</h1>
+                    <a href="#" class="promo-link">Shop here</a>
+                </div>
             </section>
+            
+            <?php include $basePath . '/components/footer.php';?>
+
         </main>
     </body>
 </html>

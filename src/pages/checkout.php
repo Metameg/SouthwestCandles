@@ -37,6 +37,7 @@ try {
     <title>Checkout | Southwest Candle Products</title>
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/cart.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/checkout.css">
     <script src="/dist/bundle.js"></script>
     
@@ -153,8 +154,8 @@ try {
 
             </div>
 
-
         </main>
+        <?php include $basePath . '/components/footer.php';?>
         
     </body>
 </html>

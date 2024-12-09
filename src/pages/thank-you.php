@@ -5,6 +5,7 @@
     <title>Thank You | Southwest Candle Products</title>
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/cart.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/thank-you.css">
     </head>
     <body>
@@ -34,8 +35,10 @@
                     <!-- Error will be sent from script -->
                 </div>
             </div>
+            
+            <?php include $basePath . '/components/footer.php';?>
         </main>
-
+        
         <script src="/dist/bundle.js"></script>
     </body>
 </html>
