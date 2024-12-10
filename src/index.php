@@ -12,10 +12,9 @@
     </head>
     <body>
 
-        <!-- Navbar -->
-        <?php $basePath = '.';?>
+<!-- Navbar -->
+<?php $basePath = '.';?>
         <?php include $basePath . '/components/navbar.php';?>
-      
 
         <!-- Fetch all products -->
         <?php
@@ -38,6 +37,7 @@
                 echo "<pre>" . $e->getTraceAsString() . "</pre>";
             }
         ?>
+
 
 
         <!-- Cart -->
