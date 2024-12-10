@@ -10,6 +10,7 @@ $(() => {
     });
     
     $("#productsLink").on("click", (event) => {
+        console.log("CLICK REGISTER")
         event.stopPropagation();
         document.getElementById('dropdown').classList.toggle('open');
     });
