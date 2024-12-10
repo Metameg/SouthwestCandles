@@ -66,7 +66,7 @@ body {
     position: relative;
     align-items: center;
     padding: 40px 20px;
-    padding-top: 230px;
+    // padding-top: 230px;
     background-image:  url("../assets/images/pink-candle-symmetric.jpg");
     @supports (background-image: url("../assets/images/webp/pink-candle-symmetric-high.webp")){
         background-image: url("../assets/images/webp/pink-candle-symmetric-high.webp");
@@ -244,22 +244,22 @@ body {
     }
   
     .promo-content {
-      flex: 1;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: left;
+        flex: 1;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left;
   
-      h3 {
+    h3 {
         font-size: 1rem;
         font-weight: 400;
         letter-spacing: 1px;
         margin-bottom: 1rem;
         color: #888;
-      }
+    }
   
-      h1 {
+    h1 {
         font-size: 2.5rem;
         line-height: 1.2;
         font-weight: 700;
@@ -271,14 +271,13 @@ body {
             font-size: 2.7rem;
             color: $text-danger;
         }
-      }
+    }
   
-      .promo-link {
+    .promo-link {
         display: inline-block; 
         padding: 10px 20px; 
         font-size: 1.2rem; 
         color: #000; 
-        background-color: #fff; 
         border: none; 
         border-radius: 5px; 
         text-decoration: underline; 
@@ -289,7 +288,7 @@ body {
         &:hover {
             color: darken($primary-color, 10%); 
         }
-      }
+    }
     }
 
     @media (max-width: 768px) {

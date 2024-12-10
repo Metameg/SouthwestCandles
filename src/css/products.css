@@ -33,19 +33,18 @@ body {
   color: #555; /* Slightly lighter than the title color */
 }
 
-.products-page {
+.products-section {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns */
-  gap: 0; /* Remove gaps to make boxes connected */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
   padding: 40px;
   max-width: 800px;
   margin: 0 auto;
-  border: 2px solid #f8f8f8; /* Outer border around the whole grid */
+  border: 2px solid #f8f8f8;
   background-color: white;
   margin-top: 50px;
 }
-
-.product-collection {
+.products-section .product {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,40 +54,52 @@ body {
   border-bottom: 2px solid rgba(204, 204, 204, 0.2666666667);
   text-align: center;
 }
-.product-collection:nth-child(3n) {
+.products-section .product:nth-child(3n) {
   border-right: none; /* Remove right border for the last column */
 }
-.product-collection:nth-last-child(-n+3) {
+.products-section .product:nth-last-child(-n+3) {
   border-bottom: none; /* Remove bottom border for the last row */
 }
-.product-collection:hover {
+.products-section .product:hover {
   background-color: #f0f0f0; /* Change background on hover */
   transform: scale(1.02); /* Slightly enlarge the box */
-  cursor: pointer; /* Change cursor to pointer */
 }
-
-.product-image {
+.products-section .product .product-image {
   width: 100%;
   max-width: 180px;
   height: auto;
   margin-bottom: 20px;
 }
-
-.product-title {
+.products-section .product .product-name {
   font-size: 18px;
-  font-weight: 500; /* Medium weight for titles */
+  font-weight: 500;
   letter-spacing: 0.12em;
   margin: 10px 0;
   color: #333;
 }
-
-.view-all {
-  text-decoration: none;
+.products-section .product .description {
+  font-style: italic;
   color: #646464;
   font-weight: bold;
   font-size: 14px;
   transition: color 0.3s ease;
 }
-.view-all:hover {
-  color: #0056b3;
+.products-section .product .add-to-cart {
+  background-color: #fff;
+  color: #000;
+  border: #000 2px solid;
+  margin: 5px;
+  padding: 10px;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.products-section .product .add-to-cart:hover {
+  background-color: #d9d0b5;
+}
+.products-section .product .item-id {
+  font-size: 0.8rem;
+  font-style: italic;
+  align-self: flex-end;
+  margin-top: 5px;
 }/*# sourceMappingURL=products.css.map */

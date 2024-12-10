@@ -12,8 +12,8 @@
     </head>
     <body>
 
-<!-- Navbar -->
-<?php $basePath = '.';?>
+        <!-- Navbar -->
+        <?php $basePath = '.';?>
         <?php include $basePath . '/components/navbar.php';?>
 
         <!-- Fetch all products -->
@@ -58,7 +58,7 @@
                     <p class="cta-1">Limited Edition Seasonals</p>
                     <p class="cta-2">Five Featured Seasonals</p>
                     <p class="cta-3">ALL YEAR 'ROUND</p>
-                    <a href="#" class="primary-btn">Shop Now</a>
+                    <a href="./pages/products.php" class="primary-btn">Shop Now</a>
                 </div>
             </section>
 
@@ -79,7 +79,7 @@
                     </div>
                 </div>
                 <div class="button-container">
-                    <a href="#" class="primary-btn">Contact</a>
+                    <a href="./pages/contact.php" class="primary-btn">Contact</a>
                 </div>
             </section>
 
@@ -116,7 +116,7 @@
                 <div class="promo-content">
                     <h3>New fragrances added.</h3>
                     <h1>New Year Sale.<br>Up to <span>10%<span> Off.</h1>
-                    <a href="#" class="promo-link">Shop here</a>
+                    <a href="./pages/products.php" class="promo-link">Shop here</a>
                 </div>
             </section>
             

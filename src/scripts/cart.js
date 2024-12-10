@@ -37,7 +37,7 @@ class Cart {
                     <div class="item-details">
                         <h3>${item.name}</h3>
                         <span class="order-id">${item.id}</span>
-                        <span class="color">Dark Blue</span>
+                        
                     </div>
                     <div class="order-details">
                         <div class="quantity">
@@ -112,7 +112,7 @@ class Cart {
         const productElement = $(buttonElement).closest(".product");
         
         // Extract product details
-        const productName = productElement.find("h3").text();
+        const productName = productElement.find('.product-name').text();
         const productPrice = this.prices["default"]; 
         const productImage = productElement.find("img").attr("src");
         const productId = productElement.find('.item-id').text();

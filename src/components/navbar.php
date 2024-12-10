@@ -31,18 +31,19 @@ $isCheckoutPage = ($currentFile === 'checkout.php');
                     <!-- Link to index.php if on checkout.php -->
                     <li><a id="continueShoppingLink" href="<?php echo getRootPath(); ?>src/index.php">&#8592; Continue Shopping</a></li>
                 <?php else: ?>
-                    <li><a href="#" id="cartNavBtn"><img src="<?php echo getRootPath();?>src/assets/images/svg/cart.svg" alt="Cart Icon" width="30" height="30"></a></li>
+                    <li><a id="cartNavBtn"><img src="<?php echo getRootPath();?>src/assets/images/svg/cart.svg" alt="Cart Icon" width="30" height="30"></a></li>
                 <?php endif; ?>
             </div>
             <ul>
-                <li id="productsLink" class="nav-link"><a>Products &#x25BC</a>
-                    <ul id="dropdown" class="dropdown">
+                <li id="productsLink" class="nav-link"><a href="<?php echo getRootPath(); ?>src/pages/products.php">Shop</a>
+                <!-- <li id="productsLink" class="nav-link"><a>Products &#x25BC</a> -->
+                    <!-- <ul id="dropdown" class="dropdown">
                         <li><a href="#">Limited Edition</a></li>
                         <li><a href="#">Seasonal</a></li>
                         <li><a href="#">Fruity</a></li>
-                    </ul>
+                    </ul> -->
                 </li>
-                <li class="nav-link"><a href="#">About</a></li>
+                <li class="nav-link"><a href="<?php echo getRootPath(); ?>src/pages/contact.php">Contact</a></li>
                 
             </ul>
             <div id="hamburgerMenu" class="hamburger-menu">

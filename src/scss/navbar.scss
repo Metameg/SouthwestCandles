@@ -2,7 +2,7 @@
 
 header {
     display: flex;
-	position: fixed;
+	// position: fixed;
 	z-index: 999;
 	width: 100%;
 	background-color: $background-secondary-color;
@@ -26,11 +26,11 @@ header {
 		.nav-links {
 			display: flex;
 			align-items: center;
+			gap: 27px;
 
 			ul {
 				list-style: none;
 				display: flex;
-				gap: 20px;
 				transition: transform 0.3s ease-in-out;
 			}
 
@@ -48,6 +48,10 @@ header {
 					border: 1px solid $header-color;
 					border-radius: 5px;
 					transition: 0.3s;
+
+					&:hover {
+						background-color: $primary-color;
+					}
 				}
 			
 				.dropdown {
@@ -88,7 +92,6 @@ header {
 						justify-content: flex-start;
 					}
 				}
-			
 			}
 
 			#cartContainer {
@@ -103,8 +106,6 @@ header {
                     border-radius: 5px;
                     cursor: pointer;
 					display: flex;
-					width: 50px;
-					height: 40px;
 					justify-content: center;
 					align-items: center;
 
@@ -161,7 +162,6 @@ header {
 		list-style: none;
         z-index: 3;
 		margin-left: 15px;
-		right: 24px;
 
         #cartNavBtn {
             font-weight: bold;
