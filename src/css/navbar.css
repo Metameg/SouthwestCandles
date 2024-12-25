@@ -48,39 +48,6 @@ header nav .nav-links .nav-link a {
 header nav .nav-links .nav-link a:hover {
   background-color: #f39c12;
 }
-header nav .nav-links .nav-link .dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #faf8f3;
-  list-style: none;
-  display: none;
-  flex-direction: column;
-  padding: 10px 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  z-index: 2;
-  border: solid black 3px;
-  width: 220px;
-}
-header nav .nav-links .nav-link .dropdown li a {
-  padding: 10px 20px;
-  display: block;
-  white-space: nowrap;
-  text-decoration: none;
-  color: #000;
-  transition: background-color 0.3s;
-  border: none;
-}
-header nav .nav-links .nav-link .dropdown li a:hover {
-  background-color: #bf3a47;
-  color: #fff;
-}
-header nav .nav-links .nav-link .dropdown.open {
-  cursor: auto;
-  display: flex;
-  justify-content: flex-start;
-}
 header nav .nav-links #cartContainer {
   list-style: none;
 }

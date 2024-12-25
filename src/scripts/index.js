@@ -10,18 +10,17 @@ $(() => {
     });
     
     $("#productsLink").on("click", (event) => {
-        console.log("CLICK REGISTER")
         event.stopPropagation();
         document.getElementById('dropdown').classList.toggle('open');
     });
 
     // Close dropdown if clicking outside of it
     $(document).on("click", () => {
-        const dropdown = document.getElementById('dropdown');
+        // const dropdown = document.getElementById('dropdown');
         const hamburger = document.getElementById('hamburgerMenu');
-        if (dropdown.classList.contains('open')) {
-            dropdown.classList.remove('open');
-        }
+        // if (dropdown.classList.contains('open')) {
+        //     dropdown.classList.remove('open');
+        // }
         if (hamburger.classList.contains('open')) {
             hamburger.classList.remove('open');
             document.querySelector('nav ul').classList.toggle('open');

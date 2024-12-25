@@ -55,7 +55,7 @@
                 </div> -->
                 <div class="hero-info">
                     <h1><span class="title-offcolor">CARRIE'S</span> Candles</h1>
-                    <p class="cta-1">Limited Edition Seasonals</p>
+                    <p class="cta-1">A Wick Above the Rest</p>
                     <p class="cta-2">Five Featured Seasonals</p>
                     <p class="cta-3">ALL YEAR 'ROUND</p>
                     <a href="./pages/products.php" class="primary-btn">Shop Now</a>
