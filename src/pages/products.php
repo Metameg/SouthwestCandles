@@ -42,6 +42,63 @@
         <!-- Cart -->
         <?php include $basePath . '/components/cart.php';?>
 
+        <section class="build-candle-section">
+            <h2 class="section-title">Build Your Candle</h2>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-title">
+                    <h3>Select your Fragrance</h3>
+                </div>
+            </div>
+            
+            <ul class="fragerancce-list">
+                <li class="list-item">
+                    <div class="list-number">01</div>
+                    <div class="list-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                </li>
+
+                <li class="list-item">
+                    <div class="list-number">02</div>
+                    <div class="list-text">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                </li>
+
+                <li class="list-item">
+                    <div class="list-number">03</div>
+                    <div class="list-text">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                </li>
+
+                <li class="list-item">
+                    <div class="list-number">04</div>
+                    <div class="list-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+                </li>
+            </ul>
+            <!-- <ul class="fragrance-list">
+                <li>
+                    <input type="radio" id="lavender" name="fragrance" value="Lavender">
+                    <label for="lavender">Lavender</label>
+                </li>
+                <li>
+                    <input type="radio" id="vanilla" name="fragrance" value="Vanilla">
+                    <label for="vanilla">Vanilla</label>
+                </li>
+                <li>
+                    <input type="radio" id="citrus" name="fragrance" value="Citrus">
+                    <label for="citrus">Citrus</label>
+                </li>
+                <li>
+                    <input type="radio" id="rose" name="fragrance" value="Rose">
+                    <label for="rose">Rose</label>
+                </li>
+            </ul> -->
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Pick your Wick</h3>
+                  
+                </div>
+            </div>
+        </section>
+
         <div class="text-box">
             <h1 class="text-title">Handcrafted candles made for you!</h1>
             <p class="text-description">
@@ -56,7 +113,7 @@
             </p>
         </div>
 
-        <section class="products-section">
+        <!-- <section class="products-section">
             <?php foreach ($products as $product): ?>
                 <div class="product">
                     <h2 class="product-name"><?php echo htmlspecialchars($product['name']); ?></h2>
@@ -67,37 +124,8 @@
                 </div>
                     
             <?php endforeach; ?>
-            <!-- <div class="product-collection">
-            <h3 class="product-title">Holiday Collection</h3>
-            <a href="#" class="view-all">View All</a>
-            <img src="../product-pic.webp" alt="Holiday Collection" class="product-image">
-            </div>
-            <div class="product-collection">
-            <h3 class="product-title">Artisan Collection</h3>
-            <a href="#" class="view-all">View All</a>
-            <img src="../product-pic.webp" alt="Artisan Collection" class="product-image">
-            </div>
-            <div class="product-collection">
-            <h3 class="product-title">Deco Collection</h3>
-            <a href="#" class="view-all">View All</a>
-            <img src="../product-pic.webp" alt="Deco Collection" class="product-image">
-            </div>
-            <div class="product-collection">
-            <h3 class="product-title">28oz Black Label Collection</h3>
-            <a href="#" class="view-all">View All</a>
-            <img src="../product-pic.webp" alt="28oz Black Label Collection" class="product-image">
-            </div>
-            <div class="product-collection">
-            <h3 class="product-title">Pearl Collection 300mg CBD</h3>
-            <a href="#" class="view-all">View All</a>
-            <img src="../product-pic.webp" alt="Pearl Collection 300mg CBD" class="product-image">
-            </div>
-            <div class="product-collection">
-            <h3 class="product-title">Botanical Collection</h3>
-            <a href="#" class="view-all">View All</a>
-            <img src="../product-pic.webp" alt="Botanical Collection" class="product-image">
-            </div> -->
-        </section>
+            
+        </section> -->
 
         <?php include $basePath . '/components/footer.php';?>
     </body>

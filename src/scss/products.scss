@@ -7,6 +7,131 @@ body {
     background-color: #f8f8f8;
 }
 
+.build-candle-section {
+    padding: 2rem;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    background-color: #fdfdfd;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        color: #2d2d2d;
+    }
+
+    .step {
+        margin-bottom: 3rem;
+		display: flex;
+		width: 50%;
+		align-items: flex-start;
+		justify-content: flex-start;
+
+        .step-number {
+            min-width: 30px;
+            background-color: #f39c12;
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+			margin-top: 1rem;
+        }
+
+        .step-title {
+            text-align: left;
+
+            h3 {
+                font-size: 1.2rem;
+                color: #333;
+                margin-bottom: 1rem;
+            }
+
+        }
+    }
+	
+	@media (max-width: 480px) {
+		align-items: flex-start;
+	}
+}
+
+.fragerancce-list{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px; 
+	background-color: $background-color; 
+	border-radius: 10px; 
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+  
+.list-item {
+	display: flex;
+	align-items: center;
+	padding: 15px 20px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	position: relative; 
+	width: 80%;
+
+	
+}
+  
+.list-item:nth-child(odd) {
+	background-color: #efca94;
+	&:hover {
+		background-color: darken(#efca94, 10%);
+		cursor: pointer;
+	}
+}
+  
+.list-item:nth-child(even) {
+	background-color: $background-secondary-color;
+	&:hover {
+		background-color: darken($background-secondary-color, 10%);
+		cursor: pointer;
+	}
+}
+  
+.list-number {
+	/* Styling for the number overlay */
+	position: absolute;
+	top: 50%;
+	left: 20px;
+	transform: translateY(-50%);
+	background-color: #fff;
+	color: #202020;
+	border-radius: 50%;
+	padding: 10px;
+	font-size: 18px;
+	font-weight: bold;
+}
+  
+  .list-text {
+	margin-left: 60px;
+  }
+// .fragrance-list {
+// 	list-style: none;
+// 	padding: 0;
+// 	// background-color: green;
+
+// 	li {
+// 		margin-bottom: 0.5rem;
+// 		display: flex;
+// 		align-items: center;
+
+// 		input[type="radio"] {
+// 			margin-right: 0.5rem;
+// 		}
+// 	}
+// }
+
+
 .text-box {
 	display: flex;
 	flex-direction: column;
