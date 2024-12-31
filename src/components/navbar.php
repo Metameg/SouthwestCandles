@@ -29,9 +29,9 @@ $isCheckoutPage = ($currentFile === 'checkout.php');
             <div id="cartContainer">
                 <?php if ($isCheckoutPage): ?>
                     <!-- Link to index.php if on checkout.php -->
-                    <li><a id="continueShoppingLink" href="<?php echo getRootPath(); ?>src/index.php">&#8592; Continue Shopping</a></li>
+                    <a id="continueShoppingLink" href="<?php echo getRootPath(); ?>src/index.php">&#8592; Continue Shopping</a>
                 <?php else: ?>
-                    <li><a id="cartNavBtn"><img src="<?php echo getRootPath();?>src/assets/images/svg/cart.svg" alt="Cart Icon" width="30" height="30"></a></li>
+                    <a id="cartNavBtn"><img src="<?php echo getRootPath();?>src/assets/images/svg/cart.svg" alt="Cart Icon" width="30" height="30"></a>
                 <?php endif; ?>
             </div>
             <ul>

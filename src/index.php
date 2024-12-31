@@ -46,13 +46,6 @@
         <main>
             <section class="hero">
                 <div class="hero-overlay"></div>
-                <!-- <div class="hero-image">
-                    <picture>
-                        <source srcset="assets/images/webp/pink-candle-symmetric.webp" type="image/webp">
-                        <source srcset="assets/images/pink-candle-symmetric.jpg" type="image/jpeg">
-                        <img src="assets/images/pink-candle-symmetric.jpg" alt="Product candles displayed on table">
-                    </picture>
-                </div> -->
                 <div class="hero-info">
                     <h1><span class="title-offcolor">CARRIE'S</span> Candles</h1>
                     <p class="cta-1">A Wick Above the Rest</p>

@@ -64,7 +64,6 @@ body {
   height: -moz-fit-content;
   height: fit-content;
   justify-content: center;
-  z-index: -1;
 }
 @supports (background-image: url("../assets/images/webp/pink-candle-symmetric-high.webp")) {
   .hero {

@@ -9,12 +9,13 @@ body {
 
 .build-candle-section {
     padding: 2rem;
-    text-align: center;
     font-family: 'Arial', sans-serif;
     background-color: #fdfdfd;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: stretch;
+	max-width: 1200px;
+	margin: 0 auto;
 
     .section-title {
         font-size: 2rem;
@@ -60,7 +61,7 @@ body {
 	}
 }
 
-.fragerancce-list{
+.fragerance-list{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -68,6 +69,10 @@ body {
 	background-color: $background-color; 
 	border-radius: 10px; 
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+
+	@media (max-width: 480px) {
+		padding: 0;
+	}
 }
   
 .list-item {

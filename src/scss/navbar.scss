@@ -8,7 +8,7 @@ header {
 	background-color: $background-secondary-color;
   
 	nav {
-		padding: 0 40px;
+		padding: 0 10px;
 		display: flex;
 		width: 100%;
 		align-items: center;
@@ -32,6 +32,7 @@ header {
 				list-style: none;
 				display: flex;
 				transition: transform 0.3s ease-in-out;
+				z-index: 3;
 			}
 
 			.nav-link {
@@ -96,6 +97,7 @@ header {
 
 			#cartContainer {
                 list-style: none;
+				z-index: 4;
 
                 #cartNavBtn {
                     font-weight: bold;
@@ -108,6 +110,7 @@ header {
 					display: flex;
 					justify-content: center;
 					align-items: center;
+					z-index: 4;
 
                     &:hover {
                         background-color: darken($primary-color, 10%);
@@ -131,7 +134,7 @@ header {
 		width: 30px;
 		height: 30px;
 		cursor: pointer;
-		z-index: 2;
+		z-index: 4;
 
 		div {
 			width: 100%;
@@ -157,26 +160,27 @@ header {
 		}
 	}
 
-	#cartContainer {
-        position: relative;
-		list-style: none;
-        z-index: 3;
-		margin-left: 15px;
+	// #cartContainer {
+    //     position: relative;
+	// 	list-style: none;
+    //     z-index: 4;
+	// 	margin-left: 15px;
 
-        #cartNavBtn {
-            font-weight: bold;
-            background-color: $primary-color;
-            padding: 5px 10px;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+    //     #cartNavBtn {
+    //         font-weight: bold;
+    //         background-color: $primary-color;
+    //         padding: 5px 10px;
+    //         color: white;
+    //         border: none;
+    //         border-radius: 5px;
+    //         cursor: pointer;
+	// 		z-index: 4;
 
-            &:hover {
-                background-color: darken($primary-color, 10%);
-            }
-        }
-    }
+    //         &:hover {
+    //             background-color: darken($primary-color, 10%);
+    //         }
+    //     }
+    // }
 
 
 	@media (max-width: 768px) {

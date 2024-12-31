@@ -5,7 +5,7 @@ header {
   background-color: #d9d0b5;
 }
 header nav {
-  padding: 0 40px;
+  padding: 0 10px;
   display: flex;
   width: 100%;
   align-items: center;
@@ -29,6 +29,7 @@ header nav .nav-links ul {
   list-style: none;
   display: flex;
   transition: transform 0.3s ease-in-out;
+  z-index: 3;
 }
 header nav .nav-links .nav-link {
   position: relative;
@@ -50,6 +51,7 @@ header nav .nav-links .nav-link a:hover {
 }
 header nav .nav-links #cartContainer {
   list-style: none;
+  z-index: 4;
 }
 header nav .nav-links #cartContainer #cartNavBtn {
   font-weight: bold;
@@ -62,6 +64,7 @@ header nav .nav-links #cartContainer #cartNavBtn {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 4;
 }
 header nav .nav-links #cartContainer #cartNavBtn:hover {
   background-color: #c87f0a;
@@ -79,7 +82,7 @@ header .hamburger-menu {
   width: 30px;
   height: 30px;
   cursor: pointer;
-  z-index: 2;
+  z-index: 4;
 }
 header .hamburger-menu div {
   width: 100%;
@@ -99,24 +102,6 @@ header .hamburger-menu.open div:nth-child(2) {
 }
 header .hamburger-menu.open div:nth-child(3) {
   transform: rotate(-45deg) translateY(-7px);
-}
-header #cartContainer {
-  position: relative;
-  list-style: none;
-  z-index: 3;
-  margin-left: 15px;
-}
-header #cartContainer #cartNavBtn {
-  font-weight: bold;
-  background-color: #f39c12;
-  padding: 5px 10px;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-header #cartContainer #cartNavBtn:hover {
-  background-color: #c87f0a;
 }
 @media (max-width: 768px) {
   header nav ul {

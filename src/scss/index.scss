@@ -56,7 +56,7 @@ body {
 
     &:hover {
         background-color: darken($primary-color, 10%); 
-        transform: scale(1.05); 
+        transform: scale(1.05);
     }
 }
 
@@ -76,7 +76,6 @@ body {
     background-position: center;
     height: fit-content;
     justify-content: center;
-    z-index: -1;
     
     .hero-overlay {
         position: absolute; 
@@ -87,23 +86,6 @@ body {
         background-color: rgba(0, 0, 0, 0.5); 
     }
     
-
-    // .hero-image {
-    //     flex: 1;
-    //     display: inline-block;
-    //     padding: 15px; 
-    //     border-radius: 50%; 
-    //     border: 3px solid $primary-color;
-    //     width: 70%;
-    //     min-width: 250px; 
-
-    //     img {
-    //         width: 100%;
-    //         border-bottom-right-radius: 20%;
-    //         transform: rotate(-15deg);
-    //         padding: 24px;
-    //     }
-    // }
 
     .hero-info {
         flex: 2;
