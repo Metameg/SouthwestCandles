@@ -76,26 +76,9 @@ body {
   margin-bottom: 10px;
   border-radius: 5px;
   position: relative;
-  width: 80%;
+  width: 90%;
 }
-
-.list-item:nth-child(odd) {
-  background-color: #efca94;
-}
-.list-item:nth-child(odd):hover {
-  background-color: #e8b468;
-  cursor: pointer;
-}
-
-.list-item:nth-child(even) {
-  background-color: #d9d0b5;
-}
-.list-item:nth-child(even):hover {
-  background-color: #c8bb93;
-  cursor: pointer;
-}
-
-.list-number {
+.list-item .list-number {
   /* Styling for the number overlay */
   position: absolute;
   top: 50%;
@@ -108,9 +91,27 @@ body {
   font-size: 18px;
   font-weight: bold;
 }
-
-.list-text {
+.list-item .list-text {
   margin-left: 60px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-around;
+  width: 100%;
+}
+.list-item:nth-child(odd) {
+  background-color: #efca94;
+}
+.list-item:nth-child(odd):hover {
+  background-color: #e8b468;
+  cursor: pointer;
+}
+.list-item:nth-child(even) {
+  background-color: #d9d0b5;
+}
+.list-item:nth-child(even):hover {
+  background-color: #c8bb93;
+  cursor: pointer;
 }
 
 .text-box {

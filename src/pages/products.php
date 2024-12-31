@@ -52,25 +52,19 @@
             </div>
             
             <ul class="fragerance-list">
-                <li class="list-item">
-                    <div class="list-number">01</div>
-                    <div class="list-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                </li>
 
-                <li class="list-item">
-                    <div class="list-number">02</div>
-                    <div class="list-text">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-                </li>
-
-                <li class="list-item">
-                    <div class="list-number">03</div>
-                    <div class="list-text">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
-                </li>
-
-                <li class="list-item">
-                    <div class="list-number">04</div>
-                    <div class="list-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
-                </li>
+                <?php foreach ($products as $product): ?>
+                    <li class="list-item">
+                        <div class="product">
+                            <div class="list-number">01</div>
+                            <div class="list-text">
+                                <h2><?php echo htmlspecialchars($product['name']); ?></h2>
+                                <!-- <p class=""><?php echo htmlspecialchars($product['description']); ?></p> -->
+                            </div>
+                        </div>
+                    </li>
+                        
+                <?php endforeach; ?>
             </ul>
         
             <div class="step">
