@@ -58,7 +58,7 @@
                         <div class="product">
                             <div class="list-number">01</div>
                             <div class="list-text">
-                                <h2><?php echo htmlspecialchars($product['name']); ?></h2>
+                                <p><?php echo htmlspecialchars($product['name']); ?></p>
                                 <!-- <p class=""><?php echo htmlspecialchars($product['description']); ?></p> -->
                             </div>
                         </div>

@@ -71,7 +71,8 @@ body {
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
 
 	@media (max-width: 480px) {
-		padding: 0;
+		padding: 20px;
+		width: 90%;
 	}
 }
   
@@ -85,7 +86,6 @@ body {
     width: 90%;
 
 	.list-number {
-		/* Styling for the number overlay */
 		position: absolute;
 		top: 50%;
 		left: 20px;
