@@ -55,13 +55,16 @@
 
                 <?php foreach ($products as $product): ?>
                     <li class="list-item">
-                        <div class="product">
-                            <div class="list-number">01</div>
+                        <!-- <div class="product"> -->
+                            <!-- <div class="list-number">01</div> -->
+                            <input class="fragerance-radio" type="radio" name="fragranceType">
                             <div class="list-text">
-                                <p><?php echo htmlspecialchars($product['name']); ?></p>
-                                <!-- <p class=""><?php echo htmlspecialchars($product['description']); ?></p> -->
+                                <h3 class="title"><?php echo htmlspecialchars($product['name']); ?>
+                                    <span class="tag <?php echo htmlspecialchars($product['tag']); ?>"><?php echo htmlspecialchars($product['tag']); ?></span>
+                                </h3>
+                                <p class="description"><?php echo htmlspecialchars($product['description']); ?></p>
                             </div>
-                        </div>
+                        <!-- </div> -->
                     </li>
                         
                 <?php endforeach; ?>

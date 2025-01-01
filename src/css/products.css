@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f8f8f8;
+  box-sizing: border-box;
 }
 
 .build-candle-section {
@@ -61,16 +62,11 @@ body {
   padding: 20px;
   background-color: #faf8f3;
   border-radius: 10px;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-@media (max-width: 480px) {
-  .fragerance-list {
-    padding: 20px;
-    width: 90%;
-  }
-}
-
-.list-item {
+.fragerance-list .list-item {
   display: flex;
   align-items: center;
   padding: 15px 20px;
@@ -79,39 +75,67 @@ body {
   position: relative;
   width: 90%;
 }
-.list-item .list-number {
-  position: absolute;
-  top: 50%;
-  left: 20px;
-  transform: translateY(-50%);
-  background-color: #fff;
-  color: #202020;
-  border-radius: 50%;
-  padding: 10px;
-  font-size: 18px;
-  font-weight: bold;
+.fragerance-list .list-item .fragerance-radio {
+  width: 20px;
+  height: 20px;
+  accent-color: #495aaa;
+  cursor: pointer;
 }
-.list-item .list-text {
-  margin-left: 60px;
+.fragerance-list .list-item .fragerance-radio:hover {
+  box-shadow: 0 0 5px #f39c12;
+}
+.fragerance-list .list-item .list-text {
+  margin-left: 10px;
   display: flex;
   align-items: center;
   gap: 10px;
-  justify-content: space-around;
   width: 100%;
 }
-.list-item:nth-child(odd) {
+.fragerance-list .list-item .list-text .title {
+  white-space: nowrap;
+}
+.fragerance-list .list-item .list-text .title .tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #333;
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+.fragerance-list .list-item .list-text .title .tag.NEW {
+  background-color: #f39c12;
+}
+.fragerance-list .list-item .list-text .title .tag.LIMITED {
+  background-color: #c0392b;
+}
+.fragerance-list .list-item .list-text .description {
+  font-style: italic;
+}
+.fragerance-list .list-item:nth-child(odd) {
   background-color: #efca94;
 }
-.list-item:nth-child(odd):hover {
+.fragerance-list .list-item:nth-child(odd):hover {
   background-color: #e8b468;
   cursor: pointer;
 }
-.list-item:nth-child(even) {
+.fragerance-list .list-item:nth-child(even) {
   background-color: #d9d0b5;
 }
-.list-item:nth-child(even):hover {
+.fragerance-list .list-item:nth-child(even):hover {
   background-color: #c8bb93;
   cursor: pointer;
+}
+@media (max-width: 480px) {
+  .fragerance-list {
+    padding: 20px;
+    width: 90%;
+  }
+  .fragerance-list .list-item .description {
+    display: none;
+  }
 }
 
 .text-box {

@@ -5,6 +5,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f8f8f8;
+	box-sizing: border-box;
 }
 
 .build-candle-section {
@@ -61,69 +62,102 @@ body {
 	}
 }
 
-.fragerance-list{
+.fragerance-list {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	padding: 20px; 
 	background-color: $background-color; 
 	border-radius: 10px; 
+	min-width: fit-content;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+
+	.list-item {
+		display: flex;
+		align-items: center;
+		padding: 15px 20px;
+		margin-bottom: 10px;
+		border-radius: 5px;
+		position: relative;
+		width: 90%;
+	
+		.fragerance-radio {
+			width: 20px;  
+			height: 20px; 
+			accent-color: $button-color; 
+			cursor: pointer;
+	
+			&:hover {
+				box-shadow: 0 0 5px $primary-color;
+			}
+		}
+		  
+		.list-text {
+			margin-left: 10px;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			width: 100%;
+	
+			.title {
+				white-space: nowrap;
+				.tag {
+					position: absolute;
+					top: 10px;
+					left: 10px;
+					background-color: #333;
+					color: #fff;
+					padding: 4px 8px;
+					font-size: 0.75rem;
+					border-radius: 4px;
+					text-transform: uppercase;
+				}
+
+				.tag.NEW {
+					background-color: #f39c12; // Adjust to fit with primary color
+				}
+	
+				.tag.LIMITED {
+					background-color: #c0392b; // Adjust for limited edition color
+				}
+			}
+	
+			.description {
+				font-style: italic;
+			}
+		}
+	
+		
+		&:nth-child(odd) {
+			background-color: #efca94;
+			&:hover {
+				background-color: darken(#efca94, 10%);
+				cursor: pointer;
+			}
+		}
+		  
+		&:nth-child(even) {
+			background-color: $background-secondary-color;
+			&:hover {
+				background-color: darken($background-secondary-color, 10%);
+				cursor: pointer;
+			}
+		}
+	}
 
 	@media (max-width: 480px) {
 		padding: 20px;
 		width: 90%;
+
+		.list-item {
+			.description {
+				display: none;
+			}
+		}
 	}
 }
   
-.list-item {
-	display: flex;
-    align-items: center;
-    padding: 15px 20px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    position: relative;
-    width: 90%;
 
-	.list-number {
-		position: absolute;
-		top: 50%;
-		left: 20px;
-		transform: translateY(-50%);
-		background-color: #fff;
-		color: #202020;
-		border-radius: 50%;
-		padding: 10px;
-		font-size: 18px;
-		font-weight: bold;
-	}
-	  
-	.list-text {
-		margin-left: 60px;
-		display: flex;
-		align-items: center;
-		gap: 10px;
-		justify-content: space-around;
-		width: 100%;
-	}
-
-	
-	&:nth-child(odd) {
-		background-color: #efca94;
-		&:hover {
-			background-color: darken(#efca94, 10%);
-			cursor: pointer;
-		}
-	}
-	  
-	&:nth-child(even) {
-		background-color: $background-secondary-color;
-		&:hover {
-			background-color: darken($background-secondary-color, 10%);
-			cursor: pointer;
-		}
-	}
-}
   
 
 // .fragrance-list {
