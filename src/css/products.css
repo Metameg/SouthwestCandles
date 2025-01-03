@@ -2,8 +2,18 @@ body {
   font-family: "Lato", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f8f8f8;
+  background-color: #faf8f3;
   box-sizing: border-box;
+}
+
+.custom-radio {
+  width: 20px;
+  height: 20px;
+  accent-color: #495aaa;
+  cursor: pointer;
+}
+.custom-radio:hover {
+  box-shadow: 0 0 5px #f39c12;
 }
 
 .build-candle-section {
@@ -23,6 +33,7 @@ body {
 }
 .build-candle-section .step {
   margin-bottom: 3rem;
+  margin-top: rem;
   display: flex;
   width: 50%;
   align-items: flex-start;
@@ -59,11 +70,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
   background-color: #faf8f3;
-  border-radius: 10px;
   min-width: -moz-fit-content;
   min-width: fit-content;
+  padding: 20px;
+  border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 .fragerance-list .list-item {
@@ -74,15 +85,6 @@ body {
   border-radius: 5px;
   position: relative;
   width: 90%;
-}
-.fragerance-list .list-item .fragerance-radio {
-  width: 20px;
-  height: 20px;
-  accent-color: #495aaa;
-  cursor: pointer;
-}
-.fragerance-list .list-item .fragerance-radio:hover {
-  box-shadow: 0 0 5px #f39c12;
 }
 .fragerance-list .list-item .list-text {
   margin-left: 10px;
@@ -108,7 +110,7 @@ body {
 .fragerance-list .list-item .list-text .title .tag.NEW {
   background-color: #f39c12;
 }
-.fragerance-list .list-item .list-text .title .tag.LIMITED {
+.fragerance-list .list-item .list-text .title .tag.SEASONAL {
   background-color: #c0392b;
 }
 .fragerance-list .list-item .list-text .description {
@@ -143,96 +145,68 @@ body {
   flex-direction: column;
   align-items: start;
   justify-content: start;
-  padding: 40px; /* Matches product-collection padding */
-  margin: 40px auto; /* Centered horizontally with space around */
-  max-width: 800px; /* Matches products-page width */
-  border: 2px solid #f8f8f8; /* Matches the border style of products */
-  background-color: white; /* Consistent with products page */
+  padding: 40px;
+  margin: 40px auto;
+  max-width: 800px;
+  border: 2px solid #f8f8f8;
+  background-color: white;
   text-align: start;
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 .text-box .text-title {
-  font-family: "Lato", sans-serif; /* Matches your font */
-  font-size: 16px; /* Larger than product titles */
-  font-weight: 600; /* Medium weight for emphasis */
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
   margin-bottom: 10px;
-  color: #333; /* Neutral dark color */
+  color: #333;
 }
 .text-box .text-description {
-  font-family: "Lato", sans-serif; /* Matches your font */
-  font-size: 12px; /* Smaller font for the paragraph */
-  font-weight: 300; /* Light weight for a sleek look */
-  line-height: 1.6; /* Better readability */
-  color: #555; /* Slightly lighter than the title color */
+  font-family: "Lato", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: #555;
 }
 
-.products-section {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  padding: 40px;
-  max-width: 800px;
-  margin: 0 auto;
+.wick-selection {
+  display: flex;
+  gap: 53px;
   border: 2px solid #f8f8f8;
-  background-color: white;
-  margin-top: 50px;
+  background-color: #faf8f3;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-.products-section .product {
+.wick-selection .wick {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  border-right: 2px solid rgba(204, 204, 204, 0.2666666667);
-  border-bottom: 2px solid rgba(204, 204, 204, 0.2666666667);
+  border: 2px solid rgba(204, 204, 204, 0.2666666667);
+  border-radius: 10px;
   text-align: center;
 }
-.products-section .product:nth-child(3n) {
+.wick-selection .wick:nth-child(3n) {
   border-right: none; /* Remove right border for the last column */
 }
-.products-section .product:nth-last-child(-n+3) {
-  border-bottom: none; /* Remove bottom border for the last row */
+.wick-selection .wick:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.02);
+  cursor: pointer;
 }
-.products-section .product:hover {
-  background-color: #f0f0f0; /* Change background on hover */
-  transform: scale(1.02); /* Slightly enlarge the box */
-}
-.products-section .product .product-image {
+.wick-selection .wick .wick-image {
   width: 100%;
   max-width: 180px;
   height: auto;
   margin-bottom: 20px;
 }
-.products-section .product .product-name {
+.wick-selection .wick .wick-name {
   font-size: 18px;
   font-weight: 500;
   letter-spacing: 0.12em;
   margin: 10px 0;
   color: #333;
-}
-.products-section .product .description {
-  font-style: italic;
-  color: #646464;
-  font-weight: bold;
-  font-size: 14px;
-  transition: color 0.3s ease;
-}
-.products-section .product .add-to-cart {
-  background-color: #fff;
-  color: #000;
-  border: #000 2px solid;
-  margin: 5px;
-  padding: 10px;
-  font-size: 1.25rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.products-section .product .add-to-cart:hover {
-  background-color: #d9d0b5;
-}
-.products-section .product .item-id {
-  font-size: 0.8rem;
-  font-style: italic;
-  align-self: flex-end;
-  margin-top: 5px;
 }/*# sourceMappingURL=products.css.map */

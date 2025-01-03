@@ -57,11 +57,11 @@
                     <li class="list-item">
                         <!-- <div class="product"> -->
                             <!-- <div class="list-number">01</div> -->
-                            <input class="fragerance-radio" type="radio" name="fragranceType">
+                            <input class="custom-radio" type="radio" name="fragranceType">
                             <div class="list-text">
-                                <h3 class="title"><?php echo htmlspecialchars($product['name']); ?>
+                                <h4 class="title"><?php echo htmlspecialchars($product['name']); ?>
                                     <span class="tag <?php echo htmlspecialchars($product['tag']); ?>"><?php echo htmlspecialchars($product['tag']); ?></span>
-                                </h3>
+                                </h4>
                                 <p class="description"><?php echo htmlspecialchars($product['description']); ?></p>
                             </div>
                         <!-- </div> -->
@@ -72,9 +72,27 @@
         
             <div class="step">
                 <div class="step-number">2</div>
-                <div class="step-content">
-                    <h3>Pick your Wick</h3>
-                  
+                
+                <div class="step-title">
+                    <h3>Pick Your Wick</h3>
+                </div>
+            </div>
+
+            <div class="wick-selection">
+                <div class="wick">
+                    <h4 class="wick-name">Cotton</h4>
+                    
+                    <img src="../product-pic.webp" alt="Deco Collection" class="wick-image">
+                    <input class="custom-radio" type="radio" name="wickType">
+                
+                </div>
+
+                <div class="wick">
+                    <h4 class="wick-name">Wood</h4>
+
+                    <img src="../product-pic.webp" alt="Deco Collection" class="wick-image">
+                    <input class="custom-radio" type="radio" name="wickType">
+                
                 </div>
             </div>
         </section>
