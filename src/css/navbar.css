@@ -23,7 +23,6 @@ header nav .logo img {
 header nav .nav-links {
   display: flex;
   align-items: center;
-  gap: 27px;
 }
 header nav .nav-links ul {
   list-style: none;
@@ -104,6 +103,9 @@ header .hamburger-menu.open div:nth-child(3) {
   transform: rotate(-45deg) translateY(-7px);
 }
 @media (max-width: 768px) {
+  header nav .nav-links {
+    gap: 27px;
+  }
   header nav ul {
     position: fixed;
     top: 0;

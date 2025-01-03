@@ -26,7 +26,6 @@ header {
 		.nav-links {
 			display: flex;
 			align-items: center;
-			gap: 27px;
 
 			ul {
 				list-style: none;
@@ -160,30 +159,11 @@ header {
 		}
 	}
 
-	// #cartContainer {
-    //     position: relative;
-	// 	list-style: none;
-    //     z-index: 4;
-	// 	margin-left: 15px;
-
-    //     #cartNavBtn {
-    //         font-weight: bold;
-    //         background-color: $primary-color;
-    //         padding: 5px 10px;
-    //         color: white;
-    //         border: none;
-    //         border-radius: 5px;
-    //         cursor: pointer;
-	// 		z-index: 4;
-
-    //         &:hover {
-    //             background-color: darken($primary-color, 10%);
-    //         }
-    //     }
-    // }
-
-
 	@media (max-width: 768px) {
+		nav .nav-links {
+			gap: 27px;
+		}
+		
         nav ul {
             position: fixed;
             top: 0;

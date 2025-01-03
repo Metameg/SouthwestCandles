@@ -32,8 +32,8 @@ class Cart {
         } else {
             this.cart.forEach(item => {
                 const cartItem = $('<div></div>').addClass('cart-item');
+                // <img src="${item.image}" alt="${item.name}">
                 cartItem.html(`
-                    <img src="${item.image}" alt="${item.name}">
                     <div class="item-details">
                         <h3>${item.name}</h3>
                         <span class="order-id">${item.id}</span>
@@ -114,7 +114,7 @@ class Cart {
         // Extract product details
         const productName = productElement.find('.product-name').text();
         const productPrice = this.prices["default"]; 
-        const productImage = productElement.find("img").attr("src");
+        // const productImage = productElement.find("img").attr("src");
         const productId = productElement.find('.item-id').text();
         const productTag = productElement.find('.tag').text();
         const productDescription = productElement.find('.description').text();
@@ -124,7 +124,7 @@ class Cart {
             data_id: Date.now(),  // Generate a unique ID based on current time
             name: productName,
             price: productPrice,
-            image: productImage,
+            // image: productImage,
             description: productDescription,
             quantity: 1,
             selectedSize: "8oz",
