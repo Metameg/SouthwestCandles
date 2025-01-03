@@ -44,6 +44,8 @@
 
         <section class="build-candle-section">
             <h2 class="section-title">Build Your Candle</h2>
+            
+            <!-- FRAGERANCES STEP -->
             <div class="step">
                 <div class="step-number">1</div>
                 <div class="step-title">
@@ -55,8 +57,6 @@
 
                 <?php foreach ($products as $product): ?>
                     <li class="list-item">
-                        <!-- <div class="product"> -->
-                            <!-- <div class="list-number">01</div> -->
                             <input class="custom-radio" type="radio" name="fragranceType">
                             <div class="list-text">
                                 <h4 class="title"><?php echo htmlspecialchars($product['name']); ?>
@@ -64,12 +64,12 @@
                                 </h4>
                                 <p class="description"><?php echo htmlspecialchars($product['description']); ?></p>
                             </div>
-                        <!-- </div> -->
                     </li>
                         
                 <?php endforeach; ?>
             </ul>
-        
+
+            <!-- WICK STEP -->
             <div class="step">
                 <div class="step-number">2</div>
                 
@@ -78,19 +78,54 @@
                 </div>
             </div>
 
-            <div class="wick-selection">
-                <div class="wick">
-                    <h4 class="wick-name">Cotton</h4>
+            <div class="selection">
+                <div class="selection-card">
+                    <h4 class="card-name">Cotton</h4>
                     
-                    <img src="../product-pic.webp" alt="Deco Collection" class="wick-image">
+                    <img src="../product-pic.webp" alt="Deco Collection" class="card-image">
+                    <input class="custom-radio" type="radio" name="wickType">
+                </div>
+
+                <div class="selection-card">
+                    <h4 class="card-name">Wood</h4>
+  
+
+                    <img src="../product-pic.webp" alt="Deco Collection" class="card-image">
+                    <input class="custom-radio" type="radio" name="wickType">
+                
+                </div>
+            </div>
+
+
+            <!-- SIZE STEP -->
+            <div class="step">
+                <div class="step-number">3</div>
+                
+                <div class="step-title">
+                    <h3>Select Size</h3>
+                </div>
+            </div>
+
+            <div class="selection">
+                <div class="selection-card">
+                    <h4 class="card-name">4oz - <span class="price">$9</span></h4>
+                    
+                    <img src="../product-pic.webp" alt="Deco Collection" class="card-image">
                     <input class="custom-radio" type="radio" name="wickType">
                 
                 </div>
 
-                <div class="wick">
-                    <h4 class="wick-name">Wood</h4>
+                <div class="selection-card">
+                    <h4 class="card-name">8oz - <span class="price">$12</span></h4>
+                    <img src="../product-pic.webp" alt="Deco Collection" class="card-image">
+                    <input class="custom-radio" type="radio" name="wickType">
+                
+                </div>
 
-                    <img src="../product-pic.webp" alt="Deco Collection" class="wick-image">
+                <div class="selection-card">
+                    <h4 class="card-name">16oz - <span class="price">$23</span></h4>
+                    
+                    <img src="../product-pic.webp" alt="Deco Collection" class="card-image">
                     <input class="custom-radio" type="radio" name="wickType">
                 
                 </div>

@@ -33,7 +33,7 @@ body {
 }
 .build-candle-section .step {
   margin-bottom: 3rem;
-  margin-top: rem;
+  margin-top: 2rem;
   display: flex;
   width: 50%;
   align-items: flex-start;
@@ -140,6 +140,53 @@ body {
   }
 }
 
+.selection {
+  display: flex;
+  gap: 53px;
+  border: 2px solid #f8f8f8;
+  background-color: #faf8f3;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.selection .selection-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border: 2px solid rgba(204, 204, 204, 0.2666666667);
+  border-radius: 10px;
+  text-align: center;
+}
+.selection .selection-card:nth-child(3n) {
+  border-right: none; /* Remove right border for the last column */
+}
+.selection .selection-card:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.02);
+  cursor: pointer;
+}
+.selection .selection-card .card-image {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  margin-bottom: 20px;
+}
+.selection .selection-card .card-name {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  margin: 10px 0;
+  color: #333;
+}
+.selection .selection-card .card-name .price {
+  font-style: italic;
+  color: green;
+}
+
 .text-box {
   display: flex;
   flex-direction: column;
@@ -166,47 +213,4 @@ body {
   font-weight: 300;
   line-height: 1.6;
   color: #555;
-}
-
-.wick-selection {
-  display: flex;
-  gap: 53px;
-  border: 2px solid #f8f8f8;
-  background-color: #faf8f3;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-.wick-selection .wick {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  border: 2px solid rgba(204, 204, 204, 0.2666666667);
-  border-radius: 10px;
-  text-align: center;
-}
-.wick-selection .wick:nth-child(3n) {
-  border-right: none; /* Remove right border for the last column */
-}
-.wick-selection .wick:hover {
-  background-color: #f0f0f0;
-  transform: scale(1.02);
-  cursor: pointer;
-}
-.wick-selection .wick .wick-image {
-  width: 100%;
-  max-width: 180px;
-  height: auto;
-  margin-bottom: 20px;
-}
-.wick-selection .wick .wick-name {
-  font-size: 18px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  margin: 10px 0;
-  color: #333;
 }/*# sourceMappingURL=products.css.map */
