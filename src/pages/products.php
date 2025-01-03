@@ -56,7 +56,7 @@
             <ul class="fragerance-list">
 
                 <?php foreach ($products as $product): ?>
-                    <li class="list-item">
+                    <li class="list-item radio-selector">
                             <input class="custom-radio" type="radio" name="fragranceType">
                             <div class="list-text">
                                 <h4 class="title"><?php echo htmlspecialchars($product['name']); ?>
@@ -79,14 +79,14 @@
             </div>
 
             <div class="selection">
-                <div class="selection-card">
+                <div class="selection-card radio-selector">
                     <h4 class="card-name">Cotton</h4>
                     
                     <img src="../product-pic.webp" alt="Deco Collection" class="card-image">
                     <input class="custom-radio" type="radio" name="wickType">
                 </div>
 
-                <div class="selection-card">
+                <div class="selection-card radio-selector">
                     <h4 class="card-name">Wood</h4>
   
 
@@ -107,27 +107,39 @@
             </div>
 
             <div class="selection">
-                <div class="selection-card">
+                <div class="selection-card radio-selector">
                     <h4 class="card-name">4oz - <span class="price">$9</span></h4>
                     
                     <img src="../product-pic.webp" alt="Deco Collection" class="card-image">
-                    <input class="custom-radio" type="radio" name="wickType">
+                    <input class="custom-radio" type="radio" name="sizeType">
                 
                 </div>
 
-                <div class="selection-card">
+                <div class="selection-card radio-selector">
                     <h4 class="card-name">8oz - <span class="price">$12</span></h4>
                     <img src="../product-pic.webp" alt="Deco Collection" class="card-image">
-                    <input class="custom-radio" type="radio" name="wickType">
+                    <input class="custom-radio" type="radio" name="sizeType">
                 
                 </div>
 
-                <div class="selection-card">
+                <div class="selection-card radio-selector">
                     <h4 class="card-name">16oz - <span class="price">$23</span></h4>
                     
                     <img src="../product-pic.webp" alt="Deco Collection" class="card-image">
-                    <input class="custom-radio" type="radio" name="wickType">
+                    <input class="custom-radio" type="radio" name="sizeType">
                 
+                </div>
+            </div>
+        </section>
+
+        <section class="product-summary">
+            <h2>Product Summary</h2>
+            <div class="product">
+                <div class="product-info">
+                    <h3><?php echo htmlspecialchars($product['name']); ?></h3>
+                    <p class="description"><?php echo htmlspecialchars($product['description']); ?></p>
+                    <p><i>From  </i> <span class="price">$8.00</span></p>
+                    <button class="add-to-cart">Add To Cart</button>
                 </div>
             </div>
         </section>

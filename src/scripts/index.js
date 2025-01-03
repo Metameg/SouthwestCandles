@@ -45,6 +45,9 @@ $(() => {
     if (window.location.pathname.endsWith('checkout.php')) {
         import('./stripePaymentElements')
     }
+    if (window.location.pathname.endsWith('products.php')) {
+        import('./products')
+    }
     if (window.location.pathname.endsWith('thank-you.php')) {
         import('./thankYou').then(() => {
             console.log("Thank you module loaded successfully!");
