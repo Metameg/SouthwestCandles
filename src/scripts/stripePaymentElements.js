@@ -134,7 +134,6 @@ import cart from './cart';
                 window.location.href = `http://localhost:3000/src/pages/thank-you.php?success=true&paymentIntentId=${sResult.paymentIntent.id}`;;
             } else if (sResult.paymentIntent.status === 'requires_action') {
                 // Handle further actions if required (e.g., Cash App validation)
-                console.log('Waiting for 3rd party authentication...');
             } else {
                 window.location.href = `http://localhost:3000/src/pages/thank-you.php?success=false&error=${encodeURIComponent(sResult.error.message)}`;
             }
@@ -206,12 +205,12 @@ import cart from './cart';
             }),
         });
 
-        // Check if the HTTP request was successful
-        if (!response.ok) {
-            const error = await response.json();
-            console.error('Network error calculating price:', error);
-            return;
-        }
+        // Check if the HTTP request was successful (For Debugging)
+        // if (!response.ok) {
+        //     const error = await response.json();
+        //     console.error('Network error calculating price:', error);
+        //     return;
+        // }
 
         // Parse the JSON response
         const result = await response.json();
@@ -236,13 +235,14 @@ import cart from './cart';
              }),
         });
 
-        if (response.ok) {
-            const result = await response.json();
-            console.log('Payment Intent canceled:', result);
-        } else {
-            const error = await response.json();
-            console.error('Error canceling intent:', error);
-        }
+        // For Debugging Response
+        // if (response.ok) {
+        //     const result = await response.json();
+        //     console.log('Payment Intent canceled:', result);
+        // } else {
+        //     const error = await response.json();
+        //     console.error('Error canceling intent:', error);
+        // }
     }
 
     // Helper Functions
@@ -258,7 +258,6 @@ import cart from './cart';
         });
 
         if (isComplete) {
-            console.log("Address complete");
             triggerTaxCalculation(address);
         }
     }

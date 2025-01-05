@@ -116,7 +116,7 @@ class Cart {
         const productPrice = this.prices["default"]; 
         // const productImage = productElement.find("img").attr("src");
         const productId = productElement.find('.item-id').text();
-        const productTag = productElement.find('.tag').text();
+        // const productTag = productElement.find('.tag').text();
         const productDescription = productElement.find('.description').text();
 
         this.cart.push({
@@ -128,7 +128,7 @@ class Cart {
             description: productDescription,
             quantity: 1,
             selectedSize: "8oz",
-            tag: productTag
+            // tag: productTag
         });
     
         // Save the updated cart to storage

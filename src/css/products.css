@@ -92,10 +92,10 @@ body {
   gap: 10px;
   width: 100%;
 }
-.fragerance-list .list-item .list-text .title {
+.fragerance-list .list-item .list-text .name {
   white-space: nowrap;
 }
-.fragerance-list .list-item .list-text .title .tag {
+.fragerance-list .list-item .list-text .name .tag {
   position: absolute;
   top: 10px;
   left: 10px;
@@ -106,10 +106,10 @@ body {
   border-radius: 4px;
   text-transform: uppercase;
 }
-.fragerance-list .list-item .list-text .title .tag.NEW {
+.fragerance-list .list-item .list-text .name .tag.NEW {
   background-color: #f39c12;
 }
-.fragerance-list .list-item .list-text .title .tag.SEASONAL {
+.fragerance-list .list-item .list-text .name .tag.SEASONAL {
   background-color: #c0392b;
 }
 .fragerance-list .list-item .list-text .description {
