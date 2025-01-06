@@ -139,6 +139,42 @@ class Cart {
         this.openCartModal();
     }
 
+    addBuildItem() {
+        // Find the product summary section
+        const productSummary = document.querySelector('.product-summary');
+    
+        // Extract product details
+        const productName = productSummary.querySelector('#productSummaryName').textContent.trim();
+        const productDescription = productSummary.querySelector('#productSummaryDesc').textContent.trim();
+        const productWick = productSummary.querySelector('#productSummaryWick').textContent.trim();
+        const productSize = productSummary.querySelector('#productSummarySize').textContent.trim();
+        const rawPrice = productSummary.querySelector('#productSummaryPrice').textContent.trim();
+        const productPrice = parseFloat(rawPrice.replace('$', '')); // Convert price to a number
+    
+        // Generate a unique ID for this cart item
+        const productId = Date.now();
+    
+        // Add item to the cart
+        this.cart.push({
+            id: '',
+            data_id: productId,
+            name: productName,
+            price: productPrice,
+            description: productDescription,
+            wickType: productWick,
+            selectedSize: productSize,
+            quantity: 1
+        });
+    
+        // Save the updated cart to storage
+        this.saveCart(this.cart);
+    
+        // Provide user feedback
+        this.updateCart();
+        this.openCartModal();
+    }
+    
+
     
     removeItem(productId) {
         this.cart = this.cart.filter(item => item.data_id !== productId);

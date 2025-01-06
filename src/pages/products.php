@@ -150,7 +150,7 @@
                     <p><i>Subtotal: </i> <span id="productSummaryPrice" class="price">
                         $--.--<!-- Dynamic Field from JS -->
                     </span></p>
-                    <button id="addToCartBtn" class="add-to-cart">Add To Cart</button>
+                    <button id="addBuildToCartBtn" class="add-to-cart">Add To Cart</button>
                 </div>
             </div>
         </section>
@@ -168,20 +168,6 @@
             and a touch of indulgence.
             </p>
         </div>
-
-        <!-- <section class="products-section">
-            <?php foreach ($products as $product): ?>
-                <div class="product">
-                    <h2 class="product-name"><?php echo htmlspecialchars($product['name']); ?></h2>
-                    <p class="description"><?php echo htmlspecialchars($product['description']); ?></p>
-                    <img src="../product-pic.webp" alt="Deco Collection" class="product-image">
-                    <button class="add-to-cart">Add To Cart</button>
-                    <span class="item-id"><?php echo htmlspecialchars($product['id']); ?></span>
-                </div>
-                    
-            <?php endforeach; ?>
-            
-        </section> -->
 
         <?php include $basePath . '/components/footer.php';?>
     </body>

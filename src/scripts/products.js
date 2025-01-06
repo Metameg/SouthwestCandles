@@ -9,7 +9,7 @@ import cartInstance from './cart';
     const productSummarySize = document.getElementById('productSummarySize');
     const productSummaryWick = document.getElementById('productSummaryWick');
     const productSummaryPrice = document.getElementById('productSummaryPrice');
-    const addToCartBtn = document.getElementById('addToCartBtn');
+    const addToCartBtn = document.getElementById('addBuildToCartBtn');
 
     async function load() {
         frageranceSelectors.forEach(item => {
@@ -88,6 +88,10 @@ import cartInstance from './cart';
         
             // Handle changes to the radio button
             radio.addEventListener('change', updateProductSummary);
+        });
+
+        addToCartBtn.addEventListener("click", function () {
+            cartInstance.addBuildItem();
         });
     }
 
