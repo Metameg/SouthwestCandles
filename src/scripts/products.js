@@ -30,6 +30,20 @@ import cartInstance from './cart';
     }
 
     async function load() {
+        // Clear the selected radios on page load
+        frageranceSelectors.forEach(item => {
+            const radio = item.querySelector('.custom-radio');
+            radio.checked = false;
+        });
+        wickSelectors.forEach(item => {
+            const radio = item.querySelector('.custom-radio');
+            radio.checked = false;
+        });
+        sizeSelectors.forEach(item => {
+            const radio = item.querySelector('.custom-radio');
+            radio.checked = false;
+        });
+
         frageranceSelectors.forEach(item => {
             const radio = item.querySelector('.custom-radio');
             const updateProductSummary = () => {
@@ -119,6 +133,7 @@ import cartInstance from './cart';
 
         addToCartBtn.addEventListener("click", function () {
             cartInstance.addBuildItem();
+            console.log(cartInstance.cart);
         });
 
         // Check if all fields are populated

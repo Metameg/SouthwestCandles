@@ -86,7 +86,9 @@
 
             .item-details {
                 flex-grow: 1;
-
+                display: flex;
+                gap: 40px;
+                
                 h3 {
                     margin: 0;
                     font-size: 18px;
@@ -196,7 +198,13 @@
                     margin: 0;
                 }
                 .item-details {
-                    text-align: center;
+                    align-self: flex-start;
+                    flex-direction: column;
+                    gap: 0;
+                    
+                    .wick-type-dropdown {
+                        margin: 5px;
+                    }
                 }
                 .order-details {
                     display: flex;

@@ -76,6 +76,8 @@
 }
 .cart-popover .cart-items .cart-item .item-details {
   flex-grow: 1;
+  display: flex;
+  gap: 40px;
 }
 .cart-popover .cart-items .cart-item .item-details h3 {
   margin: 0;
@@ -172,7 +174,12 @@
     margin: 0;
   }
   .cart-popover .cart-items .cart-item .item-details {
-    text-align: center;
+    align-self: flex-start;
+    flex-direction: column;
+    gap: 0;
+  }
+  .cart-popover .cart-items .cart-item .item-details .wick-type-dropdown {
+    margin: 5px;
   }
   .cart-popover .cart-items .cart-item .order-details {
     display: flex;

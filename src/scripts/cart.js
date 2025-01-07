@@ -36,7 +36,13 @@ class Cart {
                 cartItem.html(`
                     <div class="item-details">
                         <h3>${item.name}</h3>
-                        <span class="order-id">${item.id}</span>
+                        <div class="wick-type-dropdown">
+                            <label for="wickType-${item.id}"> Wick Type:</label>
+                            <select id="wickType-${item.wickType}" class="wick-type-selector">
+                                <option value="cotton" ${item.wickType === 'Cotton' ? 'selected' : ''}>Cotton</option>
+                                <option value="wooden" ${item.wickType === 'Wood' ? 'selected' : ''}>Wood</option>
+                            </select>
+                        </div>
                         
                     </div>
                     <div class="order-details">
