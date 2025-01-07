@@ -259,6 +259,11 @@ body {
                 color: #f39c12;
             }
 
+			.error {
+				font-size: 0.8rem;
+				font-style: italic;
+			}
+
 			.add-to-cart {
 				background-color: $button-color;
 				color: #fff;
@@ -270,6 +275,12 @@ body {
 	
 				&:hover {
 					background-color: $button-hover-color;
+				}
+
+				&:disabled {
+					background-color: #ccc; 
+					cursor: not-allowed;
+					opacity: 0.6; 
 				}
 			}
             

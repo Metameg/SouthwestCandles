@@ -11,6 +11,24 @@ import cartInstance from './cart';
     const productSummaryPrice = document.getElementById('productSummaryPrice');
     const addToCartBtn = document.getElementById('addBuildToCartBtn');
 
+    // Function to check if all fields are populated
+    function checkFieldsPopulated() {
+        const fields = [
+            productSummaryName,
+            productSummaryDesc,
+            productSummarySize,
+            productSummaryWick,
+            productSummaryPrice,
+        ];
+
+        const allPopulated = fields.every(field => {
+            const text = field.textContent.trim();
+            return text !== "" && text !== "--" && text !== "$--.--";
+        });
+
+        addToCartBtn.disabled = !allPopulated;
+    }
+
     async function load() {
         frageranceSelectors.forEach(item => {
             const radio = item.querySelector('.custom-radio');
@@ -25,6 +43,9 @@ import cartInstance from './cart';
                 // Update the product summary dynamically
                 productSummaryName.textContent = name;
                 productSummaryDesc.textContent = description;
+
+                // Check if all fields are populated
+                checkFieldsPopulated();
             }
 
             item.addEventListener('click', function() {
@@ -47,6 +68,9 @@ import cartInstance from './cart';
     
                 // Update the product summary wick type
                 productSummaryWick.textContent = wick.textContent.trim();
+
+                // Check if all fields are populated
+                checkFieldsPopulated();
             }
 
             item.addEventListener('click', function() {
@@ -76,6 +100,9 @@ import cartInstance from './cart';
                 // Update the product summary
                 productSummarySize.textContent = size.trim().replace('-', '');
                 productSummaryPrice.textContent = formattedPrice;
+
+                // Check if all fields are populated
+                checkFieldsPopulated();
             };
         
             // Handle clicks on the entire card
@@ -93,6 +120,9 @@ import cartInstance from './cart';
         addToCartBtn.addEventListener("click", function () {
             cartInstance.addBuildItem();
         });
+
+        // Check if all fields are populated
+        checkFieldsPopulated();
     }
 
     load();

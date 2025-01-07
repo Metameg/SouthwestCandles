@@ -228,6 +228,10 @@ body {
   font-weight: bold;
   color: #f39c12;
 }
+.product-summary .product .product-info .error {
+  font-size: 0.8rem;
+  font-style: italic;
+}
 .product-summary .product .product-info .add-to-cart {
   background-color: #495aaa;
   color: #fff;
@@ -239,6 +243,11 @@ body {
 }
 .product-summary .product .product-info .add-to-cart:hover {
   background-color: #858585;
+}
+.product-summary .product .product-info .add-to-cart:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .text-box {

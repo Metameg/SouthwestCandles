@@ -135,7 +135,7 @@
             <h2>Product Summary</h2>
             <div class="product">
                 <div class="product-info">
-                    <h3 id="productSummaryName">
+                    <h3 id="productSummaryName">--
                         <!-- Dynamic Field from JS -->
                     </h3>
                     <p id="productSummaryDesc" class="description">
@@ -150,7 +150,8 @@
                     <p><i>Subtotal: </i> <span id="productSummaryPrice" class="price">
                         $--.--<!-- Dynamic Field from JS -->
                     </span></p>
-                    <button id="addBuildToCartBtn" class="add-to-cart">Add To Cart</button>
+                    <p class="error">You must select a fragerance, wick, and size.</p>
+                    <button id="addBuildToCartBtn" class="add-to-cart" disabled>Add To Cart</button>
                 </div>
             </div>
         </section>
