@@ -150,7 +150,7 @@
                     <p><i>Subtotal: </i> <span id="productSummaryPrice" class="price">
                         $--.--<!-- Dynamic Field from JS -->
                     </span></p>
-                    <p class="error">You must select a fragerance, wick, and size.</p>
+                    <p class="error">You must select a fragrance, wick, and size.</p>
                     <button id="addBuildToCartBtn" class="add-to-cart" disabled>Add To Cart</button>
                 </div>
             </div>

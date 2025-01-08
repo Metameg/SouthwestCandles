@@ -38,9 +38,9 @@ class Cart {
                         <h3>${item.name}</h3>
                         <div class="wick-type-dropdown">
                             <label for="wickType-${item.id}"> Wick Type:</label>
-                            <select id="wickType-${item.wickType}" class="wick-type-selector">
+                            <select id="wickType-${item.id}" class="wick-type-selector">
                                 <option value="cotton" ${item.wickType === 'Cotton' ? 'selected' : ''}>Cotton</option>
-                                <option value="wooden" ${item.wickType === 'Wood' ? 'selected' : ''}>Wood</option>
+                                <option value="wood" ${item.wickType === 'Wood' ? 'selected' : ''}>Wood</option>
                             </select>
                         </div>
                         
@@ -82,6 +82,15 @@ class Cart {
                     item.price = this.prices[`${selectedValue}oz`];
                     this.saveCart(); 
                     this.updateCart();
+                });
+
+                // Add change event listener for size radio buttons
+                cartItem.find(".wick-type-selector").on("change", (e) => {
+                    const selectedValue = $(e.target).val();
+                    item.wickType = selectedValue.charAt(0).toUpperCase() + selectedValue.slice(1); 
+                    this.saveCart(); 
+                    this.updateCart(); 
+                    console.log(this.cart, item.wickType);
                 });
 
                 // Add click event listener for increase button
@@ -189,6 +198,7 @@ class Cart {
     }
 
     openCartModal() {
+        this.consolidateCart();
         this.updateCart();
         $("#cartOverlay").css("display", "flex").fadeIn();
         $("#cartPopover").fadeIn();
@@ -225,6 +235,29 @@ class Cart {
         form.appendChild(input);
         document.body.appendChild(form);
         form.submit();
+    }
+
+    // Consolidate cart items based on size, wickType, and name
+    consolidateCart() {
+        const consolidated = {};
+
+        // Iterate over the cart items
+        this.cart.forEach(item => {
+            // Create a unique key based on 'size', 'wickType', and 'name'
+            const key = `${item.selectedSize}|${item.wickType}|${item.name}`;
+
+            // Check if the item already exists in the consolidated object
+            if (consolidated[key]) {
+                // Update the quantity if the item already exists
+                consolidated[key].quantity += 1;
+            } else {
+                // Add the item to the consolidated object with an initial quantity
+                consolidated[key] = { ...item, quantity: 1 };
+            }
+        });
+
+        // Convert the consolidated object back into an array
+        this.cart = Object.values(consolidated);
     }
 }
 

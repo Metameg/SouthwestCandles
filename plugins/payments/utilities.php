@@ -14,7 +14,7 @@ function consolidateCart($cart) {
     // Iterate over the cart items
     foreach ($cart as $item) {
         // Use a unique identifier, e.g., 'data_id', to group items
-        $key = $item['id'];
+        $key = $item['selectedSize'] . '|' . $item['wickType'] . '|' . $item['name'];
 
         // Check if the item already exists in the consolidated array
         if (isset($consolidated[$key])) {

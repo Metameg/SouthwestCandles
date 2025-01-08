@@ -77,16 +77,14 @@ try {
                                     <div class="item">
                                         <div class="item-details">
                                             <div class="item-header">
-                                                <img src="../<?php echo htmlspecialchars($item['image']); ?>" alt="Placeholder candle product image">
-
+                                                <!-- <img src="../<?php echo htmlspecialchars($item['image']); ?>" alt="Placeholder candle product image"> -->
                                                 <h3><?php echo htmlspecialchars($item['name']); ?> - <i><?php echo htmlspecialchars($item['description']); ?> </i></h3>
                                             </div>
                                             
                                             <div class="item-pricing-info">
+                                                <p>Wick: <?php echo htmlspecialchars($item['wickType']); ?></p>
                                                 <p>Size: <?php echo htmlspecialchars($item['selectedSize']); ?></p>
-
-                                                <p>Qty: <?php echo htmlspecialchars($item['quantity']); ?></p>
-                                                
+                                                <p>Qty: <?php echo htmlspecialchars($item['quantity']); ?></p>                                                
                                                 <p><strong>$<?php echo htmlspecialchars(number_format($item['price'], 2)); ?></strong></p>
                                             </div>
                                         </div>
