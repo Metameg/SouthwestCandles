@@ -15,6 +15,14 @@ include '../../plugins/payments/payment_intent.php';
 
 $cart = consolidateCart($cart);
 $subtotal = calcSubtotal($cart);
+if (is_string($subtotal)) {
+    // Pass the error message to the HTML
+    $errorMessage = $subtotal;
+    echo $errorMessage;
+} else {
+    // Proceed with the checkout process
+    $errorMessage = '';
+}
 $rprom = createPaymentIntent($subtotal);
 
 try {
@@ -54,15 +62,21 @@ try {
             <div class="spinner"></div>
         </div>
 
+        
+        
+        
         <!-- Navbar -->
         <?php $basePath = '../';?>
         <?php include $basePath . '/components/navbar.php';?> 
-
-
+        
+        
         <!-- Cart -->
         <?php include $basePath . '/components/cart.php';?>
         
         <main>
+            <?php if (empty($errorMessage)): ?>
+                
+            
 
             <div class="checkout-page">
                 <!-- <h1>Getting your order</h1> -->
@@ -151,7 +165,7 @@ try {
                     </div>
 
             </div>
-
+            <?php endif; ?>
         </main>
         <?php include $basePath . '/components/footer.php';?>
         

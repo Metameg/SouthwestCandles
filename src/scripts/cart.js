@@ -75,6 +75,8 @@ class Cart {
                 `);
                 cartItemsList.append(cartItem);
 
+                // this.consolidateCart();
+
                 // Add change event listener for size radio buttons
                 cartItem.find(".size-btn").on("change", (e) => {
                     const selectedValue = $(e.target).val();
@@ -90,7 +92,6 @@ class Cart {
                     item.wickType = selectedValue.charAt(0).toUpperCase() + selectedValue.slice(1); 
                     this.saveCart(); 
                     this.updateCart(); 
-                    console.log(this.cart, item.wickType);
                 });
 
                 // Add click event listener for increase button

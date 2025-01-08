@@ -49,6 +49,9 @@ function calcSubtotal($cart) {
         if (isset($item['selectedSize'], $item['quantity']) && $item['quantity'] > 0) {
             // Fetch product price using product_id
             $price = getProductPrice($item['selectedSize']);
+            if (!in_array($price, [9.00, 12.00, 23.00])) {
+                return "There was an error checking you out. Please try again.";
+            }
             // Calculate the total price for this item (price * quantity)
             $totalPrice += $price * $item['quantity'];
         }
