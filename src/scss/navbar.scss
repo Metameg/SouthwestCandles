@@ -1,5 +1,9 @@
 @import "variables.scss";
 
+* {
+	user-select: none;
+}
+
 header {
     display: flex;
 	// position: fixed;

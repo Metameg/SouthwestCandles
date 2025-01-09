@@ -43,6 +43,19 @@
 
         <section class="build-candle-section">
             <h2 class="section-title">Build Your Candle</h2>
+            <div class="text-box">
+                <h1 class="text-title">Handcrafted candles made for you!</h1>
+                <p class="text-description">
+                Immerse yourself in the soothing ambiance of our handcrafted candle collection, 
+                designed to elevate your home and well-being. Each candle is meticulously crafted 
+                with premium ingredients, blending the calming essence of CBD with luxurious 
+                fragrances that transport your senses. Whether you're seeking to unwind after 
+                a long day, create a warm and inviting atmosphere, or find the perfect gift 
+                for a loved one, our curated collections offer something for every occasion. 
+                Experience the art of relaxation with candles that combine beauty, tranquility, 
+                and a touch of indulgence.
+                </p>
+            </div>
             
             <!-- FRAGERANCES STEP -->
             <div class="step">
@@ -108,23 +121,30 @@
             <div class="selection">
                 <div class="selection-card size-selector">
                     <h4 class="card-name">4oz - <span class="price">$9</span></h4>
-                    
-                    <img src="../assets/images/4oz.png" alt="Deco Collection" class="card-image">
+                    <picture>
+                        <source srcset="../assets/images/webp/4oz.webp" type="image/webp">
+                        <img src="../assets/images/4oz.png" alt="4oz sized tin" class="card-image">
+                    </picture>
                     <input class="custom-radio" type="radio" name="sizeType">
                 
                 </div>
 
                 <div class="selection-card size-selector">
                     <h4 class="card-name">8oz - <span class="price">$12</span></h4>
-                    <img src="../assets/images/8oz.png" alt="Deco Collection" class="card-image size-8oz">
+                    <picture>
+                        <source srcset="../assets/images/webp/8oz.webp" type="image/webp">
+                        <img src="../assets/images/8oz.png" alt="8oz sized tin" class="card-image size-8oz">
+                    </picture>
                     <input class="custom-radio" type="radio" name="sizeType">
                 
                 </div>
 
                 <div class="selection-card size-selector">
                     <h4 class="card-name">16oz - <span class="price">$23</span></h4>
-                    
-                    <img src="../assets/images/16oz.png" alt="Deco Collection" class="card-image">
+                    <picture>
+                        <source srcset="../assets/images/webp/16oz.webp" type="image/webp">
+                        <img src="../assets/images/16oz.png" alt="16oz sized tin" class="card-image">
+                    </picture>
                     <input class="custom-radio" type="radio" name="sizeType">
                 
                 </div>
@@ -156,8 +176,8 @@
             </div>
         </section>
 
-        <div class="text-box">
-            <h1 class="text-title">Handcrafted candles made for you!</h1>
+        <section class="disclosure text-box">
+            <h1 class="text-title">Disclosure</h1>
             <p class="text-description">
             Immerse yourself in the soothing ambiance of our handcrafted candle collection, 
             designed to elevate your home and well-being. Each candle is meticulously crafted 
@@ -168,7 +188,7 @@
             Experience the art of relaxation with candles that combine beauty, tranquility, 
             and a touch of indulgence.
             </p>
-        </div>
+                </section>
 
         <?php include $basePath . '/components/footer.php';?>
     </body>

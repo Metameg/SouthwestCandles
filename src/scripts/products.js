@@ -65,8 +65,7 @@ import cartInstance from './cart';
             item.addEventListener('click', function() {
                 if (radio && !radio.checked) {
                     radio.checked = true;
-                    updateProductSummary();
-                    
+                    updateProductSummary();   
                 }
             });
 
@@ -120,7 +119,7 @@ import cartInstance from './cart';
             };
         
             // Handle clicks on the entire card
-            item.addEventListener('click', () => {
+            item.addEventListener('click', function() {
                 if (!radio.checked) {
                     radio.checked = true; // Check the radio button
                     updateProductSummary();
