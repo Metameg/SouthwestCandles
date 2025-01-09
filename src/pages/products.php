@@ -109,14 +109,14 @@
                 <div class="selection-card size-selector">
                     <h4 class="card-name">4oz - <span class="price">$9</span></h4>
                     
-                    <img src="../product-pic.webp" alt="Deco Collection" class="card-image">
+                    <img src="../assets/images/4oz.png" alt="Deco Collection" class="card-image">
                     <input class="custom-radio" type="radio" name="sizeType">
                 
                 </div>
 
                 <div class="selection-card size-selector">
                     <h4 class="card-name">8oz - <span class="price">$12</span></h4>
-                    <img src="../product-pic.webp" alt="Deco Collection" class="card-image">
+                    <img src="../assets/images/8oz.png" alt="Deco Collection" class="card-image size-8oz">
                     <input class="custom-radio" type="radio" name="sizeType">
                 
                 </div>
@@ -124,7 +124,7 @@
                 <div class="selection-card size-selector">
                     <h4 class="card-name">16oz - <span class="price">$23</span></h4>
                     
-                    <img src="../product-pic.webp" alt="Deco Collection" class="card-image">
+                    <img src="../assets/images/16oz.png" alt="Deco Collection" class="card-image">
                     <input class="custom-radio" type="radio" name="sizeType">
                 
                 </div>
