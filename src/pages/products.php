@@ -100,8 +100,6 @@
 
                 <div class="selection-card wick-selector">
                     <h4 class="card-name">Wood</h4>
-  
-
                     <img src="../product-pic.webp" alt="Deco Collection" class="card-image">
                     <input class="custom-radio" type="radio" name="wickType">
                 

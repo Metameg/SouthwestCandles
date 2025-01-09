@@ -29,7 +29,7 @@ try {
     // Respond with the canceled PaymentIntent details
     echo json_encode([
         'success' => true,
-        'message' => 'PaymentIntent canceled successfully.',
+        'message' => 'PaymentIntent cancelled successfully.',
         'canceledIntent' => $canceledIntent
     ]);
     
