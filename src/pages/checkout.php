@@ -142,7 +142,7 @@ try {
                             </div>
                             <div class="summary-item">
                                 <p>Shipping</p>
-                                <p class="free-price">FREE</p>
+                                <p id="shippingAmount" class="free-price">$-.--</p>
                             </div>
                             <div class="summary-item">
                                 <p>Estimated Tax</p>

@@ -220,8 +220,8 @@ import cart from './cart';
             console.error('Error calculating price:', result.error);
             return;
         }
-
-        updateCartSummary(result.estimated_tax, result.total_price);
+        const shippingTotal = calcShippingPrice();
+        updateCartSummary(result.estimated_tax, shippingTotal, result.total_price);
     }
 
     async function cancelIntent(paymentIntentId) {
@@ -243,6 +243,28 @@ import cart from './cart';
         //     const error = await response.json();
         //     console.error('Error canceling intent:', error);
         // }
+    }
+
+    async function calcShippingPrice() {
+        const response = await fetch('../../plugins/shipping/ups_rating.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                paymentIntentId: paymentIntentId
+             }),
+        });
+
+        // For Debugging Response
+        if (response.ok) {
+            const result = await response.json();
+            const rateResponse = JSON.parse(result.rateResponse);
+            console.log('Shipping Respose:', rateResponse.RateResponse.RatedShipment[0].TotalCharges.MonetaryValue);
+        } else {
+            const error = await response.json();
+            console.error('Error calculating shipping:', error);
+        }
     }
 
     // Helper Functions
@@ -269,8 +291,9 @@ import cart from './cart';
     }
 
 
-    function updateCartSummary(tax, total) {
+    function updateCartSummary(tax, shipping, total) {
         document.getElementById('taxAmount').textContent = `$${(tax / 100).toFixed(2)}`;
+        document.getElementById('shippingAmount').textContent = `$${(shipping / 100).toFixed(2)}`;
         document.getElementById('totalAmount').textContent = `$${(total / 100).toFixed(2)}`;
     }
 
