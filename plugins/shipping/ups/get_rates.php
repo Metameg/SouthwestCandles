@@ -1,8 +1,8 @@
 <?php 
-require_once('../../vendor/autoload.php');
+require_once('../../../vendor/autoload.php');
 require_once('Oauth.php');
 
-$dotenv_file_path = __DIR__ . '/../../.env';
+$dotenv_file_path = __DIR__ . '/../../../.env';
 if (file_exists($dotenv_file_path)) {
     $dotenv = Dotenv\Dotenv::createImmutable(dirname($dotenv_file_path));
     $dotenv->load();

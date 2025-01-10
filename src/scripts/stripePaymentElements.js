@@ -246,7 +246,7 @@ import cart from './cart';
     }
 
     async function calcShippingPrice() {
-        const response = await fetch('../../plugins/shipping/ups_rating.php', {
+        const response = await fetch('../../plugins/shipping/ups/ups_rating.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
