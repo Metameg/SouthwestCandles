@@ -134,29 +134,8 @@ try {
                     <!-- SHIPPING OPTIONS -->
                     <section class="shipping-options">
                         <h2>Select Shipping</h2>
-                        <div class="shipping-options-container">
-                            
-                            <div class="shipping-card">
-                                <input type="radio" id="standard-shipping" name="shipping" value="standard">
-                                <label for="standard-shipping">
-                                    <div class="card-content">
-                                        <h3>Standard Shipping</h3>
-                                        <p>Estimated delivery: 5-7 business days</p>
-                                        <p class="price">$5.99</p>
-                                    </div>
-                                </label>
-                            </div>
-                            
-                            <div class="shipping-card">
-                                <input type="radio" id="express-shipping" name="shipping" value="express">
-                                <label for="express-shipping">
-                                    <div class="card-content">
-                                        <h3>Express Shipping</h3>
-                                        <p>Estimated delivery: 2-3 business days</p>
-                                        <p class="price">$12.99</p>
-                                    </div>
-                                </label>
-                            </div>
+                        <div id="shipping-options-container" class="shipping-options-container">
+                            <!-- Dynamically added in stripe JS -->
                         </div>
                     </section>
 

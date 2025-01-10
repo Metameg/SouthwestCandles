@@ -8,6 +8,7 @@ import cart from './cart';
     const email = document.getElementById('email');
     const pay_btn = document.getElementById('payNow');
     const backBtn = document.getElementById('continueShoppingLink');
+    const shippingOptionsContainer = document.getElementById('shipping-options-container');
     let stripe;
     let elements;
     let s_payEl; 
@@ -256,14 +257,15 @@ import cart from './cart';
              }),
         });
 
-        // For Debugging Response
+        
         if (response.ok) {
             const result = await response.json();
             const rateResponse = JSON.parse(result.rateResponse);
             const rateOptions = rateResponse.rateOptions;
-            const validOptions = extractUSPSOptions(rateOptions);
+            const options = extractUSPSOptions(rateOptions);
+            renderShippingOptions(options);
 
-            console.log('Shipping Respose:', validOptions);
+            console.log('Shipping Respose:', options);
         } else {
             const error = await response.json();
             console.error('Error calculating shipping:', error);
@@ -297,7 +299,6 @@ import cart from './cart';
 
         rateOptions.forEach(opt => {
             const opt_sku = opt.rates[0].SKU;
-            console.log(opt_sku);
             if (skus.includes(opt_sku)) {
                 validOptions.push(opt);
             }
@@ -306,6 +307,61 @@ import cart from './cart';
         return validOptions;
     }
 
+    // Function to render the shipping options dynamically
+    function renderShippingOptions(options) {
+        const deliveryTimes = {
+            "DPXX0XXXXR05010": "1-3 days",
+            "DEXX0XXXXR05010": "1-2 days guaranteed by 6:00pm",
+            "DUXP0XXXXR05010": "2-5 days"
+        };
+
+        shippingOptionsContainer.innerHTML = ""; // Clear existing content if any
+
+        options.forEach(opt => {
+            const sku = opt.rates[0].SKU;
+            const deliveryTime = deliveryTimes[sku];
+            const price = opt.rates[0].price;
+            const name = opt.rates[0].mailClass
+            .toLowerCase()     // Convert to lowercase to normalize
+            .split('_')        // Split the string into words
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
+            .join(' ');   
+            // Create the card elements dynamically
+            const shippingCard = document.createElement('div');
+            shippingCard.classList.add('shipping-card');
+
+            const input = document.createElement('input');
+            input.type = 'radio';
+            input.id = `shipping-${sku}`;
+            input.name = 'shipping';
+            input.value = sku;
+
+            const label = document.createElement('label');
+            label.htmlFor = `shipping-${sku}`;
+
+            const cardContent = document.createElement('div');
+            cardContent.classList.add('card-content');
+
+            const nameEl = document.createElement('h3');
+            nameEl.textContent = name;
+
+            const deliveryTimeEl = document.createElement('p');
+            deliveryTimeEl.textContent = `Estimated delivery: ${deliveryTime}`;
+
+            const priceEl = document.createElement('p');
+            priceEl.textContent = `$${price.toFixed(2)}`;
+            priceEl.classList.add('price');
+
+            // Append elements to construct the card
+            cardContent.appendChild(nameEl);
+            cardContent.appendChild(deliveryTimeEl);
+            cardContent.appendChild(priceEl);
+            label.appendChild(cardContent);
+            shippingCard.appendChild(input);
+            shippingCard.appendChild(label);
+            shippingOptionsContainer.appendChild(shippingCard);
+        });
+    }
 
     function validateEmail(email) {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
