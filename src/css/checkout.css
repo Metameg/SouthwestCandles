@@ -187,6 +187,68 @@ body {
   font-size: 0.8rem;
   color: #888;
 }
+.checkout-container .shipping-options {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+}
+.checkout-container .shipping-options h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+.checkout-container .shipping-options .shipping-options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.checkout-container .shipping-options .shipping-card {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  gap: 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.checkout-container .shipping-options .shipping-card:hover {
+  border-color: #007bff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.checkout-container .shipping-options .shipping-card input[type=radio]:checked {
+  border-color: #007bff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background-color: #eaf4ff;
+}
+.checkout-container .shipping-options .shipping-card label {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+}
+.checkout-container .shipping-options .shipping-card label .card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.checkout-container .shipping-options .shipping-card label .card-content h3 {
+  font-size: 1.2rem;
+  margin: 0;
+  color: #333;
+}
+.checkout-container .shipping-options .shipping-card label .card-content p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+.checkout-container .shipping-options .shipping-card label .card-content p.price {
+  font-weight: bold;
+  color: #495aaa;
+}
 .checkout-container .order-summary {
   background: #f1f1f1;
   padding: 2rem;

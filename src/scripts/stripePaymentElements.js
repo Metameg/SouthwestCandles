@@ -246,7 +246,7 @@ import cart from './cart';
     }
 
     async function calcShippingPrice() {
-        const response = await fetch('../../plugins/shipping/ups/ups_rating.php', {
+        const response = await fetch('../../plugins/shipping/usps/get_rates.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -260,7 +260,10 @@ import cart from './cart';
         if (response.ok) {
             const result = await response.json();
             const rateResponse = JSON.parse(result.rateResponse);
-            console.log('Shipping Respose:', rateResponse.RateResponse.RatedShipment[0].TotalCharges.MonetaryValue);
+            const rateOptions = rateResponse.rateOptions;
+            const validOptions = extractUSPSOptions(rateOptions);
+
+            console.log('Shipping Respose:', validOptions);
         } else {
             const error = await response.json();
             console.error('Error calculating shipping:', error);
@@ -282,6 +285,25 @@ import cart from './cart';
         if (isComplete) {
             triggerTaxCalculation(address);
         }
+    }
+
+    function extractUSPSOptions(rateOptions) {
+        const skus = [
+            "DPXX0XXXXR05010",
+            "DEXX0XXXXR05010",
+            "DUXP0XXXXR05010"
+        ]
+        let validOptions = [];
+
+        rateOptions.forEach(opt => {
+            const opt_sku = opt.rates[0].SKU;
+            console.log(opt_sku);
+            if (skus.includes(opt_sku)) {
+                validOptions.push(opt);
+            }
+        });
+
+        return validOptions;
     }
 
 

@@ -79,10 +79,10 @@ try {
             
 
             <div class="checkout-page">
-                <!-- <h1>Getting your order</h1> -->
                 <div class="checkout-container">
 
-                    <div class="shipping-summary">
+                    <!-- CART SUMMARY + CHECKOUT FORMS -->
+                    <section class="shipping-summary">
                         <h2>Cart Summary</h2>
                         <div class="cart-summary">
 
@@ -129,11 +129,38 @@ try {
                             </div>
                             
                         </div>
-                    </div>
-                    <div class="order-summary">
-                        <!-- <div class="img-container">
-                            <img src="../assets/images/svg/checkout-basket.svg">
-                        </div> -->
+                    </section>
+
+                    <!-- SHIPPING OPTIONS -->
+                    <section class="shipping-options">
+                        <h2>Select Shipping</h2>
+                        <div class="shipping-options-container">
+                            
+                            <div class="shipping-card">
+                                <input type="radio" id="standard-shipping" name="shipping" value="standard">
+                                <label for="standard-shipping">
+                                    <div class="card-content">
+                                        <h3>Standard Shipping</h3>
+                                        <p>Estimated delivery: 5-7 business days</p>
+                                        <p class="price">$5.99</p>
+                                    </div>
+                                </label>
+                            </div>
+                            
+                            <div class="shipping-card">
+                                <input type="radio" id="express-shipping" name="shipping" value="express">
+                                <label for="express-shipping">
+                                    <div class="card-content">
+                                        <h3>Express Shipping</h3>
+                                        <p>Estimated delivery: 2-3 business days</p>
+                                        <p class="price">$12.99</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="order-summary">
                         <div class="order-details">
                             <h2>Order Summary</h2>
                             <div class="summary-item">
@@ -142,7 +169,7 @@ try {
                             </div>
                             <div class="summary-item">
                                 <p>Shipping</p>
-                                <p id="shippingAmount" class="free-price">$-.--</p>
+                                <p id="shippingAmount">$-.--</p>
                             </div>
                             <div class="summary-item">
                                 <p>Estimated Tax</p>
@@ -162,8 +189,8 @@ try {
                                 <!-- Error will be sent from script -->
                             </div>
                         </div>
-                    </div>
-
+                    </section>
+                </div>
             </div>
             <?php endif; ?>
         </main>

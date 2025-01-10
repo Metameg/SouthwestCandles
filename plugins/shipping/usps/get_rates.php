@@ -57,7 +57,10 @@ if ($response === false || $http_code !== 200) {
     echo "cURL Error: $error\n";
     echo "Response: $response\n";
 } else {
-    echo "Response: $response\n";
+    echo json_encode([
+        'success' => true,
+        'rateResponse' => $response
+    ]);
 }
 
 
@@ -65,9 +68,6 @@ curl_close($curl);
 
 
 // Respond with the canceled PaymentIntent details
-echo json_encode([
-    'success' => true,
-    'rateResponse' => $response
-]);
+
 
 ?>
