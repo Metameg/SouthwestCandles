@@ -1,5 +1,6 @@
 <?php
 require_once('../../vendor/autoload.php');
+require_once('payment_intent.php');
 require_once('utilities.php');
 
 $dotenv_file_path = __DIR__ . '/../../.env';
@@ -12,7 +13,10 @@ if (file_exists($dotenv_file_path)) {
 
 $data = json_decode(file_get_contents('php://input'), true);
 $cart = consolidateCart($data['cart']);
+error_log(print_r($data, true));
+$payment_intent_id = $data['payment_intent_id'];
 $address = $data['address'];
+$shipping_cost = $data['shipping_cost'];
 $line_items = [];
 
 foreach ($cart as $item) {
@@ -51,13 +55,18 @@ $calculation = \Stripe\Tax\Calculation::create([
         'address_source' => 'shipping',
     ],
     'shipping_cost' => [
-        'amount' => 0, // Shipping cost in cents
+        'amount' => $shipping_cost * 100, // Shipping cost in cents
     ]
 ]);
 
+$amount_total = $calculation['amount_total'];
+$tax_calculation_id = $calculation['id'];
+updatePaymentIntent($payment_intent_id, $amount_total,  $tax_calculation_id);
+
 echo json_encode([
     'success' => true,
+    'shipping_price' => $calculation['shipping_cost']['amount'],
     'estimated_tax' => $calculation['tax_amount_exclusive'],
-    'total_price' => $calculation['amount_total'],
+    'total_price' => $amount_total
 ]);
 ?>

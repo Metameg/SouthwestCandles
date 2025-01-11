@@ -75,7 +75,6 @@ try {
         
         <main>
             <?php if (empty($errorMessage)): ?>
-                
             
 
             <div class="checkout-page">

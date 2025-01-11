@@ -9,6 +9,7 @@ import cart from './cart';
     const pay_btn = document.getElementById('payNow');
     const backBtn = document.getElementById('continueShoppingLink');
     const shippingOptionsContainer = document.getElementById('shipping-options-container');
+    // const paymentIntentId = document.getElementById('paymentIntentId');
     let stripe;
     let elements;
     let s_payEl; 
@@ -93,7 +94,6 @@ import cart from './cart';
         s_addressEl.on('change', (event) => {
         
             // Check the address completeness after a short delay to account for user input
-           
             if (!isAddressInFocus) {
                 checkAndTriggerTaxCalculation(event.value);
             }
@@ -194,15 +194,40 @@ import cart from './cart';
     async function triggerTaxCalculation(address) {
         if (!address) return;
     
-        // Pass the address to your backend for tax calculation
-        const response = await fetch('../../plugins/payments/calc_price.php', {
+        let shippingPrice = 0.00;
+        // Fetch and Render the shipping options
+        await fetchUSPSOptions();
+        fetchTaxCalculation(address, shippingPrice);
+        // Dynamically change the shipping price based on selected shipping option
+        const radios = document.querySelectorAll(`input[name="shippingOption"]`);
+        radios.forEach((radio) => {
+            radio.addEventListener('change', async () => {
+                const selectedShippingOption = document.querySelector(`input[name="shippingOption"]:checked`);
+
+                if (selectedShippingOption) {
+                    // Traverse the DOM to find the associated price 
+                    const priceEl = selectedShippingOption.closest('.shipping-card').querySelector('.price');
+                    shippingPrice = parseFloat(priceEl.textContent.replace('$', ''));
+                    fetchTaxCalculation(address, shippingPrice);
+                }
+
+            });
+        });
+ 
+    }
+
+    async function fetchTaxCalculation(address, shippingPrice) {
+         // Pass the address to your backend for tax calculation
+         const response = await fetch('../../plugins/payments/calc_price.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ 
                 cart: cart.getCart(),
-                address: address 
+                payment_intent_id: paymentIntentId, 
+                address: address, 
+                shipping_cost: shippingPrice 
             }),
         });
 
@@ -221,8 +246,8 @@ import cart from './cart';
             console.error('Error calculating price:', result.error);
             return;
         }
-        const shippingTotal = calcShippingPrice();
-        updateCartSummary(result.estimated_tax, shippingTotal, result.total_price);
+
+        updateCartSummary(result.estimated_tax, result.shipping_price, result.total_price);
     }
 
     async function cancelIntent(paymentIntentId) {
@@ -246,7 +271,7 @@ import cart from './cart';
         // }
     }
 
-    async function calcShippingPrice() {
+    async function fetchUSPSOptions() {
         const response = await fetch('../../plugins/shipping/usps/get_rates.php', {
             method: 'POST',
             headers: {
@@ -254,7 +279,7 @@ import cart from './cart';
             },
             body: JSON.stringify({
                 paymentIntentId: paymentIntentId
-             }),
+            }),
         });
 
         
@@ -264,8 +289,8 @@ import cart from './cart';
             const rateOptions = rateResponse.rateOptions;
             const options = extractUSPSOptions(rateOptions);
             renderShippingOptions(options);
-
-            console.log('Shipping Respose:', options);
+            
+            // console.log('Shipping Respose:', options);
         } else {
             const error = await response.json();
             console.error('Error calculating shipping:', error);
@@ -333,7 +358,7 @@ import cart from './cart';
             const input = document.createElement('input');
             input.type = 'radio';
             input.id = `shipping-${sku}`;
-            input.name = 'shipping';
+            input.name = 'shippingOption';
             input.value = sku;
 
             const label = document.createElement('label');
@@ -370,6 +395,7 @@ import cart from './cart';
 
 
     function updateCartSummary(tax, shipping, total) {
+        console.log("shipping price: ", shipping);
         document.getElementById('taxAmount').textContent = `$${(tax / 100).toFixed(2)}`;
         document.getElementById('shippingAmount').textContent = `$${(shipping / 100).toFixed(2)}`;
         document.getElementById('totalAmount').textContent = `$${(total / 100).toFixed(2)}`;
