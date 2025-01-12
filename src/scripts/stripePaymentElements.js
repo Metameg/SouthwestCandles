@@ -9,7 +9,7 @@ import cart from './cart';
     const pay_btn = document.getElementById('payNow');
     const backBtn = document.getElementById('continueShoppingLink');
     const shippingOptionsContainer = document.getElementById('shipping-options-container');
-    // const paymentIntentId = document.getElementById('paymentIntentId');
+    let priceToSKU;
     let stripe;
     let elements;
     let s_payEl; 
@@ -195,9 +195,15 @@ import cart from './cart';
         if (!address) return;
     
         let shippingPrice = 0.00;
+        const shippingTypeToSKU = {
+            "Priority Mail": "1-3 days",
+            "DEXX0XXXXR05010": "1-2 days guaranteed by 6:00pm",
+            "DUXP0XXXXR05010": "2-5 days"
+        };
+    
         // Fetch and Render the shipping options
         await fetchUSPSOptions();
-        fetchTaxCalculation(address, shippingPrice);
+        fetchTaxCalculation(address, 'default');
         // Dynamically change the shipping price based on selected shipping option
         const radios = document.querySelectorAll(`input[name="shippingOption"]`);
         radios.forEach((radio) => {
@@ -208,7 +214,8 @@ import cart from './cart';
                     // Traverse the DOM to find the associated price 
                     const priceEl = selectedShippingOption.closest('.shipping-card').querySelector('.price');
                     shippingPrice = parseFloat(priceEl.textContent.replace('$', ''));
-                    fetchTaxCalculation(address, shippingPrice);
+                    const sku = selectedShippingOption.value;
+                    fetchTaxCalculation(address, sku);
                 }
 
             });
@@ -216,7 +223,7 @@ import cart from './cart';
  
     }
 
-    async function fetchTaxCalculation(address, shippingPrice) {
+    async function fetchTaxCalculation(address, sku) {
          // Pass the address to your backend for tax calculation
          const response = await fetch('../../plugins/payments/calc_price.php', {
             method: 'POST',
@@ -227,7 +234,7 @@ import cart from './cart';
                 cart: cart.getCart(),
                 payment_intent_id: paymentIntentId, 
                 address: address, 
-                shipping_cost: shippingPrice 
+                sku: sku 
             }),
         });
 
@@ -278,7 +285,7 @@ import cart from './cart';
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                paymentIntentId: paymentIntentId
+                selected_shipping_option: paymentIntentId
             }),
         });
 
@@ -290,7 +297,6 @@ import cart from './cart';
             const options = extractUSPSOptions(rateOptions);
             renderShippingOptions(options);
             
-            // console.log('Shipping Respose:', options);
         } else {
             const error = await response.json();
             console.error('Error calculating shipping:', error);
@@ -331,6 +337,7 @@ import cart from './cart';
 
         return validOptions;
     }
+
 
     // Function to render the shipping options dynamically
     function renderShippingOptions(options) {
@@ -395,7 +402,6 @@ import cart from './cart';
 
 
     function updateCartSummary(tax, shipping, total) {
-        console.log("shipping price: ", shipping);
         document.getElementById('taxAmount').textContent = `$${(tax / 100).toFixed(2)}`;
         document.getElementById('shippingAmount').textContent = `$${(shipping / 100).toFixed(2)}`;
         document.getElementById('totalAmount').textContent = `$${(total / 100).toFixed(2)}`;

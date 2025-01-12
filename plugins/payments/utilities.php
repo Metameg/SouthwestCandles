@@ -59,4 +59,41 @@ function calcSubtotal($cart) {
 
     return $totalPrice;
 }
+
+function extractUSPSOptions($rates) {
+    // Define the list of SKUs to match
+    $skus = [
+        "DPXX0XXXXR05010",
+        "DEXX0XXXXR05010",
+        "DUXP0XXXXR05010"
+    ];
+
+    $validOptions = [];
+
+    // Iterate through the rate options
+    foreach ($rates as $opt) {
+        if (isset($opt['rates'][0]['SKU']) && in_array($opt['rates'][0]['SKU'], $skus)) {
+            $validOptions[] = $opt;
+        }
+    }
+
+    return $validOptions;
+}
+
+function build_sku_to_price_map($shippingData) {
+    // Build the SKU-to-price map
+    $skuToPriceMap = [];
+
+    foreach ($shippingData as $item) {
+        if (isset($item['rates'][0]['SKU']) && isset($item['rates'][0]['price'])) {
+            $sku = $item['rates'][0]['SKU'];
+            $price = $item['rates'][0]['price'];
+            $skuToPriceMap[$sku] = $price;
+        }
+    }
+
+    // add default price for when no option is selected
+    $skuToPriceMap['default'] = 0.00;
+    return $skuToPriceMap;
+}
 ?>

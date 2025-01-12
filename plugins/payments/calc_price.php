@@ -1,6 +1,7 @@
 <?php
 require_once('../../vendor/autoload.php');
 require_once('payment_intent.php');
+require_once('../shipping/usps/get_rates.php');
 require_once('utilities.php');
 
 $dotenv_file_path = __DIR__ . '/../../.env';
@@ -11,13 +12,39 @@ if (file_exists($dotenv_file_path)) {
 \Stripe\Stripe::setApiKey($_ENV['STRIPE_SK_TEST']);
 
 
+
 $data = json_decode(file_get_contents('php://input'), true);
 $cart = consolidateCart($data['cart']);
-error_log(print_r($data, true));
 $payment_intent_id = $data['payment_intent_id'];
 $address = $data['address'];
-$shipping_cost = $data['shipping_cost'];
+$sku= $data['sku'];
 $line_items = [];
+
+// Get rates for validating incoming data's shipping price
+$rates = getUSPSRates();
+$result = json_decode($rates, true); // true to return an associative array
+
+// Check if decoding was successful
+if ($result && isset($result['rateResponse'])) {
+    // Decode the nested "rateResponse" field
+    $rateResponse = json_decode($result['rateResponse'], true);
+
+    if ($rateResponse && isset($rateResponse['rateOptions'])) {
+        // Extract "rateOptions"
+        $rateOptions = $rateResponse['rateOptions'];
+    }
+}
+
+$validOptions = extractUSPSOptions($rateOptions);
+
+$skuToPriceMap = build_sku_to_price_map($validOptions);
+error_log(print_r($skuToPriceMap, true));
+
+if (!array_key_exists($sku, $skuToPriceMap)) {
+    echo "Something went wrong with your shipping option. Please try again.";
+}
+$shipping_cost = $skuToPriceMap[$sku];
+
 
 foreach ($cart as $item) {
     // Get the item price from the product details
