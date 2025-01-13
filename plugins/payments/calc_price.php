@@ -12,13 +12,28 @@ if (file_exists($dotenv_file_path)) {
 \Stripe\Stripe::setApiKey($_ENV['STRIPE_SK_TEST']);
 
 
+session_start();
 
 $data = json_decode(file_get_contents('php://input'), true);
 $cart = consolidateCart($data['cart']);
 $payment_intent_id = $data['payment_intent_id'];
 $address = $data['address'];
-$sku= $data['sku'];
+$sku = $data['sku'] ?? null;
 $line_items = [];
+
+// Handle initial load (no SKU selected yet)
+if (is_null($sku)) {
+    // If the user has not selected a shipping option, reset the session flag to false
+    $_SESSION['shippingSelected'] = false;
+    if (!isset($_SESSION['shippingSelected']) || $_SESSION['shippingSelected'] === false) {
+        $sku = 'default';
+    } else {
+        // Invalid state: SKU cannot be null after a shpping option is selected
+        http_response_code(400);
+        echo json_encode(['error' => 'Shipping option must be selected.']);
+        exit;
+    }
+}
 
 // Get rates for validating incoming data's shipping price
 $rates = getUSPSRates();
@@ -38,11 +53,17 @@ if ($result && isset($result['rateResponse'])) {
 $validOptions = extractUSPSOptions($rateOptions);
 
 $skuToPriceMap = build_sku_to_price_map($validOptions);
-error_log(print_r($skuToPriceMap, true));
+
 
 if (!array_key_exists($sku, $skuToPriceMap)) {
-    echo "Something went wrong with your shipping option. Please try again.";
+    http_response_code(400);
+    echo json_encode(['error' => 'Invalid shipping option selected.']);
+    exit;
 }
+
+// Mark the user as having selected a shipping option
+$_SESSION['shippingSelected'] = true;
+// Set the correct price for the SKU
 $shipping_cost = $skuToPriceMap[$sku];
 
 

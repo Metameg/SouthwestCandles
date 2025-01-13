@@ -195,15 +195,10 @@ import cart from './cart';
         if (!address) return;
     
         let shippingPrice = 0.00;
-        const shippingTypeToSKU = {
-            "Priority Mail": "1-3 days",
-            "DEXX0XXXXR05010": "1-2 days guaranteed by 6:00pm",
-            "DUXP0XXXXR05010": "2-5 days"
-        };
     
         // Fetch and Render the shipping options
-        await fetchUSPSOptions();
-        fetchTaxCalculation(address, 'default');
+        await fetchUSPSOptions(); 
+        fetchTaxCalculation(address, null);
         // Dynamically change the shipping price based on selected shipping option
         const radios = document.querySelectorAll(`input[name="shippingOption"]`);
         radios.forEach((radio) => {
