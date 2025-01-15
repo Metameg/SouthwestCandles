@@ -10,7 +10,6 @@ if (file_exists($dotenv_file_path)) {
 
 function consolidateCart($cart) {
     $consolidated = [];
-    echo $cart;
     // Iterate over the cart items
     foreach ($cart as $item) {
         // Use a unique identifier, e.g., 'data_id', to group items

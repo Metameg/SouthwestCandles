@@ -11,7 +11,6 @@ import cart from './cart';
     const errorMessage = document.querySelector('.error-msg');
 
     if (redirectStatus === 'succeeded' || success == 'true') {
-        console.log("success");
         successMessage.innerHTML = `Payment Success! <br><br>
         We will send a receipt to the provided email shortly. <br>
         Please keep this confirmation number for your records: <br><br>
@@ -24,7 +23,6 @@ import cart from './cart';
         cart.clearCart();
 
     } else {
-        console.log("failed");
         errorMessage.textContent = `Payment failed or requires further action. Please try again.`;
         successContainer.style.display = 'none';
         successMessage.style.display = 'none';

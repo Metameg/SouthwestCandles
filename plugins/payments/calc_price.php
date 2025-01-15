@@ -125,7 +125,7 @@ $calculation = \Stripe\Tax\Calculation::create([
 
 $amount_total = $calculation['amount_total'];
 $tax_calculation_id = $calculation['id'];
-updatePaymentIntent($payment_intent_id, $amount_total,  $tax_calculation_id, $shipping_option, $line_items);
+updatePaymentIntent($payment_intent_id, $amount_total,  $tax_calculation_id, $shipping_option, $address);
 
 echo json_encode([
     'success' => true,

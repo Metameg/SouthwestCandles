@@ -11,7 +11,7 @@ if (file_exists($dotenv_file_path)) {
 }
 Stripe::setApiKey($_ENV['STRIPE_SK_TEST']);
 
-function createPaymentIntent($amount, $currency = 'USD') {
+function createPaymentIntent($amount, $line_items, $currency = 'USD') {
 
     try {
         // Create the PaymentIntent
@@ -21,6 +21,9 @@ function createPaymentIntent($amount, $currency = 'USD') {
             'automatic_payment_methods' => ['enabled' => true],
             'description' => 'Thanks for your purchase!',
             'receipt_email' => 'metameg8@gmail.com',
+            'metadata' => [
+                'line_items' => json_encode($line_items), // Add line_items to metadata
+            ],
         ]);
 
         // Return the client secret
@@ -37,9 +40,9 @@ function createPaymentIntent($amount, $currency = 'USD') {
     }
 }
 
-function updatePaymentIntent($paymentIntentId, $amount,  $tax_calculation_id, $shipping_option, $line_items, $currency = 'USD') {
+function updatePaymentIntent($paymentIntentId, $amount,  $tax_calculation_id, $shipping_option, $address, $currency = 'USD') {
     try {
-        $line_items_json = json_encode($line_items);
+        
         // Create the PaymentIntent
         $updatedPaymentIntent = PaymentIntent::update(
             $paymentIntentId,  
@@ -48,7 +51,7 @@ function updatePaymentIntent($paymentIntentId, $amount,  $tax_calculation_id, $s
                 'metadata' => [
                     'taxCalculationId' => $tax_calculation_id,  
                     'shippingOption' => $shipping_option,  
-                    'lineItems' => $line_items_json  
+                    'address' => json_encode($address),  
                 ],
             ]
         );

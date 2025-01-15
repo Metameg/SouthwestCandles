@@ -141,6 +141,7 @@ import { error } from 'jquery';
 
             // Other payment states
             if (sResult.paymentIntent.status === 'succeeded') {
+                addTransaction(paymentIntentId);
                 window.location.href = `http://localhost:3000/src/pages/thank-you.php?success=true&paymentIntentId=${sResult.paymentIntent.id}`;;
             } else if (sResult.paymentIntent.status === 'requires_action') {
                 // Handle further actions if required (e.g., Cash App validation)
@@ -150,6 +151,7 @@ import { error } from 'jquery';
 
             // Update email
             updateRecepientEmail(paymentIntentId, email.value);
+            
             
         } catch (error) {
             // Hide the overlay in case of errors
@@ -317,6 +319,27 @@ import { error } from 'jquery';
             errorMsg.style.display = "block";
             errorMsg.textContent = "Unable to determine shipping options. Please refresh the page and try again.";
             console.error('Error calculating shipping:', error);
+        }
+    }
+
+    async function addTransaction(paymentIntentId) {
+        const response = await fetch('../../plugins/payments/add_transaction.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                paymentIntentId: paymentIntentId
+            }),
+        });
+
+        
+        if (response.ok) {
+            const result = await response.json();
+            
+        } else {
+            const error = await response.json();
+            console.error('Error adding transaction:', error);
         }
     }
 

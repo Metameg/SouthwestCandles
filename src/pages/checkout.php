@@ -15,6 +15,18 @@ include '../../plugins/payments/payment_intent.php';
 
 $cart = consolidateCart($cart);
 $subtotal = calcSubtotal($cart);
+
+// Build Line Item info from cart
+foreach ($cart as $item) {
+    // Add the line item to the array
+    $line_items[] = [
+        'name' => $item['name'],
+        'wickType' => $item['wickType'],
+        'selectedSize' => $item['selectedSize'],
+        'quantity' => $item['quantity']
+    ];
+}
+
 if (is_string($subtotal)) {
     // Pass the error message to the HTML
     $errorMessage = $subtotal;
@@ -23,7 +35,7 @@ if (is_string($subtotal)) {
     // Proceed with the checkout process
     $errorMessage = '';
 }
-$rprom = createPaymentIntent($subtotal);
+$rprom = createPaymentIntent($subtotal, $line_items);
 
 try {
     if (!isset($rprom['clientSecret']) || !isset($rprom['paymentIntentId'])) {
