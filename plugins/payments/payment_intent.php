@@ -37,7 +37,7 @@ function createPaymentIntent($amount, $currency = 'USD') {
     }
 }
 
-function updatePaymentIntent($paymentIntentId, $amount,  $tax_calculation_id, $currency = 'USD') {
+function updatePaymentIntent($paymentIntentId, $amount,  $tax_calculation_id, $shipping_option, $currency = 'USD') {
 
     try {
         // Create the PaymentIntent
@@ -46,7 +46,8 @@ function updatePaymentIntent($paymentIntentId, $amount,  $tax_calculation_id, $c
             [
                 'amount' => $amount,  
                 'metadata' => [
-                    'taxCalculationId' => $tax_calculation_id  
+                    'taxCalculationId' => $tax_calculation_id,  
+                    'shippingOption' => $shipping_option  
                 ],
             ]
         );

@@ -11,8 +11,14 @@ if (file_exists($dotenv_file_path)) {
 }
 \Stripe\Stripe::setApiKey($_ENV['STRIPE_SK_TEST']);
 
+const shipping_options = [
+    'DUXP0XXXXR05010' => 'USPS Ground Advantage', 
+    'DEXX0XXXXR05010' => 'Priority Mail Express', 
+    'DPXX0XXXXR05010' => 'Priority Mail', 
+];
 
 session_start();
+
 
 $data = json_decode(file_get_contents('php://input'), true);
 $cart = consolidateCart($data['cart']);
@@ -20,6 +26,8 @@ $payment_intent_id = $data['payment_intent_id'];
 $address = $data['address'];
 $sku = $data['sku'] ?? null;
 $line_items = [];
+
+
 
 // Handle initial load (no SKU selected yet)
 if (is_null($sku)) {
@@ -52,8 +60,14 @@ if ($result && isset($result['rateResponse'])) {
 
 $validOptions = extractUSPSOptions($rateOptions);
 
+// Get the price based on sku
 $skuToPriceMap = build_sku_to_price_map($validOptions);
-
+// Get the shipping option name from sku unless sku is 'default'
+if (array_key_exists($sku, shipping_options)) {
+    $shipping_option = shipping_options[$sku];
+} else {
+    $shipping_option = null;
+}
 
 if (!array_key_exists($sku, $skuToPriceMap)) {
     http_response_code(400);
@@ -109,7 +123,7 @@ $calculation = \Stripe\Tax\Calculation::create([
 
 $amount_total = $calculation['amount_total'];
 $tax_calculation_id = $calculation['id'];
-updatePaymentIntent($payment_intent_id, $amount_total,  $tax_calculation_id);
+updatePaymentIntent($payment_intent_id, $amount_total,  $tax_calculation_id, $shipping_option);
 
 echo json_encode([
     'success' => true,
