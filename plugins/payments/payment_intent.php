@@ -37,9 +37,9 @@ function createPaymentIntent($amount, $currency = 'USD') {
     }
 }
 
-function updatePaymentIntent($paymentIntentId, $amount,  $tax_calculation_id, $shipping_option, $currency = 'USD') {
-
+function updatePaymentIntent($paymentIntentId, $amount,  $tax_calculation_id, $shipping_option, $line_items, $currency = 'USD') {
     try {
+        $line_items_json = json_encode($line_items);
         // Create the PaymentIntent
         $updatedPaymentIntent = PaymentIntent::update(
             $paymentIntentId,  
@@ -47,7 +47,8 @@ function updatePaymentIntent($paymentIntentId, $amount,  $tax_calculation_id, $s
                 'amount' => $amount,  
                 'metadata' => [
                     'taxCalculationId' => $tax_calculation_id,  
-                    'shippingOption' => $shipping_option  
+                    'shippingOption' => $shipping_option,  
+                    'lineItems' => $line_items_json  
                 ],
             ]
         );
@@ -60,6 +61,5 @@ function updatePaymentIntent($paymentIntentId, $amount,  $tax_calculation_id, $s
         ];
     }
 }
-
 
 ?>

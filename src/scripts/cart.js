@@ -99,6 +99,7 @@ class Cart {
                     item.quantity += 1; 
                     this.saveCart(); 
                     this.updateCart(); 
+                    console.log(this.cart);
                 });
 
                 // Add click event listener for decrease button
@@ -148,7 +149,7 @@ class Cart {
         });
     
         // Save the updated cart to storage
-        this.saveCart(this.cart);
+        this.saveCart();
         this.updateCart();
 
         // Open the cart modal or popover for user feedback
@@ -183,7 +184,7 @@ class Cart {
         });
     
         // Save the updated cart to storage
-        this.saveCart(this.cart);
+        this.saveCart();
     
         // Provide user feedback
         this.updateCart();
@@ -216,7 +217,8 @@ class Cart {
         $("#cartPopover").fadeOut();
         $("#cartOverlay").fadeOut(() => {
             $("#cartOverlay").css("display", "none");
-        })
+        });
+        console.log(this.cart);
     }
 
     checkout() {
@@ -253,7 +255,7 @@ class Cart {
                 consolidated[key].quantity += 1;
             } else {
                 // Add the item to the consolidated object with an initial quantity
-                consolidated[key] = { ...item, quantity: 1 };
+                consolidated[key] = { ...item, quantity: item.quantity };
             }
         });
 

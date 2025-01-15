@@ -83,7 +83,6 @@ $shipping_cost = $skuToPriceMap[$sku];
 
 foreach ($cart as $item) {
     // Get the item price from the product details
-
     try {
         $itemPrice = getProductPrice($item['selectedSize']); 
     } catch (Exception $e) {
@@ -99,7 +98,10 @@ foreach ($cart as $item) {
         'amount' => $itemPrice * 100 * $item['quantity'], 
         'quantity' => $item['quantity'],
         'tax_code' => 'txcd_33110005',
-        'reference' => $item['name'] . ' - ' . $item['selectedSize']
+        'reference' => $item['name'] . ' - '
+                      .$item['wickType'] . ' - ' 
+                      . $item['selectedSize'] . '-'
+                      .$item['quantity']
     ];
 }
     
@@ -123,7 +125,7 @@ $calculation = \Stripe\Tax\Calculation::create([
 
 $amount_total = $calculation['amount_total'];
 $tax_calculation_id = $calculation['id'];
-updatePaymentIntent($payment_intent_id, $amount_total,  $tax_calculation_id, $shipping_option);
+updatePaymentIntent($payment_intent_id, $amount_total,  $tax_calculation_id, $shipping_option, $line_items);
 
 echo json_encode([
     'success' => true,

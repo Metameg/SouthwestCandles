@@ -10,7 +10,7 @@ if (file_exists($dotenv_file_path)) {
 
 function consolidateCart($cart) {
     $consolidated = [];
-
+    echo $cart;
     // Iterate over the cart items
     foreach ($cart as $item) {
         // Use a unique identifier, e.g., 'data_id', to group items
@@ -23,7 +23,7 @@ function consolidateCart($cart) {
         } else {
             // Add the item to the consolidated array with an initial quantity
             $consolidated[$key] = $item;
-            $consolidated[$key]['quantity'] = 1;
+            $consolidated[$key]['quantity'] = $item['quantity'];
         }
     }
 
