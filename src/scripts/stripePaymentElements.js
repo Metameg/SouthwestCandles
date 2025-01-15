@@ -1,15 +1,16 @@
 import { loadStripe } from '@stripe/stripe-js';
 import cart from './cart';
+import { error } from 'jquery';
 
 (function () {
     const STRIPE_PUBLIC_KEY = 'pk_test_51QHonuBzPFeYbIr4JLEEpJQbGR7P0WFb9dJH4HhjdXyq2DJqIh6I3TaWZLQ49ffz0VYtDupbBgByT6SVsYZpo7Rw00jwB23EOF'; // Replace with your Stripe public key
     const paymentElement = document.getElementById('paymentOptions');
     const addressElement = document.getElementById('addressElement');
     const email = document.getElementById('email');
-    const pay_btn = document.getElementById('payNow');
+    const payBtn = document.getElementById('payNow');
     const backBtn = document.getElementById('continueShoppingLink');
     const shippingOptionsContainer = document.getElementById('shipping-options-container');
-    let priceToSKU;
+    const errorMsg = document.getElementById('payErrorMsg');
     let stripe;
     let elements;
     let s_payEl; 
@@ -102,9 +103,17 @@ import cart from './cart';
     }
 
     // Handle the payment submission
-    pay_btn.addEventListener('click', async () => {
+    payBtn.addEventListener('click', async () => {
         const loadingOverlay = document.getElementById('loadingOverlay');
-        const error = document.getElementById('payErrorMsg');
+
+        // Function to check if a shipping option is selected
+        if (!shippingOptionSelected()) {
+            errorMsg.style.display = "block";
+            errorMsg.textContent = "Fill out all required fields and select a shipping option."
+            return;
+        } else {
+            errorMsg.style.display = "none";
+        }
 
         try {
             // Show the overlay
@@ -124,8 +133,8 @@ import cart from './cart';
     
             // Unsuccessful Card Payments
             if (sResult.error) {
-                    error.textContent = sResult.error.message;
-                    error.style.display = "block";
+                errorMsg.textContent = sResult.error.message;
+                errorMsg.style.display = "block";
                 return;
             }
          
@@ -145,6 +154,8 @@ import cart from './cart';
         } catch (error) {
             // Hide the overlay in case of errors
             loadingOverlay.style.display = 'none';
+            errorMsg.style.display = "block";
+            errorMsg.textContent = 'Something went wrong. Please try again.';
             console.error('Error during payment:', error);
         }
 
@@ -153,15 +164,14 @@ import cart from './cart';
     // Update email address on the charge (for receipt purposes) 
     email.addEventListener('change', async (e) => {
         const email = e.target.value;
-        const error = document.getElementById('emailErrorMsg');
         // Validate email format
         if (!validateEmail(email)) {
-            error.style.display = 'block';
+            errorMsg.style.display = 'block';
             return;
         }
 
         else {
-            error.style.display = 'none';
+            errorMsg.style.display = 'none';
         }
     });
 
@@ -187,6 +197,8 @@ import cart from './cart';
             const result = await response.json();
 
         } catch (error) {
+            errorMsg.style.display = "block";
+            errorMsg.textContent = 'Something went wrong. Please try again.';
             console.error('Error updating email:', error);
         }
     }
@@ -195,7 +207,6 @@ import cart from './cart';
         if (!address) return;
     
         let shippingPrice = 0.00;
-    
         // Fetch and Render the shipping options
         await fetchUSPSOptions(); 
         fetchTaxCalculation(address, null);
@@ -245,9 +256,16 @@ import cart from './cart';
 
         // Check if the backend logic succeeded
         if (!result.success) {
-            console.error('Error calculating price:', result.error);
+            errorMsg.textContent = result.error;
+            errorMsg.style.display = "block";
+            payBtn.disabled = true;
+            // console.error('Error calculating price:', result.error);
             return;
+        } else {
+            payBtn.disabled = false;
+            errorMsg.style.display = 'none';
         }
+
 
         updateCartSummary(result.estimated_tax, result.shipping_price, result.total_price);
     }
@@ -286,14 +304,18 @@ import cart from './cart';
 
         
         if (response.ok) {
+            errorMsg.style.display = "none";
             const result = await response.json();
             const rateResponse = JSON.parse(result.rateResponse);
             const rateOptions = rateResponse.rateOptions;
             const options = extractUSPSOptions(rateOptions);
+            errorMsg.style.display = 'none';
             renderShippingOptions(options);
             
         } else {
             const error = await response.json();
+            errorMsg.style.display = "block";
+            errorMsg.textContent = "Unable to determine shipping options. Please refresh the page and try again.";
             console.error('Error calculating shipping:', error);
         }
     }
@@ -388,6 +410,18 @@ import cart from './cart';
             shippingCard.appendChild(label);
             shippingOptionsContainer.appendChild(shippingCard);
         });
+    }
+
+    // Function to check if a shipping option is selected
+    function shippingOptionSelected() {
+        // Get all shipping option radio inputs
+        const shippingOptions = document.querySelectorAll('input[name="shippingOption"]');
+
+        // Check if any of the options is selected
+        const isSelected = Array.from(shippingOptions).some(option => option.checked);
+
+        // Enable or disable the button based on the selection
+        return isSelected;
     }
 
     function validateEmail(email) {
