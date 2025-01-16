@@ -35,17 +35,24 @@ function addTransaction($payment_intent_id) {
     $paymentIntent = \Stripe\PaymentIntent::retrieve($payment_intent_id);
     error_log("This is a message logged to the PHP error log." . $paymentIntent);
     // SQL query to insert a new transaction
-    $sql = "INSERT INTO transactions (payment_intent_id, tax_calc_id, amount, status, line_items, created_at, shipping_option, address, latest_charge_id) 
-            VALUES (:payment_intent_id, :tax_calc_id, :amount, :status, :line_items, NOW(), :shipping_option, :address, :latest_charge_id)";
+    $sql = "INSERT INTO transactions (payment_intent_id, tax_calc_id, amount, line_items, created_at, shipping_option, 
+    address1, address2, city, state, zip, country, latest_charge_id) 
+            VALUES (:payment_intent_id, :tax_calc_id, :amount,
+            :line_items, NOW(), :shipping_option, :address1, :address2,
+            :city, :state, :zip, :country, :latest_charge_id)";
 
     try {
         $payment_intent_id = $paymentIntent['id'];
         $tax_calc_id = $paymentIntent['metamdata']['taxCalculationId'];
         $amount = $paymentIntent['amount_received'];
-        $status = 'completed';
         $line_items = $paymentIntent['metadata']['line_items'];
         $shipping_option = $paymentIntent['metadata']['shippingOption'];
-        $address = $paymentIntent['metadata']['address'];
+        $address1 = $paymentIntent['shipping']['address']['line1'];
+        $address2 = $paymentIntent['shipping']['address']['line2'];
+        $city = $paymentIntent['shipping']['address']['city'];
+        $state = $paymentIntent['shipping']['address']['state'];
+        $zip = $paymentIntent['shipping']['address']['postal_code'];
+        $country = $paymentIntent['shipping']['address']['country'];
         $latest_charge_id = $paymentIntent['latest_charge'];
         // Prepare the SQL statement
         $stmt = $pdo->prepare($sql);
@@ -54,10 +61,14 @@ function addTransaction($payment_intent_id) {
         $stmt->bindParam(':payment_intent_id', $payment_intent_id, PDO::PARAM_STR);
         $stmt->bindParam(':tax_calc_id', $tax_calc_id, PDO::PARAM_STR);
         $stmt->bindParam(':amount', $amount, PDO::PARAM_STR);
-        $stmt->bindParam(':status', $status, PDO::PARAM_STR);
         $stmt->bindParam(':line_items', $line_items, PDO::PARAM_STR);
         $stmt->bindParam(':shipping_option', $shipping_option, PDO::PARAM_STR);
-        $stmt->bindParam(':address', $address, PDO::PARAM_STR);
+        $stmt->bindParam(':address1', $address1, PDO::PARAM_STR);
+        $stmt->bindParam(':address2', $address2, PDO::PARAM_STR);
+        $stmt->bindParam(':city', $city, PDO::PARAM_STR);
+        $stmt->bindParam(':state', $state, PDO::PARAM_STR);
+        $stmt->bindParam(':zip', $zip, PDO::PARAM_STR);
+        $stmt->bindParam(':country', $country, PDO::PARAM_STR);
         $stmt->bindParam(':latest_charge_id', $latest_charge_id, PDO::PARAM_STR);
 
         // Execute the statement
