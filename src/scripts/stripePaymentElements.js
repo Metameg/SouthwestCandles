@@ -128,11 +128,10 @@ import { error } from 'jquery';
                 },
             });
     
-            // Hide the overlay
-            loadingOverlay.style.display = 'none';
-    
             // Unsuccessful Card Payments
             if (sResult.error) {
+                // Hide the overlay
+                loadingOverlay.style.display = 'none';
                 errorMsg.textContent = sResult.error.message;
                 errorMsg.style.display = "block";
                 return;
@@ -142,8 +141,9 @@ import { error } from 'jquery';
             // Other payment states
             if (sResult.paymentIntent.status === 'succeeded') {
                 // add Transaction to db and email order
-                addTransaction(paymentIntentId, email.value);
-                // Update email
+                await processTransaction(paymentIntentId, email.value);
+                // Hide the overlay
+                loadingOverlay.style.display = 'none';
                 // updateRecepientEmail(paymentIntentId, email.value);
                 window.location.href = `http://localhost:3000/src/pages/thank-you.php?success=true&paymentIntentId=${sResult.paymentIntent.id}`;;
             } else if (sResult.paymentIntent.status === 'requires_action') {
@@ -209,23 +209,31 @@ import { error } from 'jquery';
 
     async function triggerTaxCalculation(address) {
         if (!address) return;
-    
+        const shippingSpinner = document.getElementById('shippingLoadingOverlay');
+        const orderSpinner = document.getElementById('orderLoadingOverlay');
         let shippingPrice = 0.00;
+        
         // Fetch and Render the shipping options
+        shippingSpinner.style.display = 'flex';
+        orderSpinner.style.display = 'flex';
         await fetchUSPSOptions(); 
-        fetchTaxCalculation(address, null);
+        shippingSpinner.style.display = 'none';
+        await fetchTaxCalculation(address, null);
+        orderSpinner.style.display = 'none';
+
         // Dynamically change the shipping price based on selected shipping option
         const radios = document.querySelectorAll(`input[name="shippingOption"]`);
         radios.forEach((radio) => {
             radio.addEventListener('change', async () => {
                 const selectedShippingOption = document.querySelector(`input[name="shippingOption"]:checked`);
-
+                orderSpinner.style.display = 'flex';
                 if (selectedShippingOption) {
                     // Traverse the DOM to find the associated price 
                     const priceEl = selectedShippingOption.closest('.shipping-card').querySelector('.price');
                     shippingPrice = parseFloat(priceEl.textContent.replace('$', ''));
                     const sku = selectedShippingOption.value;
-                    fetchTaxCalculation(address, sku);
+                    await fetchTaxCalculation(address, sku);
+                    orderSpinner.style.display = 'none';
                 }
 
             });
@@ -324,8 +332,8 @@ import { error } from 'jquery';
         }
     }
 
-    async function addTransaction(paymentIntentId, userEmail) {
-        const response = await fetch('../../plugins/payments/add_transaction.php', {
+    async function processTransaction(paymentIntentId, userEmail) {
+        const response = await fetch('../../plugins/payments/process_transaction.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

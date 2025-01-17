@@ -222,6 +222,7 @@ class Cart {
     }
 
     checkout() {
+        const loadingSpinner = document.getElementById('cartLoadingOverlay');
         const cart = this.getCart();
 
         const form = document.createElement('form');
@@ -237,6 +238,14 @@ class Cart {
         // Append input to the form and submit
         form.appendChild(input);
         document.body.appendChild(form);
+
+        // Show the loading spinner
+        loadingSpinner.style.display = 'flex';
+
+        // Handle form submission and hide the spinner after submission
+        form.onsubmit = () => {
+            loadingSpinner.style.display = 'none'; // Hide the spinner after form submission starts
+        };
         form.submit();
     }
 

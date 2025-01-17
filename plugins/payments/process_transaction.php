@@ -83,7 +83,18 @@ function addTransaction($payment_intent_id, $user_email) {
         
         send_order($args);
         // Execute the statement and send to db
-        return $stmt->execute();
+        $result = $stmt->execute();
+
+        // Prepare response
+        $response = [
+            'success' => $result,  // True or false depending on the result
+            'message' => $result ? 'Transaction added successfully' : 'Error adding transaction'
+        ];
+
+        // Send JSON response
+        header('Content-Type: application/json');
+        echo json_encode($response);
+        exit;
         
     } catch (Exception $e) {
         // Log or handle the error as needed

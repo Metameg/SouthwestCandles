@@ -143,6 +143,10 @@ try {
 
                     <!-- SHIPPING OPTIONS -->
                     <section class="shipping-options">
+                        <!-- Loading Spinner -->
+                        <div id="shippingLoadingOverlay" class="shipping-loading-overlay">
+                            <div class="spinner"></div>
+                        </div>
                         <h2>Select Shipping</h2>
                         <div id="shipping-options-container" class="shipping-options-container">
                             <!-- Dynamically added in stripe JS -->
@@ -150,6 +154,11 @@ try {
                     </section>
 
                     <section class="order-summary">
+                        <!-- Loading Spinner -->
+                        <div id="orderLoadingOverlay" class="order-loading-overlay">
+                            <div class="spinner"></div>
+                        </div>
+
                         <div class="order-details">
                             <h2>Order Summary</h2>
                             <div class="summary-item">

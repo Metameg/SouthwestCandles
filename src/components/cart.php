@@ -1,5 +1,10 @@
 <div id="cartOverlay" class="cart-overlay">
     <div id="cartPopover" class="cart-popover">
+        <!-- Loading Spinner -->
+        <div id="cartLoadingOverlay" class="loading-overlay">
+            <div class="spinner"></div>
+        </div>
+
         <button id="closePopover" class="close-btn">x</button>
         <h2>Your Shopping Cart</h2>
         <div id="cartItems" class="cart-items">
