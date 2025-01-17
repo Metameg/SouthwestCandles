@@ -229,9 +229,10 @@ import { error } from 'jquery';
         // Fetch and Render the shipping options
         shippingSpinner.style.display = 'flex';
         orderSpinner.style.display = 'flex';
-        await fetchUSPSOptions(); 
-        shippingSpinner.style.display = 'none';
+        const options = await fetchUSPSOptions(); 
         await fetchTaxCalculation(address, null);
+        shippingSpinner.style.display = 'none';
+        renderShippingOptions(options);
         orderSpinner.style.display = 'none';
 
         // Dynamically change the shipping price based on selected shipping option
@@ -335,13 +336,14 @@ import { error } from 'jquery';
             const rateOptions = rateResponse.rateOptions;
             const options = extractUSPSOptions(rateOptions);
             errorMsg.style.display = 'none';
-            renderShippingOptions(options);
+            return options;
             
         } else {
             const error = await response.json();
             errorMsg.style.display = "block";
             errorMsg.textContent = "Unable to determine shipping options. Please refresh the page and try again.";
             console.error('Error calculating shipping:', error);
+            return;
         }
     }
 

@@ -6,13 +6,13 @@ $(() => {
         event.stopPropagation();
         document.getElementById('hamburgerMenu').classList.toggle('open');
         document.querySelector('nav ul').classList.toggle('open');
-        document.getElementById('dropdown').classList.remove('open');
+        // document.getElementById('dropdown').classList.remove('open');
     });
     
-    $("#productsLink").on("click", (event) => {
-        event.stopPropagation();
-        document.getElementById('dropdown').classList.toggle('open');
-    });
+    // $("#productsLink").on("click", (event) => {
+    //     event.stopPropagation();
+    //     document.getElementById('dropdown').classList.toggle('open');
+    // });
 
     // Close dropdown if clicking outside of it
     $(document).on("click", () => {
