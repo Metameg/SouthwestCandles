@@ -102,7 +102,6 @@ try {
                                     <div class="item">
                                         <div class="item-details">
                                             <div class="item-header">
-                                                <!-- <img src="../<?php echo htmlspecialchars($item['image']); ?>" alt="Placeholder candle product image"> -->
                                                 <h3><?php echo htmlspecialchars($item['name']); ?> - <i><?php echo htmlspecialchars($item['description']); ?> </i></h3>
                                             </div>
                                             

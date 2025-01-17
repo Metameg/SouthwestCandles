@@ -141,7 +141,10 @@ import { error } from 'jquery';
 
             // Other payment states
             if (sResult.paymentIntent.status === 'succeeded') {
-                addTransaction(paymentIntentId);
+                // add Transaction to db and email order
+                addTransaction(paymentIntentId, email.value);
+                // Update email
+                // updateRecepientEmail(paymentIntentId, email.value);
                 window.location.href = `http://localhost:3000/src/pages/thank-you.php?success=true&paymentIntentId=${sResult.paymentIntent.id}`;;
             } else if (sResult.paymentIntent.status === 'requires_action') {
                 // Handle further actions if required (e.g., Cash App validation)
@@ -149,8 +152,7 @@ import { error } from 'jquery';
                 window.location.href = `http://localhost:3000/src/pages/thank-you.php?success=false&error=${encodeURIComponent(sResult.error.message)}`;
             }
 
-            // Update email
-            updateRecepientEmail(paymentIntentId, email.value);
+            
             
             
         } catch (error) {
@@ -182,28 +184,28 @@ import { error } from 'jquery';
     });
 
 
-    async function updateRecepientEmail(paymentIntentId, email) {
-         // Send the updated email to the backend
-         try {
-            const response = await fetch('../../plugins/payments/update_intent_email.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email: email,
-                    paymentIntentId: paymentIntentId
-                 }),
-            });
+    // async function updateRecepientEmail(paymentIntentId, email) {
+    //      // Send the updated email to the backend
+    //      try {
+    //         const response = await fetch('../../plugins/payments/update_intent_email.php', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify({
+    //                 email: email,
+    //                 paymentIntentId: paymentIntentId
+    //              }),
+    //         });
 
-            const result = await response.json();
+    //         const result = await response.json();
 
-        } catch (error) {
-            errorMsg.style.display = "block";
-            errorMsg.textContent = 'Something went wrong. Please try again.';
-            console.error('Error updating email:', error);
-        }
-    }
+    //     } catch (error) {
+    //         errorMsg.style.display = "block";
+    //         errorMsg.textContent = 'Something went wrong. Please try again.';
+    //         console.error('Error updating email:', error);
+    //     }
+    // }
 
     async function triggerTaxCalculation(address) {
         if (!address) return;
@@ -322,14 +324,15 @@ import { error } from 'jquery';
         }
     }
 
-    async function addTransaction(paymentIntentId) {
+    async function addTransaction(paymentIntentId, userEmail) {
         const response = await fetch('../../plugins/payments/add_transaction.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                paymentIntentId: paymentIntentId
+                paymentIntentId: paymentIntentId,
+                userEmail: userEmail
             }),
         });
 

@@ -1,21 +1,18 @@
 <?php
 require_once('../../vendor/autoload.php');
 
-use Stripe\Stripe;
-use Stripe\PaymentIntent;
-
 $dotenv_file_path = __DIR__ . '/../../.env';
 if (file_exists($dotenv_file_path)) {
     $dotenv = Dotenv\Dotenv::createImmutable(dirname($dotenv_file_path));
     $dotenv->load();
 }
-Stripe::setApiKey($_ENV['STRIPE_SK_TEST']);
+Stripe\Stripe::setApiKey($_ENV['STRIPE_SK_TEST']);
 
 function createPaymentIntent($amount, $line_items, $currency = 'USD') {
 
     try {
         // Create the PaymentIntent
-        $paymentIntent = PaymentIntent::create([
+        $paymentIntent = Stripe\PaymentIntent::create([
             'amount' => $amount * 100,
             'currency' => $currency,
             'automatic_payment_methods' => ['enabled' => true],
@@ -44,7 +41,7 @@ function updatePaymentIntent($paymentIntentId, $amount,  $tax_calculation_id, $s
     try {
         
         // Create the PaymentIntent
-        $updatedPaymentIntent = PaymentIntent::update(
+        $updatedPaymentIntent = Stripe\PaymentIntent::update(
             $paymentIntentId,  
             [
                 'amount' => $amount,  
