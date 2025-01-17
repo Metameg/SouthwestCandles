@@ -122,7 +122,7 @@ try {
                         
                         <div class="personal-info">
                             <h2>Personal Info</h2>
-                            <input type="email" id="email" placeholder="Enter your email" />
+                            <input type="email" id="email" placeholder="Enter your email" required/>
                             <p id="emailErrorMsg" class="error-msg">Invalid Email</p>
                         </div>
 

@@ -7,6 +7,7 @@ import { error } from 'jquery';
     const paymentElement = document.getElementById('paymentOptions');
     const addressElement = document.getElementById('addressElement');
     const email = document.getElementById('email');
+    const emailErrorMsg = document.getElementById('emailErrorMsg');
     const payBtn = document.getElementById('payNow');
     const backBtn = document.getElementById('continueShoppingLink');
     const shippingOptionsContainer = document.getElementById('shipping-options-container');
@@ -106,6 +107,17 @@ import { error } from 'jquery';
     payBtn.addEventListener('click', async () => {
         const loadingOverlay = document.getElementById('loadingOverlay');
 
+        // Function to check if email is filled out
+        if (!validateEmail(email.value)) {
+            errorMsg.style.display = "block";
+            errorMsg.textContent = "Fill out all required fields and select a shipping option."
+            emailErrorMsg.style.display = "block";
+            return;
+        } else {
+            errorMsg.style.display = "none";
+            emailErrorMsg.style.display = "none";
+        }
+
         // Function to check if a shipping option is selected
         if (!shippingOptionSelected()) {
             errorMsg.style.display = "block";
@@ -165,17 +177,18 @@ import { error } from 'jquery';
 
     });
 
-    // Update email address on the charge (for receipt purposes) 
-    email.addEventListener('change', async (e) => {
-        const email = e.target.value;
+    // Email address validation
+    email.addEventListener('change', async () => {
         // Validate email format
-        if (!validateEmail(email)) {
-            errorMsg.style.display = 'block';
+        if (!validateEmail(email.value)) {
+            email.classList.add('invalid');
+            emailErrorMsg.style.display = 'block';
             return;
         }
 
         else {
-            errorMsg.style.display = 'none';
+            email.classList.remove('invalid');
+            emailErrorMsg.style.display = 'none';
         }
     });
 

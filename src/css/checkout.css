@@ -152,7 +152,7 @@ body {
   transition: background-color 0.15s ease, border 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
   border: 1px solid #000;
 }
-.checkout-container .shipping-summary .personal-info input:invalid {
+.checkout-container .shipping-summary .personal-info input.invalid {
   color: #df1b41;
   border-color: #df1b41;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.03), 0px 3px 6px rgba(0, 0, 0, 0.02), 0 0 0 1px var(--colorDanger);
