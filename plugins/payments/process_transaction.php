@@ -18,9 +18,9 @@ header('Content-Type: application/json');
 $data = json_decode(file_get_contents('php://input'), true);
 $payment_intent_id = $data['paymentIntentId'];
 $user_email = filter_var($data['userEmail'], FILTER_SANITIZE_EMAIL);
-addTransaction($payment_intent_id, $user_email);
+processTransaction($payment_intent_id, $user_email);
 
-function addTransaction($payment_intent_id, $user_email) {
+function processTransaction($payment_intent_id, $user_email) {
     /**
      * Add a record to the transactions table.
      *
@@ -84,6 +84,7 @@ function addTransaction($payment_intent_id, $user_email) {
         send_order($args);
         // Execute the statement and send to db
         $result = $stmt->execute();
+        add_tax_calc($pdo, $args['tax_calc_id']);
 
         // Prepare response
         $response = [
@@ -95,6 +96,54 @@ function addTransaction($payment_intent_id, $user_email) {
         header('Content-Type: application/json');
         echo json_encode($response);
         exit;
+        
+    } catch (Exception $e) {
+        // Log or handle the error as needed
+        error_log("Error adding transaction: " . $e->getMessage());
+        exit;
+    }
+}
+
+function add_tax_calc($pdo, $tax_calc_id) {
+    $sql = "INSERT INTO taxes (tax_calc_id, amount_total, tax_amount, percentage, tax_type, tax_date) 
+            VALUES (:tax_calc_id, :amount_total, :tax_amount, :percentage, :tax_type, :tax_date)";
+
+    try {
+        $taxCalc = \Stripe\Tax\Calculation::retrieve($tax_calc_id);
+        error_log($taxCalc);
+        $args = [
+            'tax_calc_id' => $taxCalc['id'],
+            'amount_total' => $taxCalc['amount_total'],
+            'tax_amount' => $taxCalc['tax_amount_exclusive'],
+            'percentage' => $taxCalc['tax_breakdown'][0]['tax_rate_details']['percentage_decimal'],
+            'tax_type' => $taxCalc['tax_breakdown'][0]['tax_rate_details']['tax_type'],
+            'tax_date' => $taxCalc['tax_date']
+        ];
+        // Prepare the SQL statement
+        $stmt = $pdo->prepare($sql);
+
+        // Bind the parameters
+        $stmt->bindParam(':tax_calc_id', $args['tax_calc_id'], PDO::PARAM_STR);
+        $stmt->bindParam(':amount_total', $args['amount_total'], PDO::PARAM_STR);
+        $stmt->bindParam(':tax_amount', $args['tax_amount'], PDO::PARAM_STR);
+        $stmt->bindParam(':percentage', $args['percentage'], PDO::PARAM_STR);
+        $stmt->bindParam(':tax_type', $args['tax_type'], PDO::PARAM_STR);
+        $stmt->bindParam(':tax_date', $args['tax_date'], PDO::PARAM_STR);
+        
+        
+        // Execute the statement and send to db
+        $result = $stmt->execute();
+
+        // Prepare response
+        // $response = [
+        //     'success' => $result,  // True or false depending on the result
+        //     'message' => $result ? 'Tax calculation added successfully' : 'Error adding calculation'
+        // ];
+
+        // // Send JSON response
+        // header('Content-Type: application/json');
+        // echo json_encode($response);
+        // exit;
         
     } catch (Exception $e) {
         // Log or handle the error as needed

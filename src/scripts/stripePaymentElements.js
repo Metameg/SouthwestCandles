@@ -130,7 +130,7 @@ import { error } from 'jquery';
         try {
             // Show the overlay
             loadingOverlay.style.display = 'flex';
-    
+
             // Start the payment process
             const sResult = await stripe.confirmPayment({
                 elements,
