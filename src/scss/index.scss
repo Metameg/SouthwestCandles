@@ -42,7 +42,9 @@ body {
 .primary-btn {
     display: inline-block; 
     padding: 10px 20px; 
+    width: fit-content;
     font-size: 1.2rem; 
+    text-align: center;
     color: #fff; 
     background-color: $primary-color; 
     border: none; 
@@ -138,7 +140,6 @@ body {
 }
 
 // About Section
-
 .about-section {
     text-align: center;
     background-color: #fdf6e5; // Light beige background
@@ -179,31 +180,66 @@ body {
             }
         }
     }
+}
 
-    .button-container {
-        margin-top: 20px;
 
-        .learn-more-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #8b724d; // Dark gold button
-            color: white;
-            font-family: 'Roboto', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+// Build a candle section
+.build-candle-section {
+    text-align: center;
+    background-color: $background-color;
+    padding: 40px 20px;
 
-            &:hover {
-                background-color: #705a3a; // Darker gold on hover
+    .steps-container {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+
+        .step {
+            text-align: center;
+            max-width: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .step-number {
+                font-size: 28px;
+                font-weight: bold;
+                color: #3a3a3a;
+                border: 2px solid #3a3a3a;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0 auto 20px;
+            }
+
+            h3 {
+                font-size: 18px;
+                margin-bottom: 15px;
+                color: #3a3a3a;
+            }
+
+            picture, img {
+                max-width: 100%;
+                border-radius: 8px;
             }
         }
+
+        @media(max-width: 480px) {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    a {
+        margin-top: 20px;
     }
 }
 
-// Promo Section
 
+// Promo Section
 .promo-section {
     display: flex;
     align-items: center;
@@ -213,6 +249,7 @@ body {
     .promo-image {
         flex: 2;
         width: 100%;
+        height: 100vh;
 
         img {
             width: 100%;
@@ -229,147 +266,30 @@ body {
         justify-content: center;
         text-align: left;
   
-    h3 {
-        font-size: 1rem;
-        font-weight: 400;
-        letter-spacing: 1px;
-        margin-bottom: 1rem;
-        color: #888;
-    }
-  
-    h1 {
-        font-size: 2.5rem;
-        line-height: 1.2;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        color: #000;
-        font-family: 'shrikhand', sans-serif;
+        p {
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            color: #888;
+        }
+    
+        h2 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #000;
+            font-family: 'shrikhand', sans-serif;
 
-        span {
-            font-size: 2.7rem;
-            color: $text-danger;
+            span {
+                font-size: 2.7rem;
+                color: $text-danger;
+            }
         }
     }
-  
-    .promo-link {
-        display: inline-block; 
-        padding: 10px 20px; 
-        font-size: 1.2rem; 
-        color: #000; 
-        border: none; 
-        border-radius: 5px; 
-        text-decoration: underline; 
-        font-weight: bold; 
-        transition: color 0.3s ease;
-        width: fit-content;
 
-        &:hover {
-            color: darken($primary-color, 10%); 
-        }
-    }
-    }
-
-    @media (max-width: 768px) {
+    @media (max-width: 480px) {
         flex-direction: column;
-    }
-}
-
-.products-section, .featured-products {
-    display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    padding: 40px;
-
-
-    .product {
-        background-color: #fff;
-        padding: 20px;
-        text-align: center;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border: 2px solid black;
-        position: relative;
-        
-        .product-image {
-            position: relative;
-            padding: 20px;
-
-            picture, img {
-                width: 100%;
-                border-radius: 10px;
-            }
-
-            .tag {
-                position: absolute;
-                top: 10px;
-                left: 10px;
-                background-color: #333;
-                color: #fff;
-                padding: 4px 8px;
-                font-size: 0.75rem;
-                border-radius: 4px;
-                text-transform: uppercase;
-            }
-
-            .tag.NEW {
-                background-color: #f39c12; // Adjust to fit with primary color
-            }
-
-            .tag.LIMITED {
-                background-color: #c0392b; // Adjust for limited edition color
-            }
-        }
-
-        .product-info {
-            display: flex;
-            flex-direction: column;
-            background-color: $background-color;
-
-            .scent-family {
-                font-size: 0.8rem;
-                color: #888;
-                margin-bottom: 8px;
-                text-transform: uppercase;
-                font-weight: bold;
-            }
-
-            h3 {
-                font-size: 1.2rem;
-                margin: 8px 0;
-                color: #333;
-            }
-
-            .description {
-                font-size: 0.9rem;
-                color: #666;
-                margin-bottom: 12px;
-            }
-
-            .price {
-                font-size: 1.2rem;
-                font-weight: bold;
-                color: $primary-color;
-            }
-
-            .add-to-cart {
-                background-color: $button-color;
-                color: #fff;
-                border: none;
-                border-radius: 5px;
-                padding: 10px;
-                font-size: 1.25rem;
-                cursor: pointer;
-
-                &:hover {
-                    background-color: $button-hover-color;
-                }
-            }
-
-            .item-id {
-                font-size: 0.8rem;
-                font-style: italic;
-                align-self: flex-end;
-                margin-top: 5px;
-            }
-        }
     }
 }

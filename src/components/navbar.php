@@ -36,7 +36,7 @@ $isCheckoutPage = ($currentFile === 'checkout.php');
             </div>
             <ul>
                 <li class="nav-link"><a href="<?php echo getRootPath(); ?>src/index.php">Home</a></li>
-                <li id="productsLink" class="nav-link"><a href="<?php echo getRootPath(); ?>src/pages/products.php">Shop</a>
+                <li id="productsLink" class="nav-link"><a href="<?php echo getRootPath(); ?>src/pages/products.php">Build a Candle</a>
                 <!-- <li id="productsLink" class="nav-link"><a>Products &#x25BC</a> -->
                     <!-- <ul id="dropdown" class="dropdown">
                         <li><a href="#">Limited Edition</a></li>

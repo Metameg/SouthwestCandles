@@ -72,31 +72,43 @@
                     </div>
                 </div>
                 <div class="button-container">
-                    <a href="./pages/contact.php" class="primary-btn">Contact</a>
+                    <a href="./pages/contact.php" class="primary-btn">Contact Us</a>
                 </div>
             </section>
 
-            <h2 class="section-header">Featured Products</h2>
-            <section class="featured-products">
-                <?php foreach ($featuredProducts as $product): ?>
-                    <div class="product">
-                        <div class="product-image">
-                            <!-- <picture> -->
-                                <!-- <source srcset="assets/images/webp/candle_glow.webp" type="image/webp"> -->
-                                <img src="<?php echo htmlspecialchars($product['image_url']); ?>" alt="Placeholder candle product image">
-                            <!-- </picture> -->
-                            <span class="tag <?php echo htmlspecialchars($product['tag']); ?>"><?php echo htmlspecialchars($product['tag']); ?></span>
-                        </div>
-                        <div class="product-info">
-                            <h3><?php echo htmlspecialchars($product['name']); ?></h3>
-                            <p class="description"><?php echo htmlspecialchars($product['description']); ?></p>
-                            <p><i>From  </i> <span class="price">$8.00</span></p>
-                            <button class="add-to-cart">Add To Cart</button>
-                            <span class="item-id"><?php echo htmlspecialchars($product['id']); ?></span>
-                        </div>
+            
+            <!-- Build A Candle Section -->
+            <section class="build-candle-section">
+                <h2 class="section-header">How to Build a Candle</h2>
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Select your Fragrance</h3>
+                        <picture> 
+                            <source srcset="assets/images/webp/candle_glow.webp" type="image/webp">
+                            <img src="assets/images/candle_glow.jpg" alt="Several different fragrances">
+                        </picture>
                     </div>
-                <?php endforeach; ?>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Pick your Wick</h3>
+                        <picture> 
+                            <source srcset="assets/images/webp/candle_glow.webp" type="image/webp">
+                            <img src="assets/images/candle_glow.jpg" alt="Several different fragrances">
+                        </picture>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Choose a size</h3>
+                        <picture> 
+                            <source srcset="assets/images/webp/candle_glow.webp" type="image/webp">
+                            <img src="assets/images/candle_glow.jpg" alt="Several different fragrances">
+                        </picture>
+                    </div>
+                </div>
+                <a href="./pages/products.php" class="primary-btn">Start building a candle</a>
             </section>
+            
 
             <section class="promo-section">
                 <div class="promo-image">
@@ -107,9 +119,12 @@
                     </picture>
                 </div>
                 <div class="promo-content">
-                    <h3>New fragrances added.</h3>
-                    <h1>New Year Sale.<br>Up to <span>10%<span> Off.</h1>
-                    <a href="./pages/products.php" class="promo-link">Shop here</a>
+                    <p>New fragrances added throughout the year</p>
+                    <h2>Got any Ideas<br><span>Let Us Know!</span></h2>
+                    <p>I'm always open to creating new fragrances and bringing my customer's ideas to life! 
+                        Don't hesitate to contact me if you have any ideas!
+                    </p>
+                    <a href="./pages/contact.php" class="primary-btn">Contact Now</a>
                 </div>
             </section>
             
