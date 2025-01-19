@@ -101,8 +101,8 @@
                         <div class="step-number">3</div>
                         <h3>Choose a size</h3>
                         <picture> 
-                            <source srcset="assets/images/webp/candle_glow.webp" type="image/webp">
-                            <img src="assets/images/candle_glow.jpg" alt="Several different fragrances">
+                            <source srcset="assets/images/webp/three_sizes.webp" type="image/webp">
+                            <img src="assets/images/three_sizes.jpg" alt="Several different fragrances">
                         </picture>
                     </div>
                 </div>
