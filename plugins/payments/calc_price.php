@@ -12,9 +12,10 @@ if (file_exists($dotenv_file_path)) {
 \Stripe\Stripe::setApiKey($_ENV['STRIPE_SK_TEST']);
 
 const shipping_options = [
-    'DUXP0XXXXR05010' => 'USPS Ground Advantage', 
-    'DEXX0XXXXR05010' => 'Priority Mail Express', 
-    'DPXX0XXXXR05010' => 'Priority Mail', 
+    'DUXP0XXXXR0' => 'USPS Ground Advantage', 
+    'DUXP0XXXUR0' => 'USPS Ground Advantage', 
+    'DEXX0XXXXR0' => 'Priority Mail Express', 
+    'DPXX0XXXXR0' => 'Priority Mail'
 ];
 
 session_start();
@@ -28,7 +29,7 @@ $sku = $data['sku'] ?? null;
 $line_items = [];
 
 
-
+error_log("SKU" . $sku);
 // Handle initial load (no SKU selected yet)
 if (is_null($sku)) {
     // If the user has not selected a shipping option, reset the session flag to false
@@ -44,7 +45,7 @@ if (is_null($sku)) {
 }
 
 // Get rates for validating incoming data's shipping price
-$rates = getUSPSRates();
+$rates = get_USPS_rates();
 $result = json_decode($rates, true); // true to return an associative array
 
 // Check if decoding was successful
@@ -129,6 +130,7 @@ updatePaymentIntent($payment_intent_id, $amount_total,  $tax_calculation_id, $sh
 
 echo json_encode([
     'success' => true,
+    'subtotal' => $amount_total - $calculation['tax_amount_exclusive'] - $calculation['shipping_cost']['amount'],
     'shipping_price' => $calculation['shipping_cost']['amount'],
     'estimated_tax' => $calculation['tax_amount_exclusive'],
     'total_price' => $amount_total

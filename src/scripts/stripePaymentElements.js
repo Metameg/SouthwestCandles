@@ -80,16 +80,7 @@ import { error } from 'jquery';
         });
 
         s_addressEl.on('blur', (event) => {
-            isAddressInFocus = false;
-        
-            // Check the address completeness after a short delay to account for user input
-            
-            if (!isAddressInFocus) {
-                s_addressEl.getValue().then((result) => {
-                    checkAndTriggerTaxCalculation(result.value);
-                });
-            }
-            
+            isAddressInFocus = false;    
         });
 
         // When the address changes, calculate tax
@@ -225,11 +216,11 @@ import { error } from 'jquery';
         const shippingSpinner = document.getElementById('shippingLoadingOverlay');
         const orderSpinner = document.getElementById('orderLoadingOverlay');
         let shippingPrice = 0.00;
-        
+
         // Fetch and Render the shipping options
         shippingSpinner.style.display = 'flex';
         orderSpinner.style.display = 'flex';
-        const options = await fetchUSPSOptions(); 
+        const options = await fetchUSPSOptions(address); 
         await fetchTaxCalculation(address, null);
         shippingSpinner.style.display = 'none';
         renderShippingOptions(options);
@@ -293,7 +284,7 @@ import { error } from 'jquery';
         }
 
 
-        updateCartSummary(result.estimated_tax, result.shipping_price, result.total_price);
+        updateCartSummary(result.subtotal, result.estimated_tax, result.shipping_price, result.total_price);
     }
 
     async function cancelIntent(paymentIntentId) {
@@ -317,14 +308,15 @@ import { error } from 'jquery';
         // }
     }
 
-    async function fetchUSPSOptions() {
+    async function fetchUSPSOptions(address) {
         const response = await fetch('../../plugins/shipping/usps/get_rates.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                selected_shipping_option: paymentIntentId
+                cart: cart.getCart(),
+                address: address
             }),
         });
 
@@ -333,6 +325,7 @@ import { error } from 'jquery';
             errorMsg.style.display = "none";
             const result = await response.json();
             const rateResponse = JSON.parse(result.rateResponse);
+            console.log(rateResponse);
             const rateOptions = rateResponse.rateOptions;
             const options = extractUSPSOptions(rateOptions);
             errorMsg.style.display = 'none';
@@ -388,14 +381,15 @@ import { error } from 'jquery';
 
     function extractUSPSOptions(rateOptions) {
         const skus = [
-            "DPXX0XXXXR05010",
-            "DEXX0XXXXR05010",
-            "DUXP0XXXXR05010"
+            "DPXX0XXXXR0",
+            "DEXX0XXXXR0",
+            "DUXP0XXXXR0",
+            "DUXP0XXXUR0"
         ]
         let validOptions = [];
 
         rateOptions.forEach(opt => {
-            const opt_sku = opt.rates[0].SKU;
+            const opt_sku = opt.rates[0].SKU.slice(0, -4);
             if (skus.includes(opt_sku)) {
                 validOptions.push(opt);
             }
@@ -408,15 +402,16 @@ import { error } from 'jquery';
     // Function to render the shipping options dynamically
     function renderShippingOptions(options) {
         const deliveryTimes = {
-            "DPXX0XXXXR05010": "1-3 days",
-            "DEXX0XXXXR05010": "1-2 days guaranteed by 6:00pm",
-            "DUXP0XXXXR05010": "2-5 days"
+            "DPXX0XXXXR0": "1-3 days",
+            "DEXX0XXXXR0": "1-2 days guaranteed by 6:00pm",
+            "DUXP0XXXXR0": "2-5 days",
+            "DUXP0XXXUR0": "2-5 days"
         };
 
         shippingOptionsContainer.innerHTML = ""; // Clear existing content if any
 
         options.forEach(opt => {
-            const sku = opt.rates[0].SKU;
+            const sku = opt.rates[0].SKU.slice(0,-4);
             const deliveryTime = deliveryTimes[sku];
             const price = opt.rates[0].price;
             const name = opt.rates[0].mailClass
@@ -479,7 +474,8 @@ import { error } from 'jquery';
     }
 
 
-    function updateCartSummary(tax, shipping, total) {
+    function updateCartSummary(subtotal, tax, shipping, total) {
+        document.getElementById('orderSummarySubtotal').textContent = `$${(subtotal / 100).toFixed(2)}`;
         document.getElementById('taxAmount').textContent = `$${(tax / 100).toFixed(2)}`;
         document.getElementById('shippingAmount').textContent = `$${(shipping / 100).toFixed(2)}`;
         document.getElementById('totalAmount').textContent = `$${(total / 100).toFixed(2)}`;

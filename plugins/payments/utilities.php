@@ -62,16 +62,18 @@ function calcSubtotal($cart) {
 function extractUSPSOptions($rates) {
     // Define the list of SKUs to match
     $skus = [
-        "DPXX0XXXXR05010",
-        "DEXX0XXXXR05010",
-        "DUXP0XXXXR05010"
+        "DPXX0XXXXR0",
+        "DEXX0XXXXR0",
+        "DUXP0XXXXR0",
+        "DUXP0XXXUR0"
     ];
 
     $validOptions = [];
 
     // Iterate through the rate options
     foreach ($rates as $opt) {
-        if (isset($opt['rates'][0]['SKU']) && in_array($opt['rates'][0]['SKU'], $skus)) {
+        $opt_sku = $opt['rates'][0]['SKU'];
+        if (isset($opt['rates'][0]['SKU']) && in_array(substr($opt_sku, 0, -4), $skus)) {
             $validOptions[] = $opt;
         }
     }
@@ -87,7 +89,7 @@ function build_sku_to_price_map($shippingData) {
         if (isset($item['rates'][0]['SKU']) && isset($item['rates'][0]['price'])) {
             $sku = $item['rates'][0]['SKU'];
             $price = $item['rates'][0]['price'];
-            $skuToPriceMap[$sku] = $price;
+            $skuToPriceMap[substr($sku, 0, -4)] = $price;
         }
     }
 

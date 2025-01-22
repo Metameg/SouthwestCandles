@@ -163,7 +163,7 @@ try {
                             <h2>Order Summary</h2>
                             <div class="summary-item">
                                 <p>Item(s) Subtotal</p>
-                                <p>$<?php echo number_format($subtotal, 2) ?></p>
+                                <p id="orderSummarySubtotal">$<?php echo number_format($subtotal, 2) ?></p>
                             </div>
                             <div class="summary-item">
                                 <p>Shipping</p>
