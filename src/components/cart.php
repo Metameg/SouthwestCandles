@@ -19,7 +19,7 @@
         </div>
         
         <div class="cart-actions">
-            <button id="closeCart" class="back-to-shop">← Back to Shop</button>
+            <button id="closeCart" class="back-to-shop">← Add More</button>
             <button id="clearCart" class="clear-btn">Clear Cart</button>
             <button id="checkoutCart" class="checkout">Checkout →</button>
         </div>

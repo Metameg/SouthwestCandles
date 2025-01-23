@@ -12,7 +12,7 @@
             </a>
         </div>
         <p class="designer">
-            Designed by <a href="https://www.thedomaindesigners.com">The Domain Dessigners</a>
+            Designed by <a href="https://www.thedomaindesigners.com">The Domain Designers</a>
         </p>
   </div>
 </footer>

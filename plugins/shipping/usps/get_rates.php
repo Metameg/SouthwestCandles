@@ -200,7 +200,7 @@ function aggregate_prices($rateOptions1, $rateOptions2) {
             }
         }
     }
-    error_log("agg rates: " . print_r($aggregatedRateOptions, true));
+    
     return $aggregatedRateOptions;
 }
 

@@ -25,29 +25,13 @@ if (file_exists($dotenv_file_path)) {
 
 function send_order($args) {
 
-    extract($args);
     // Email parameters
     // $to = 'admin@thedomaindesigners.com'; 
-    $subject = 'New Candle Order Submission';
+    $subject = 'New Candle Order!';
     $to = 'metameg8@gmail.com';
     $from = 'Carrie\'s Candles';
 
-    // Compose email message
-    $body = "New Order: \n\n"; 
-    $body .= "Payment Intent: \n$payment_intent_id\n";
-    $body .= "\nUser Email: \n$user_email\n";
-    $body .= "\Amount:\n$amount\n";
-    $body .= "\nLine Items:\n$line_items\n";
-    $body .= "\n\nAddress:\n";
-    $body .= "\nAddress Line 1:\n$address1\n";
-    $body .= "\nAddress Line 2:\n$address2\n";
-    $body .= "\nCity:\n$city\n";
-    $body .= "\nState:\n$state\n";
-    $body .= "\nZip Code:\n$zip\n";
-    $body .= "\nCountry:\n$country\n";
-    $body .= "\n\Shipping Option:\n";
-    $body .= "\n$shipping_option\n";
-    
+    $body = generate_body($args);
 
     // Create a new PHPMailer instance
     $mail = new PHPMailer(true);
@@ -88,6 +72,65 @@ function send_order($args) {
     } catch (Exception $e) {
         // echo "Oops! Something went wrong. Please try again later. Error: {$mail->ErrorInfo}";
     }
+}
+
+function generate_body($args) {
+    
+    extract($args);
+    $line_items_array = json_decode($line_items, true);
+
+    $body = "<h3>New Order Details</h3>";
+    $body .= "<hr>";
+    $body .= "<h4>Payment Information:</h4>";
+    $body .= "<p><strong>Payment Intent ID:</strong> $payment_intent_id<br>";
+    $body .= "<strong>Amount:</strong> $" . number_format($amount / 100, 2) . "</p>";
+
+    $body .= "<h4>User Information:</h4>";
+    $body .= "<p><strong>Email:</strong> $user_email</p>";
+
+    // Line Items 
+    $body .= "<h4>Line Items:</h4>";
+    $body .= "<table border='1' cellspacing='0' cellpadding='5' style='border-collapse: collapse; width: 100%;'>";
+    $body .= "<thead>
+                <tr>
+                    <th style='text-align: left;'>Name</th>
+                    <th style='text-align: left;'>Wick Type</th>
+                    <th style='text-align: left;'>Size</th>
+                    <th style='text-align: right;'>Quantity</th>
+                </tr>
+            </thead>";
+    $body .= "<tbody>";
+
+    // Iterate through the array and add rows for each item
+    foreach ($line_items_array as $item) {
+        $body .= "<tr>
+                    <td>{$item['name']}</td>
+                    <td>{$item['wickType']}</td>
+                    <td>{$item['selectedSize']}</td>
+                    <td style='text-align: right;'>{$item['quantity']}</td>
+                </tr>";
+    }
+
+    $body .= "</tbody>";
+    $body .= "</table>";
+
+    $body .= "<h4>Shipping Address:</h4>";
+    $body .= "<p><strong>Address Line 1:</strong> $address1<br>";
+    $body .= "<strong>Address Line 2:</strong> $address2<br>";
+    $body .= "<strong>City:</strong> $city<br>";
+    $body .= "<strong>State:</strong> $state<br>";
+    $body .= "<strong>Zip Code:</strong> $zip<br>";
+    $body .= "<strong>Country:</strong> $country</p>";
+
+    $body .= "<h4>Shipping Option:</h4>";
+    $body .= "<p>$shipping_option</p>";
+
+    $body .= "<hr>";
+    $body .= "<p>Thank you for your order!</p>";
+
+
+
+    return $body;
 }
 
 ?>
