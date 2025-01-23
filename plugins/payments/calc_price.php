@@ -28,8 +28,6 @@ $address = $data['address'];
 $sku = $data['sku'] ?? null;
 $line_items = [];
 
-
-error_log("SKU" . $sku);
 // Handle initial load (no SKU selected yet)
 if (is_null($sku)) {
     // If the user has not selected a shipping option, reset the session flag to false
@@ -51,7 +49,7 @@ $result = json_decode($rates, true); // true to return an associative array
 // Check if decoding was successful
 if ($result && isset($result['rateResponse'])) {
     // Decode the nested "rateResponse" field
-    $rateResponse = json_decode($result['rateResponse'], true);
+    $rateResponse = $result['rateResponse'];
 
     if ($rateResponse && isset($rateResponse['rateOptions'])) {
         // Extract "rateOptions"
@@ -125,14 +123,16 @@ $calculation = \Stripe\Tax\Calculation::create([
 ]);
 
 $amount_total = $calculation['amount_total'];
+$amount_tax =  $calculation['tax_amount_exclusive'];
+$amount_shipping = $calculation['shipping_cost']['amount'];
 $tax_calculation_id = $calculation['id'];
 updatePaymentIntent($payment_intent_id, $amount_total,  $tax_calculation_id, $shipping_option, $address);
 
 echo json_encode([
     'success' => true,
-    'subtotal' => $amount_total - $calculation['tax_amount_exclusive'] - $calculation['shipping_cost']['amount'],
-    'shipping_price' => $calculation['shipping_cost']['amount'],
-    'estimated_tax' => $calculation['tax_amount_exclusive'],
+    'subtotal' => $amount_total - $amount_tax - $amount_shipping,
+    'shipping_price' => $amount_shipping,
+    'estimated_tax' => $amount_tax,
     'total_price' => $amount_total
 ]);
 ?>

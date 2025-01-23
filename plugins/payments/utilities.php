@@ -1,5 +1,5 @@
 <?php
-require_once('../../vendor/autoload.php');
+require_once(__DIR__ . '/../../vendor/autoload.php');
 
 $dotenv_file_path = __DIR__ . '/../../.env';
 if (file_exists($dotenv_file_path)) {
@@ -38,7 +38,7 @@ function getProductPrice($size) {
         '16oz' => 23.00
     ];
 
-    return isset($prices[$size]) ? $prices[$size] : 0.00;
+    return isset($prices[$size]) ? $prices[$size] : -1;
 }
 
 
@@ -48,7 +48,7 @@ function calcSubtotal($cart) {
         if (isset($item['selectedSize'], $item['quantity']) && $item['quantity'] > 0) {
             // Fetch product price using product_id
             $price = getProductPrice($item['selectedSize']);
-            if (!in_array($price, [9.00, 12.00, 23.00])) {
+            if (!in_array($price, [9.00, 12.00, 23.00]) || $price == -1) {
                 return "There was an error checking you out. Please try again.";
             }
             // Calculate the total price for this item (price * quantity)

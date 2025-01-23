@@ -220,10 +220,12 @@ import { error } from 'jquery';
         // Fetch and Render the shipping options
         shippingSpinner.style.display = 'flex';
         orderSpinner.style.display = 'flex';
-        const options = await fetchUSPSOptions(address); 
-        await fetchTaxCalculation(address, null);
+        const options = await fetchUSPSOptions(address);
+        if (options) { 
+            await fetchTaxCalculation(address, null);
+            renderShippingOptions(options);
+        }
         shippingSpinner.style.display = 'none';
-        renderShippingOptions(options);
         orderSpinner.style.display = 'none';
 
         // Dynamically change the shipping price based on selected shipping option
@@ -322,10 +324,15 @@ import { error } from 'jquery';
 
         
         if (response.ok) {
-            errorMsg.style.display = "none";
             const result = await response.json();
-            const rateResponse = JSON.parse(result.rateResponse);
-            console.log(rateResponse);
+            if (result.error) {
+                errorMsg.style.display = "block";
+                errorMsg.textContent = result.error;
+                payBtn.disabled = true;
+                return;
+            }
+            payBtn.disabled = false;
+            const rateResponse = result.rateResponse;
             const rateOptions = rateResponse.rateOptions;
             const options = extractUSPSOptions(rateOptions);
             errorMsg.style.display = 'none';

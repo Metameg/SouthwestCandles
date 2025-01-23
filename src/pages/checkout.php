@@ -30,7 +30,6 @@ foreach ($cart as $item) {
 if (is_string($subtotal)) {
     // Pass the error message to the HTML
     $errorMessage = $subtotal;
-    echo $errorMessage;
 } else {
     // Proceed with the checkout process
     $errorMessage = '';
