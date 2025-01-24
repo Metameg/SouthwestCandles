@@ -188,6 +188,9 @@ body {
   font-style: italic;
   color: green;
 }
+.selection .selection-card .wick-img {
+  width: 50%;
+}
 
 .product-summary {
   padding: 2rem;

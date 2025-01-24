@@ -94,13 +94,19 @@
                 <div class="selection-card wick-selector">
                     <h4 class="card-name">Cotton</h4>
                     
-                    <img src="../product-pic.webp" alt="Deco Collection" class="card-image">
+                    <picture> 
+                        <source srcset="../assets/images/webp/cotton-wick.webp" type="image/webp">
+                        <img src="../assets/images/cotton-wick.png" alt="Cotton Wick" class="wick-img">
+                    </picture>
                     <input class="custom-radio" type="radio" name="wickType">
                 </div>
 
                 <div class="selection-card wick-selector">
                     <h4 class="card-name">Wood</h4>
-                    <img src="../product-pic.webp" alt="Deco Collection" class="card-image">
+                    <picture> 
+                        <source srcset="../assets/images/webp/wood-wick.webp" type="image/webp">
+                        <img src="../assets/images/wood-wick.png" alt="Wooden Wick" class="wick-img">
+                    </picture>
                     <input class="custom-radio" type="radio" name="wickType">
                 
                 </div>
@@ -177,14 +183,7 @@
         <section class="disclosure text-box">
             <h1 class="text-title">Disclosure</h1>
             <p class="text-description">
-            Immerse yourself in the soothing ambiance of our handcrafted candle collection, 
-            designed to elevate your home and well-being. Each candle is meticulously crafted 
-            with premium ingredients, blending the calming essence of CBD with luxurious 
-            fragrances that transport your senses. Whether you're seeking to unwind after 
-            a long day, create a warm and inviting atmosphere, or find the perfect gift 
-            for a loved one, our curated collections offer something for every occasion. 
-            Experience the art of relaxation with candles that combine beauty, tranquility, 
-            and a touch of indulgence.
+            Our candles are handcrafted using high-quality ingredients, but slight variations in color, size, or fragrance may occur. Always burn candles on a heat-resistant surface, trim wicks before use, and never leave them unattended. Individuals with allergies or sensitivities should review ingredients before purchase. Orders are final, but we will replace items damaged during shipping if contacted within 7 days. By purchasing, you agree to follow all safety guidelines and assume responsibility for proper use. For questions, contact us at <a href="mailto:southwestcandles@yahoo.com">southwestcandles@yahoo.com</a>. Thank you for supporting our small business!
             </p>
                 </section>
 

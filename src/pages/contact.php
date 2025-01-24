@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Contact Us - The Candle Co.</title>
+        <title>Contact Us - Southwest Candles</title>
         <link rel="stylesheet" href="../css/contact.css">
         <link rel="stylesheet" href="../css/navbar.css">
         <link rel="stylesheet" href="../css/cart.css">
@@ -27,15 +27,15 @@
                 <div class="contact-info-box">
                     <p>For questions about any of our products, or help with placing your order, don't hesitate to contact us at:</p>
                     <h3>General Inquiries</h3>
-                    <p>support@thecandleco.com</p>
+                    <p><a href="mailto:southwestcandles@yahoo.com">southwestcandles@yahoo.com</a></p>
                     
-                    <h3>Corporate Office</h3>
+                    <h3>Home Office</h3>
                     <p>1234 Wax Lane</p>
-                    <p>Candleville, CA 90210</p>
+                    <p>Houston, TX, 90210</p>
                     
-                    <h3>Wholesale Inquiries</h3>
-                    <p>wholesale@thecandleco.com</p>
-                    <p>(555) 987-6543</p>
+                    <!-- <h3>Wholesale Inquiries</h3>
+                    <p><a href="mailto:southwestcandles@yahoo.com">southwestcandles@yahoo.com</a></p>
+                    <p><a href="tel:5046060139">504-606-0139</a></p> -->
                 </div>
             </div>
         </section>

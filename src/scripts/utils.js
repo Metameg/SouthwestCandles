@@ -27,3 +27,4 @@ export function getRelativeRootPath(rootIdentifier = '') {
 
     return relativePath || './'; // Default to './' if already at root
 }
+

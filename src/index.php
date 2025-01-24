@@ -3,7 +3,7 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrie's Candle Products</title>
+    <title>Southwest Candles Shop</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/cart.css">
@@ -47,7 +47,7 @@
             <section class="hero">
                 <div class="hero-overlay"></div>
                 <div class="hero-info">
-                    <h1><span class="title-offcolor">CARRIE'S</span> Candles</h1>
+                    <h1><span class="title-offcolor">SOUTHWEST</span> Candles</h1>
                     <p class="cta-1">A Wick Above the Rest</p>
                     <p class="cta-2">Five Featured Seasonals</p>
                     <p class="cta-3">ALL YEAR 'ROUND</p>
@@ -56,7 +56,7 @@
             </section>
 
             <section class="about-section">
-                <h2 class="about-title">Carrie's Promise</h2>
+                <h2 class="about-title">Our Promise</h2>
                 <div class="about-content">
                     <div class="about-item">
                         <h3>Handcrafted with Love</h3>
@@ -64,7 +64,7 @@
                     </div>
                     <div class="about-item">
                         <h3>Home Manufactured</h3>
-                        <p>Carrie's home collection is designed, developed, produced, tested, packed, and shipped by Carrie herself in her shop located in Houston, TX </p>
+                        <p>Our home collection is designed, developed, produced, tested, packed, and shipped by the founder, Carrie, in her shop located in Houston, TX </p>
                     </div>
                     <div class="about-item">
                         <h3>Affordability is #1 Concern</h3>
@@ -85,16 +85,16 @@
                         <div class="step-number">1</div>
                         <h3>Select your Fragrance</h3>
                         <picture> 
-                            <source srcset="assets/images/webp/candle_glow.webp" type="image/webp">
-                            <img src="assets/images/candle_glow.jpg" alt="Several different fragrances">
+                            <source srcset="assets/images/webp/fragrance-varieties.webp" type="image/webp">
+                            <img src="assets/images/fragrance-varieties.png" alt="Several different fragrances">
                         </picture>
                     </div>
                     <div class="step">
                         <div class="step-number">2</div>
                         <h3>Pick your Wick</h3>
                         <picture> 
-                            <source srcset="assets/images/webp/candle_glow.webp" type="image/webp">
-                            <img src="assets/images/candle_glow.jpg" alt="Several different fragrances">
+                            <source srcset="assets/images/webp/wick-varieties.webp" type="image/webp">
+                            <img src="assets/images/wick-varieties.png" alt="Different wicks to choose from" class="wick-img">
                         </picture>
                     </div>
                     <div class="step">
@@ -102,7 +102,7 @@
                         <h3>Choose a size</h3>
                         <picture> 
                             <source srcset="assets/images/webp/three_sizes.webp" type="image/webp">
-                            <img src="assets/images/three_sizes.jpg" alt="Several different fragrances">
+                            <img src="assets/images/three_sizes.png" alt="Several different sizes to choose from">
                         </picture>
                     </div>
                 </div>

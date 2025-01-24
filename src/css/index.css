@@ -199,6 +199,9 @@ body {
   max-width: 100%;
   border-radius: 8px;
 }
+.build-candle-section .steps-container .step .wick-img {
+  max-width: 64%;
+}
 @media (max-width: 480px) {
   .build-candle-section .steps-container {
     flex-direction: column;

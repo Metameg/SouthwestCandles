@@ -17,6 +17,10 @@ class Cart {
         return JSON.parse(localStorage.getItem('cart')) || [];
     }
 
+    getTotalItems() {
+        return this.cart.reduce((total, item) => total + item.quantity, 0);
+    }
+
     // Method to save the cart back to localStorage
     saveCart() {
         localStorage.setItem('cart', JSON.stringify(this.cart));
@@ -24,6 +28,7 @@ class Cart {
 
     // Method to update the cart display in the DOM
     updateCart() {
+        this.updateCartItemTicker();
         const cartItemsList = $('#cartItems');
         cartItemsList.empty(); 
 
@@ -270,6 +275,19 @@ class Cart {
 
         // Convert the consolidated object back into an array
         this.cart = Object.values(consolidated);
+    }
+
+    // Update the cart's ticker symbol
+    updateCartItemTicker() {
+        if ($("#cartItemCount").length > 0) {
+            const cartItemCount = this.getTotalItems();
+            if (cartItemCount > 0) {
+                $("#cartItemCount").text(cartItemCount);
+                $("#cartItemCount").css("display", "flex");
+            } else {
+                $("#cartItemCount").css("display", "none");
+            }
+        }
     }
 }
 

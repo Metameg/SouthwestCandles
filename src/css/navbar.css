@@ -67,9 +67,29 @@ header nav .nav-links #cartContainer #cartNavBtn {
   border-radius: 5px;
   cursor: pointer;
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
   z-index: 4;
+}
+header nav .nav-links #cartContainer #cartNavBtn img {
+  display: block;
+}
+header nav .nav-links #cartContainer #cartNavBtn #cartItemCount {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 header nav .nav-links #cartContainer #cartNavBtn:hover {
   background-color: #c87f0a;

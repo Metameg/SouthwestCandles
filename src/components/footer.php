@@ -1,7 +1,7 @@
 <footer class="footer">
   <div class="footer-content">
         <p class="copyright">
-        Copyright © 2024 Carrie's Candles
+        Copyright © 2025 Southwest Candles
         </p>
         <div class="social-icons">
             <a href="#" aria-label="Facebook">
