@@ -8,11 +8,12 @@
         <link rel="stylesheet" href="../css/navbar.css">
         <link rel="stylesheet" href="../css/cart.css">
         <link rel="stylesheet" href="../css/footer.css">
+        <script src="/dist/bundle.js"></script>
     </head>
     <body>
 
          <!-- Navbar -->
-         <?php $basePath = '..';?>
+        <?php $basePath = '..';?>
         <?php include $basePath . '/components/navbar.php';?>
 
         <!-- Cart -->

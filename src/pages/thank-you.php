@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/cart.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/thank-you.css">
+    <script src="/dist/bundle.js"></script>
     </head>
     <body>
 
@@ -38,7 +39,5 @@
             
             <?php include $basePath . '/components/footer.php';?>
         </main>
-        
-        <script src="/dist/bundle.js"></script>
     </body>
 </html>
