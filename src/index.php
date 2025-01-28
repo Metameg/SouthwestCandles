@@ -51,7 +51,7 @@
                     <p class="cta-1">A Wick Above the Rest</p>
                     <p class="cta-2">Five Featured Seasonals</p>
                     <p class="cta-3">ALL YEAR 'ROUND</p>
-                    <a href="./pages/products.php" class="primary-btn">Shop Now</a>
+                    <a href="./pages/build-candle.php" class="primary-btn">Shop Now</a>
                 </div>
             </section>
 
@@ -106,7 +106,7 @@
                         </picture>
                     </div>
                 </div>
-                <a href="./pages/products.php" class="primary-btn">Start building a candle</a>
+                <a href="./pages/build-candle.php" class="primary-btn">Start building a candle</a>
             </section>
             
 

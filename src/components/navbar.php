@@ -29,7 +29,7 @@ $isCheckoutPage = ($currentFile === 'checkout.php');
             <div id="cartContainer">
                 <?php if ($isCheckoutPage): ?>
                     <!-- Link to index.php if on checkout.php -->
-                    <a id="continueShoppingLink" href="<?php echo getRootPath(); ?>src/pages/products.php">&#8592; Continue Shopping</a>
+                    <a id="continueShoppingLink" href="<?php echo getRootPath(); ?>src/pages/build-candle.php">&#8592; Continue Shopping</a>
                 <?php else: ?>
                     <a id="cartNavBtn">
                         <img src="<?php echo getRootPath();?>src/assets/images/svg/cart.svg" alt="Cart Icon" width="30" height="30">
@@ -40,8 +40,8 @@ $isCheckoutPage = ($currentFile === 'checkout.php');
             </div>
             <ul>
                 <li class="nav-link"><a href="<?php echo getRootPath(); ?>src/index.php">Home</a></li>
-                <li id="productsLink" class="nav-link"><a href="<?php echo getRootPath(); ?>src/pages/products.php">Build a Candle</a>
-                <!-- <li id="productsLink" class="nav-link"><a>Products &#x25BC</a> -->
+                <li id="buildCandleLink" class="nav-link"><a href="<?php echo getRootPath(); ?>src/pages/build-candle.php">Build a Candle</a>
+                <!-- <li id="buildCandleLink" class="nav-link"><a>Products &#x25BC</a> -->
                     <!-- <ul id="dropdown" class="dropdown">
                         <li><a href="#">Limited Edition</a></li>
                         <li><a href="#">Seasonal</a></li>

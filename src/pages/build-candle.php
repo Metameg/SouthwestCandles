@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/products.css">
+        <link rel="stylesheet" href="../css/build-candle.css">
         <link rel="stylesheet" href="../css/navbar.css">
         <link rel="stylesheet" href="../css/cart.css">
         <link rel="stylesheet" href="../css/footer.css">
@@ -98,7 +98,7 @@
                         <source srcset="../assets/images/webp/cotton-wick.webp" type="image/webp">
                         <img src="../assets/images/cotton-wick.png" alt="Cotton Wick" class="wick-img">
                     </picture>
-                    <input class="custom-radio" type="radio" name="wickType">
+                    <input class="custom-radio" type="radio" name="wickType" value="cotton">
                 </div>
 
                 <div class="selection-card wick-selector">
@@ -107,7 +107,7 @@
                         <source srcset="../assets/images/webp/wood-wick.webp" type="image/webp">
                         <img src="../assets/images/wood-wick.png" alt="Wooden Wick" class="wick-img">
                     </picture>
-                    <input class="custom-radio" type="radio" name="wickType">
+                    <input class="custom-radio" type="radio" name="wickType" value="wood">
                 
                 </div>
             </div>
@@ -123,14 +123,14 @@
             </div>
 
             <div class="selection">
-                <div class="selection-card size-selector">
+                <div id="size4oz" class="selection-card size-selector">
                     <h4 class="card-name">4oz - <span class="price">$9</span></h4>
                     <picture>
                         <source srcset="../assets/images/webp/4oz.webp" type="image/webp">
                         <img src="../assets/images/4oz.png" alt="4oz sized tin" class="card-image">
                     </picture>
-                    <input class="custom-radio" type="radio" name="sizeType">
-                
+                    <input class="custom-radio" type="radio" name="sizeType" value="4oz">
+                    <p id="woodWickErrorMsg" class="wood-wick-error-msg">Wood wicks are not supported for this size.</p>
                 </div>
 
                 <div class="selection-card size-selector">
@@ -139,7 +139,7 @@
                         <source srcset="../assets/images/webp/8oz.webp" type="image/webp">
                         <img src="../assets/images/8oz.png" alt="8oz sized tin" class="card-image size-8oz">
                     </picture>
-                    <input class="custom-radio" type="radio" name="sizeType">
+                    <input class="custom-radio" type="radio" name="sizeType" value="8oz">
                 
                 </div>
 
@@ -149,7 +149,7 @@
                         <source srcset="../assets/images/webp/16oz.webp" type="image/webp">
                         <img src="../assets/images/16oz.png" alt="16oz sized tin" class="card-image">
                     </picture>
-                    <input class="custom-radio" type="radio" name="sizeType">
+                    <input class="custom-radio" type="radio" name="sizeType" value="16oz">
                 
                 </div>
             </div>

@@ -35,8 +35,8 @@ $(() => {
     if (window.location.pathname.endsWith('checkout.php')) {
         import('./stripePaymentElements')
     }
-    if (window.location.pathname.endsWith('products.php')) {
-        import('./products')
+    if (window.location.pathname.endsWith('build-candle.php')) {
+        import('./build-candle')
     }
     if (window.location.pathname.endsWith('thank-you.php')) {
         import('./thankYou').then(() => {

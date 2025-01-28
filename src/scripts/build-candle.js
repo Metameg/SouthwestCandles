@@ -76,9 +76,36 @@ import cartInstance from './cart';
         // event listeners for wicks
         wickSelectors.forEach(item => {
             const radio = item.querySelector('.custom-radio');
+            const wick = item.querySelector('.card-name');
+            const size4oz = document.getElementById('size4oz');
+            const radio4oz = size4oz.querySelector('.custom-radio');
+            const name4oz = size4oz.querySelector('.card-name');
+            const price = name4oz.querySelector('.price');
+            const img4oz = size4oz.querySelector('.card-image');
+            const woodErrorMsg = document.getElementById('woodWickErrorMsg')
+            
+
             const updateProductSummary = () => {
-                const wick = item.querySelector('.card-name');
-    
+                const isWoodWick = radio.value === 'wood' && radio.checked;
+
+                if (isWoodWick) {
+                    console.log(radio4oz);
+                    size4oz.disabled = true;
+                    woodErrorMsg.style.display = 'block';
+                    size4oz.classList.add('disabled'); 
+                    radio4oz.classList.add('disabled'); 
+                    price.classList.add('disabled'); 
+                    name4oz.classList.add('disabled'); 
+                    img4oz.classList.add('disabled'); 
+                } else {
+                    size4oz.disabled = false;
+                    woodErrorMsg.style.display = 'none';
+                    size4oz.classList.remove('disabled');
+                    radio4oz.classList.remove('disabled');
+                    price.classList.remove('disabled');
+                    name4oz.classList.remove('disabled');
+                    img4oz.classList.remove('disabled');
+                }
                 // Update the product summary wick type
                 productSummaryWick.textContent = wick.textContent.trim();
 
