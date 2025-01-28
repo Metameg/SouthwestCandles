@@ -92,7 +92,7 @@ body {
 .fragerance-list .list-item .list-text {
   margin-left: 10px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 10px;
   width: 100%;
 }
@@ -138,8 +138,13 @@ body {
     padding: 20px;
     width: 90%;
   }
-  .fragerance-list .list-item .description {
-    display: none;
+  .fragerance-list .list-item .list-text {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+  .fragerance-list .list-item .list-text h4 {
+    margin: 0;
   }
 }
 
