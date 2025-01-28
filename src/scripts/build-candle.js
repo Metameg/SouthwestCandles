@@ -89,7 +89,6 @@ import cartInstance from './cart';
                 const isWoodWick = radio.value === 'wood' && radio.checked;
 
                 if (isWoodWick) {
-                    console.log(radio4oz);
                     size4oz.disabled = true;
                     woodErrorMsg.style.display = 'block';
                     size4oz.classList.add('disabled'); 

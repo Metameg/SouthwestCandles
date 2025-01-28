@@ -104,7 +104,6 @@ class Cart {
                     item.quantity += 1; 
                     this.saveCart(); 
                     this.updateCart(); 
-                    console.log(this.cart);
                 });
 
                 // Add click event listener for decrease button
@@ -223,7 +222,6 @@ class Cart {
         $("#cartOverlay").fadeOut(() => {
             $("#cartOverlay").css("display", "none");
         });
-        console.log(this.cart);
     }
 
     checkout() {

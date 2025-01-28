@@ -39,11 +39,6 @@ $(() => {
         import('./build-candle')
     }
     if (window.location.pathname.endsWith('thank-you.php')) {
-        import('./thankYou').then(() => {
-            console.log("Thank you module loaded successfully!");
-        })
-        .catch((err) => {
-            console.error("Error loading thank you module:", err);
-        });
+        import('./thankYou')
     }
 });

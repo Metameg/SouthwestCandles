@@ -31,8 +31,8 @@
                     <p><a href="mailto:southwestcandles@yahoo.com">southwestcandles@yahoo.com</a></p>
                     
                     <h3>Home Office</h3>
-                    <p>1234 Wax Lane</p>
-                    <p>Houston, TX, 90210</p>
+                    <p>5347 Wolfpen Ridge Ln</p>
+                    <p>Missouri City, TX, 77459</p>
                     
                     <!-- <h3>Wholesale Inquiries</h3>
                     <p><a href="mailto:southwestcandles@yahoo.com">southwestcandles@yahoo.com</a></p>

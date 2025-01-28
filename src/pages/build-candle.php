@@ -46,14 +46,7 @@
             <div class="text-box">
                 <h1 class="text-title">Handcrafted candles made for you!</h1>
                 <p class="text-description">
-                Immerse yourself in the soothing ambiance of our handcrafted candle collection, 
-                designed to elevate your home and well-being. Each candle is meticulously crafted 
-                with premium ingredients, blending the calming essence of CBD with luxurious 
-                fragrances that transport your senses. Whether you're seeking to unwind after 
-                a long day, create a warm and inviting atmosphere, or find the perfect gift 
-                for a loved one, our curated collections offer something for every occasion. 
-                Experience the art of relaxation with candles that combine beauty, tranquility, 
-                and a touch of indulgence.
+                Create your perfect candle with our Build Your Own Candle experience! Start by selecting your favorite fragrance from a variety of rich, inviting scents. Next, choose the wick type that best suits your burn preference, whether it's a classic cotton wick or a long-lasting wooden wick. Then, pick the size that fits your space, from compact and cozy to large and luxurious. Once you've crafted your ideal combination, simply add it to your cart and complete your purchase. It's that easy to design a candle that's uniquely yours!
                 </p>
             </div>
             

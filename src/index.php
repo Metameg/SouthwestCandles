@@ -16,30 +16,6 @@
         <?php $basePath = '.';?>
         <?php include $basePath . '/components/navbar.php';?>
 
-        <!-- Fetch all products -->
-        <?php
-            // Include the database connection
-            include '../db.php';
-
-            try {
-                $pdo = getPDO();
-                // Fetch products from the database
-                $stmt = $pdo->query("SELECT * FROM products");
-                $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                
-                // Fetch featured products
-                $stmt = $pdo->query("SELECT * FROM products WHERE featured = 1");
-                $featuredProducts = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            } catch (Exception $e) {
-                // Display the error message
-                echo "Error: " . $e->getMessage();
-                // Optionally, display the stack trace for more debugging details
-                echo "<pre>" . $e->getTraceAsString() . "</pre>";
-            }
-        ?>
-
-
-
         <!-- Cart -->
         <?php include $basePath . '/components/cart.php';?>
         
