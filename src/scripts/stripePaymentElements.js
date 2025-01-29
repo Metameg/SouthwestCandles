@@ -2,7 +2,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import cart from './cart';
 
 (function () {
-    const STRIPE_PUBLIC_KEY = 'pk_test_51QHonuBzPFeYbIr4JLEEpJQbGR7P0WFb9dJH4HhjdXyq2DJqIh6I3TaWZLQ49ffz0VYtDupbBgByT6SVsYZpo7Rw00jwB23EOF'; // Replace with your Stripe public key
+    const STRIPE_PUBLIC_KEY = 'pk_test_51Qm7P4LzVET2sxhTd2FmcuB9bpBFZW58h9x45HcKNzgm5wpSa1BOYVRXd5UxHgFZtPrPX24CvpbPhWLCJb4PpPTu00RHFRjPkN'; // Replace with your Stripe public key
     const paymentElement = document.getElementById('paymentOptions');
     const addressElement = document.getElementById('addressElement');
     const email = document.getElementById('email');
