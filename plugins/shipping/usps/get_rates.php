@@ -51,16 +51,11 @@ function get_USPS_rates() {
     }
 
     // For partial package
-    // error_log("PARTIEAL WEIGHT: " . $partial_weight);
     $is_envelope = $partial_weight <= ENV_WEIGHT_LIMIT;
     $partial_pkg_dims = calc_package_dims($partial_weight, $is_envelope);
     $partial_pkg_response = fetch_package_rates($access_token, $partial_pkg_dims, $to_zip);
 
     $aggregate_response = aggregate_responses($partial_pkg_response, $full_pkg_response, $num_full_packages, $has_partial);
-    // error_log("NUM PKGS: " . $num_full_packages);
-    // error_log("WEIGHT: " . $weight);
-    // error_log("INTDIV: " . intdiv((int)$weight, PKG_WEIGHT_LIMIT));
-    
 
     curl_close($curl);
 

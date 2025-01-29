@@ -126,7 +126,7 @@
                     <p id="woodWickErrorMsg" class="wood-wick-error-msg">Wood wicks are not supported for this size.</p>
                 </div>
 
-                <div class="selection-card size-selector">
+                <div id="size8oz" class="selection-card size-selector">
                     <h4 class="card-name">8oz - <span class="price">$12</span></h4>
                     <picture>
                         <source srcset="../assets/images/webp/8oz.webp" type="image/webp">
@@ -136,7 +136,7 @@
                 
                 </div>
 
-                <div class="selection-card size-selector">
+                <div id="size16oz" class="selection-card size-selector">
                     <h4 class="card-name">16oz - <span class="price">$23</span></h4>
                     <picture>
                         <source srcset="../assets/images/webp/16oz.webp" type="image/webp">

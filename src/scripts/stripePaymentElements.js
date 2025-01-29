@@ -48,7 +48,6 @@ import cart from './cart';
                     backgroundColor: '#000',
                 },
           
-                // See all supported class names and selector syntax below
             }
         };
 
@@ -146,7 +145,6 @@ import cart from './cart';
                 await processTransaction(paymentIntentId, email.value);
                 // Hide the overlay
                 loadingOverlay.style.display = 'none';
-                // updateRecepientEmail(paymentIntentId, email.value);
                 window.location.href = `http://localhost:3000/src/pages/thank-you.php?success=true&paymentIntentId=${sResult.paymentIntent.id}`;;
             } else if (sResult.paymentIntent.status === 'requires_action') {
                 // Handle further actions if required (e.g., Cash App validation)
@@ -186,30 +184,7 @@ import cart from './cart';
         cancelIntent(paymentIntentId);
     });
 
-
-    // async function updateRecepientEmail(paymentIntentId, email) {
-    //      // Send the updated email to the backend
-    //      try {
-    //         const response = await fetch('../../plugins/payments/update_intent_email.php', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({
-    //                 email: email,
-    //                 paymentIntentId: paymentIntentId
-    //              }),
-    //         });
-
-    //         const result = await response.json();
-
-    //     } catch (error) {
-    //         errorMsg.style.display = "block";
-    //         errorMsg.textContent = 'Something went wrong. Please try again.';
-    //         console.error('Error updating email:', error);
-    //     }
-    // }
-
+    
     async function triggerTaxCalculation(address) {
         if (!address) return;
         const shippingSpinner = document.getElementById('shippingLoadingOverlay');
@@ -438,8 +413,8 @@ import cart from './cart';
             const deliveryTime = deliveryTimes[sku];
             const price = opt.rates[0].price;
             const name = opt.rates[0].mailClass
-            .toLowerCase()     // Convert to lowercase to normalize
-            .split('_')        // Split the string into words
+            .toLowerCase()    
+            .split('_')       
             .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
             .join(' ');   
             // Create the card elements dynamically

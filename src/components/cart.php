@@ -12,7 +12,6 @@
         </div> 
 
         <div id="cartSummary" class="cart-summary">
-            <span class="subtotal-label">Subtotal</span>
             <span id="subtotal" class="subtotal-price">
                 <!-- Subtotal calculated dynamically in JS -->
             </span>

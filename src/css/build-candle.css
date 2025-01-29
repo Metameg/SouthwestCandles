@@ -206,7 +206,7 @@ body {
   background: rgba(114, 114, 114, 0);
 }
 .selection .selection-card:nth-child(3n) {
-  border-right: none; /* Remove right border for the last column */
+  border-right: none;
 }
 .selection .selection-card:hover {
   background-color: #f0f0f0;

@@ -78,7 +78,9 @@ import cartInstance from './cart';
             const radio = item.querySelector('.custom-radio');
             const wick = item.querySelector('.card-name');
             const size4oz = document.getElementById('size4oz');
+            const size8oz = document.getElementById('size8oz');
             const radio4oz = size4oz.querySelector('.custom-radio');
+            const radio8oz = size8oz.querySelector('.custom-radio');
             const name4oz = size4oz.querySelector('.card-name');
             const price = name4oz.querySelector('.price');
             const img4oz = size4oz.querySelector('.card-image');
@@ -89,6 +91,12 @@ import cartInstance from './cart';
                 const isWoodWick = radio.value === 'wood' && radio.checked;
 
                 if (isWoodWick) {
+                    if (radio4oz.checked) {
+                        radio4oz.checked = false;
+                        radio8oz.checked = true;
+                        productSummarySize.textContent = '8oz';
+                        productSummaryPrice.textContent = '$11.00';
+                    }
                     size4oz.disabled = true;
                     woodErrorMsg.style.display = 'block';
                     size4oz.classList.add('disabled'); 

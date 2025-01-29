@@ -132,17 +132,6 @@ function add_tax_calc($pdo, $tax_calc_id) {
         
         // Execute the statement and send to db
         $result = $stmt->execute();
-
-        // Prepare response
-        // $response = [
-        //     'success' => $result,  // True or false depending on the result
-        //     'message' => $result ? 'Tax calculation added successfully' : 'Error adding calculation'
-        // ];
-
-        // // Send JSON response
-        // header('Content-Type: application/json');
-        // echo json_encode($response);
-        // exit;
         
     } catch (Exception $e) {
         // Log or handle the error as needed

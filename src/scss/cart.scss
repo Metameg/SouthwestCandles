@@ -179,26 +179,42 @@
                         flex-direction: column;
                         align-items: center;
                         gap: 3px;
+
                         input[type="radio"] {
                             appearance: none; // Hides the default radio button
                             width: 20px;
                             height: 20px;
                             border: 2px solid #333; // Default border color
-                            border-radius: 50%; // Makes it circular
+                            border-radius: 50%; 
                             background-color: white;
                             cursor: pointer;
 
                             &:checked {
-                                background-color: $button-color; // Change to desired selected color
-                                border-color: $button-hover-color; // Optional: change border color
+                                background-color: $button-color; 
+                                border-color: $button-hover-color; 
                             }
 
+                            &.disabled {
+                                opacity: 0.2; 
+                                pointer-events: none;
+                            }
                         }
                 
+                        label {
+                            &.disabled {
+                                opacity: 0.2; 
+                                pointer-events: none;
+                            }
+                        }
                         .sz-price {
                             font-size: 1.1rem;
                             color: #008f34;
-                            margin: 0 5px; // Use a subtle color for the price
+                            margin: 0 5px; 
+                            
+                            &.disabled {
+                                opacity: 0.2; 
+                                pointer-events: none;
+                            }
                         }
                     }
                 }

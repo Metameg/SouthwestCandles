@@ -26,10 +26,8 @@ if (file_exists($dotenv_file_path)) {
 function send_order($args) {
 
     // Email parameters
-    // $to = 'admin@thedomaindesigners.com'; 
     $subject = 'New Candle Order!';
     $to = 'southwestcandles@yahoo.com';
-    // $to = 'metameg8@gmail.com';
     $from = 'Southwest Candles';
 
     $body = generate_body($args);
@@ -40,14 +38,10 @@ function send_order($args) {
     try {
         // Server settings
         $mail->isSMTP();
-        // $mail->Host = 'smtp.gmail.com';
         $mail->Host = 'smtp.mail.yahoo.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'southwestcandles@yahoo.com'; 
-        // $mail->Username = 'metameg8@gmail.com'; 
         $mail->Password = $_ENV['YAHOO_APP_PASSWORD']; 
-        // $mail->Password = $_ENV['GMAIL_APP_PASSWORD']; 
-        // $mail->Password = $_ENV['DEVMAIL_APP_PASSWORD']; 
         // $mail->SMTPSecure = 'ssl';
         $mail->SMTPSecure = 'tls';
         // $mail->Port = 465;
@@ -55,9 +49,7 @@ function send_order($args) {
 
         // Recipients
         $mail->setFrom('southwestcandles@yahoo.com', $from);
-        // $mail->setFrom('metameg8@gmail.com', $from);
         $mail->addAddress($to);
-        // $mail->addAddress($email);
 
         // Content
         $mail->isHTML(true);

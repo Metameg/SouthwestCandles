@@ -59,9 +59,9 @@ class Cart {
 
                         <div class="size-btns">
                             <div class="size-option">
-                                <input type="radio" id="sz4_${item.data_id}" name="${item.data_id}Radios" class="size-btn" value="4"  ${item.selectedSize === "4oz" ? "checked" : ""}>
-                                <label for="sz4">4oz</label>
-                                <div class="sz-price">$9</div>
+                                <input type="radio" id="sz4_${item.data_id}" name="${item.data_id}Radios" class="size-btn ${item.wickType === "Wood" ? "disabled" : ""}" value="4"  ${item.selectedSize === "4oz" ? "checked" : ""} ${item.wickType === "Wood" ? "disabled" : ""}>
+                                <label for="sz4" class="${item.wickType === "Wood" ? "disabled" : ""}">4oz</label>
+                                <div class="sz-price ${item.wickType === "Wood" ? "disabled" : ""}">$9</div>
                             </div>
                             <div class="size-option">
                                 <input type="radio" id="sz8_${item.data_id}" name="${item.data_id}Radios" class="size-btn" value="8"  ${item.selectedSize === "8oz" ? "checked" : ""}>
@@ -94,7 +94,31 @@ class Cart {
                 // Add change event listener for size radio buttons
                 cartItem.find(".wick-type-selector").on("change", (e) => {
                     const selectedValue = $(e.target).val();
-                    item.wickType = selectedValue.charAt(0).toUpperCase() + selectedValue.slice(1); 
+                    const radio4oz = document.getElementById(`sz4_${item.data_id}`);
+                    const sizeOptionDiv = radio4oz.closest(".size-option"); 
+                    const label4oz = sizeOptionDiv.querySelector("label");  
+                    const price4oz = sizeOptionDiv.querySelector(".sz-price");
+                    const radio8oz = document.getElementById(`sz8_${item.data_id}`);
+                    item.wickType = selectedValue.charAt(0).toUpperCase() + selectedValue.slice(1);
+
+                    if (item.wickType === 'Wood') {
+                        if (radio4oz.checked) {
+                            radio4oz.checked = false;
+                            radio8oz.checked = true;
+                            radio8oz.dispatchEvent(new Event("change"));
+                        }
+                        radio4oz.setAttribute("disabled", "true"); 
+                        radio4oz.classList.add('disabled');
+                        label4oz.classList.add('disabled');
+                        price4oz.classList.add('disabled');
+                        
+                    } else {
+                        radio4oz.removeAttribute("disabled"); 
+                        radio4oz.classList.remove('disabled');
+                        label4oz.classList.remove('disabled');
+                        price4oz.classList.remove('disabled');
+                    }
+
                     this.saveCart(); 
                     this.updateCart(); 
                 });

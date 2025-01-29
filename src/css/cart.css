@@ -172,10 +172,22 @@
   background-color: #495aaa;
   border-color: #858585;
 }
+.cart-popover .cart-items .cart-item .order-details .size-btns .size-option input[type=radio].disabled {
+  opacity: 0.2;
+  pointer-events: none;
+}
+.cart-popover .cart-items .cart-item .order-details .size-btns .size-option label.disabled {
+  opacity: 0.2;
+  pointer-events: none;
+}
 .cart-popover .cart-items .cart-item .order-details .size-btns .size-option .sz-price {
   font-size: 1.1rem;
   color: #008f34;
   margin: 0 5px;
+}
+.cart-popover .cart-items .cart-item .order-details .size-btns .size-option .sz-price.disabled {
+  opacity: 0.2;
+  pointer-events: none;
 }
 .cart-popover .cart-items .cart-item .price {
   font-size: 1.5rem;

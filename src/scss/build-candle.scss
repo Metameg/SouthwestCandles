@@ -118,11 +118,11 @@ body {
 				}
 
 				.tag.NEW {
-					background-color: #f39c12; // Adjust to fit with primary color
+					background-color: #f39c12; 
 				}
 	
 				.tag.SEASONAL{
-					background-color: #c0392b; // Adjust for limited edition color
+					background-color: #c0392b;
 				}
 			}
 	
@@ -234,7 +234,7 @@ body {
 		}
 
 		&:nth-child(3n) {
-			border-right: none; /* Remove right border for the last column */
+			border-right: none; 
 	  	}
   
 		&:hover {
@@ -265,7 +265,6 @@ body {
         font-weight: bold;
         color: #333;
         margin-bottom: 1.5rem;
-        // text-align: center;
     }
 
     .product {
