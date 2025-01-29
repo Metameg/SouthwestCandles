@@ -51,6 +51,9 @@ body {
 .contact-section .container .contact-info-box p strong {
   color: #333;
 }
+.contact-section .container .contact-info-box a {
+  word-wrap: break-word;
+}
 
 .footer {
   background-color: #000;

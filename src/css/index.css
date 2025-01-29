@@ -81,6 +81,7 @@ body {
   text-align: center;
   z-index: 2;
   background: rgba(0, 0, 0, 0.48);
+  width: 100%;
   max-width: -moz-fit-content;
   max-width: fit-content;
   border: 3px solid #f39c12;
@@ -120,6 +121,17 @@ body {
   }
   .hero .hero-info {
     padding-top: 55px;
+  }
+}
+@media (max-width: 480px) {
+  .hero .hero-info h1 {
+    font-size: 2rem;
+  }
+  .hero .hero-info h1 .title-offcolor {
+    font-size: 1.7rem;
+  }
+  .hero .hero-info .cta-3 {
+    font-size: 3.25rem;
   }
 }
 
