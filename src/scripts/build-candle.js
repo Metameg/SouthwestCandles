@@ -158,7 +158,6 @@ import cartInstance from './cart';
 
         addToCartBtn.addEventListener("click", function () {
             cartInstance.addBuildItem();
-            console.log(cartInstance.cart);
         });
 
         // Check if all fields are populated

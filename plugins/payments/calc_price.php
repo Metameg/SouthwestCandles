@@ -15,7 +15,8 @@ const shipping_options = [
     'DUXP0XXXXR0' => 'USPS Ground Advantage', 
     'DUXP0XXXUR0' => 'USPS Ground Advantage', 
     'DEXX0XXXXR0' => 'Priority Mail Express', 
-    'DPXX0XXXXR0' => 'Priority Mail'
+    'DPXX0XXXXR0' => 'Priority Mail',
+    'PICKUP' => 'Order for Pickup'
 ];
 
 session_start();
@@ -33,7 +34,7 @@ if (is_null($sku)) {
     // If the user has not selected a shipping option, reset the session flag to false
     $_SESSION['shippingSelected'] = false;
     if (!isset($_SESSION['shippingSelected']) || $_SESSION['shippingSelected'] === false) {
-        $sku = 'default';
+        $sku = 'PICKUP';
     } else {
         // Invalid state: SKU cannot be null after a shpping option is selected
         http_response_code(400);

@@ -54,7 +54,7 @@ function send_order($args) {
         $mail->Port = 587;
 
         // Recipients
-        $mail->setFrom('southwestcandles@yahoo.com');
+        $mail->setFrom('southwestcandles@yahoo.com', $from);
         // $mail->setFrom('metameg8@gmail.com', $from);
         $mail->addAddress($to);
         // $mail->addAddress($email);

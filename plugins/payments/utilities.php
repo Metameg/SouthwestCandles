@@ -94,7 +94,7 @@ function build_sku_to_price_map($shippingData) {
     }
 
     // add default price for when no option is selected
-    $skuToPriceMap['default'] = 0.00;
+    $skuToPriceMap['PICKUP'] = 0.00;
     return $skuToPriceMap;
 }
 ?>

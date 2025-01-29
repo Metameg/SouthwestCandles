@@ -220,6 +220,19 @@ import cart from './cart';
         shippingSpinner.style.display = 'flex';
         orderSpinner.style.display = 'flex';
         const options = await fetchUSPSOptions(address);
+        const pickupOption = {
+            rates: [
+                {
+                    SKU: "PICKUP",
+                    price: 0.00, // Replace with the desired price
+                    mailClass: "PICKUP" // Replace with the desired mail class
+                }
+            ]
+        };
+        
+        // Add the pickup option to the options array
+        options.push(pickupOption);
+        
         if (options) { 
             await fetchTaxCalculation(address, null);
             renderShippingOptions(options);
@@ -411,13 +424,17 @@ import cart from './cart';
             "DPXX0XXXXR0": "1-3 days",
             "DEXX0XXXXR0": "1-2 days guaranteed by 6:00pm",
             "DUXP0XXXXR0": "2-5 days",
-            "DUXP0XXXUR0": "2-5 days"
+            "DUXP0XXXUR0": "2-5 days",
+            'PICKUP': 'If you are a member of Memorial Southwest Hospital, select this option'
         };
 
         shippingOptionsContainer.innerHTML = ""; // Clear existing content if any
 
         options.forEach(opt => {
-            const sku = opt.rates[0].SKU.slice(0,-4);
+            let sku = opt.rates[0].SKU;
+            if (sku != 'PICKUP') {
+                sku = opt.rates[0].SKU.slice(0,-4);
+            }
             const deliveryTime = deliveryTimes[sku];
             const price = opt.rates[0].price;
             const name = opt.rates[0].mailClass
@@ -445,7 +462,11 @@ import cart from './cart';
             nameEl.textContent = name;
 
             const deliveryTimeEl = document.createElement('p');
-            deliveryTimeEl.textContent = `Estimated delivery: ${deliveryTime}`;
+            if (sku === 'PICKUP') {
+                deliveryTimeEl.textContent = `${deliveryTime}`;
+            } else {
+                deliveryTimeEl.textContent = `Estimated delivery: ${deliveryTime}`;
+            }
 
             const priceEl = document.createElement('p');
             priceEl.textContent = `$${price.toFixed(2)}`;

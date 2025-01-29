@@ -110,7 +110,6 @@ function add_tax_calc($pdo, $tax_calc_id) {
 
     try {
         $taxCalc = \Stripe\Tax\Calculation::retrieve($tax_calc_id);
-        error_log($taxCalc);
         $args = [
             'tax_calc_id' => $taxCalc['id'],
             'amount_total' => $taxCalc['amount_total'],
