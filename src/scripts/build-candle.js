@@ -95,7 +95,7 @@ import cartInstance from './cart';
                         radio4oz.checked = false;
                         radio8oz.checked = true;
                         productSummarySize.textContent = '8oz';
-                        productSummaryPrice.textContent = '$11.00';
+                        productSummaryPrice.textContent = '$12.00';
                     }
                     size4oz.disabled = true;
                     woodErrorMsg.style.display = 'block';
