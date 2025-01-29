@@ -45,7 +45,7 @@ function processTransaction($payment_intent_id, $user_email) {
         $args = [
             'payment_intent_id' => $paymentIntent['id'],
             'tax_calc_id' => $paymentIntent['metadata']['taxCalculationId'],
-            'amount' => $paymentIntent['amount_received'],
+            'amount' => $paymentIntent['amount_received'] / 100,
             'line_items' => $paymentIntent['metadata']['line_items'],
             'user_email' => $user_email,
             'shipping_option' => $paymentIntent['metadata']['shippingOption'],
@@ -112,8 +112,8 @@ function add_tax_calc($pdo, $tax_calc_id) {
         $taxCalc = \Stripe\Tax\Calculation::retrieve($tax_calc_id);
         $args = [
             'tax_calc_id' => $taxCalc['id'],
-            'amount_total' => $taxCalc['amount_total'],
-            'tax_amount' => $taxCalc['tax_amount_exclusive'],
+            'amount_total' => $taxCalc['amount_total'] / 100,
+            'tax_amount' => $taxCalc['tax_amount_exclusive'] / 100,
             'percentage' => $taxCalc['tax_breakdown'][0]['tax_rate_details']['percentage_decimal'],
             'tax_type' => $taxCalc['tax_breakdown'][0]['tax_rate_details']['tax_type'],
             'tax_date' => $taxCalc['tax_date']

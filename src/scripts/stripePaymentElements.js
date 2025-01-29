@@ -15,6 +15,7 @@ import cart from './cart';
     let elements;
     let s_payEl; 
     let s_addressEl; 
+    let addressValue;
 
     async function load() {
         
@@ -35,7 +36,6 @@ import cart from './cart';
                 colorBackground: '#faf8f3',
                 colorText: '#30313d',
                 colorDanger: '#df1b41',
-                // fontFamily: 'Ideal Sans, system-ui, sans-serif',
                 spacingUnit: '8px',
                 borderRadius: '0',
             },
@@ -76,17 +76,20 @@ import cart from './cart';
         s_addressEl.on('focus', (event) => {
             isAddressInFocus = true;
         });
-
+        
         s_addressEl.on('blur', (event) => {
-            isAddressInFocus = false;    
+            isAddressInFocus = false;  
+            checkAndTriggerTaxCalculation(addressValue);  
         });
 
         // When the address changes, calculate tax
         s_addressEl.on('change', (event) => {
-        
+            addressValue = event.value;
+            
             // Check the address completeness after a short delay to account for user input
             if (!isAddressInFocus) {
-                checkAndTriggerTaxCalculation(event.value);
+                console.log("address not focused");
+                checkAndTriggerTaxCalculation(addressValue);
             }
              
         });
