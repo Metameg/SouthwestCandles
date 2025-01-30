@@ -3,6 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Build Your Custom Candle | Southwest Candles</title>
+        <link rel="icon" href="../favicon.ico" type="image/x-icon">
+        <meta name="description" content="Create your own personalized candle at Southwest Candles. Choose your preferred scents, colors, and designs to make the perfect candle for your home or as a gift.">
+        <meta name="keywords" content="custom candles, build a candle, personalized candles, candle design, custom scents, candle shop">
+        <meta name="robots" content="index, follow">
         <link rel="stylesheet" href="../css/build-candle.css">
         <link rel="stylesheet" href="../css/navbar.css">
         <link rel="stylesheet" href="../css/cart.css">

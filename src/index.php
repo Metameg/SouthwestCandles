@@ -3,7 +3,12 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Southwest Candles Shop</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Southwest Candles | Homemade Candles with Unique Fragrances</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta name="description" content="Shop for handmade candles and unique homemade fragrances at Southwest Candles. Discover a wide selection of premium candles made with love and care.">
+    <meta name="keywords" content="homemade candles, premium candles, scented candles, handmade fragrances, buy candles online, diy candles, candle shop">
+    <meta name="robots" content="index, follow">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/cart.css">

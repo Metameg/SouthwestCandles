@@ -3,7 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Contact Us - Southwest Candles</title>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Contact Southwest Candles | Get in Touch with Us</title>
+        <link rel="icon" href="../favicon.ico" type="image/x-icon">
+        <meta name="description" content="Contact Southwest Candles for inquiries, custom orders, and customer support. We're here to help you with all your candle needs.">
+        <meta name="keywords" content="contact Southwest Candles, candle shop contact, customer service, candle inquiries, custom candles, support Southwest Candles">
+        <meta name="robots" content="index, follow">
         <link rel="stylesheet" href="../css/contact.css">
         <link rel="stylesheet" href="../css/navbar.css">
         <link rel="stylesheet" href="../css/cart.css">
