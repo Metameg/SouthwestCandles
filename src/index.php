@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/cart.css">
     <link rel="stylesheet" href="css/footer.css">
-    <script src="/dist/bundle.js"></script>
+    <?php
+        $isProduction = $_SERVER['HTTP_HOST'] === "southwestcandles.shop";
+        $scriptPath = $isProduction ? "/dist/prod/bundle-prod.js" : "/dist/dev/bundle.js";
+    ?>
+    <script src="<?php echo $scriptPath; ?>" defer></script>
     </head>
     <body>
 

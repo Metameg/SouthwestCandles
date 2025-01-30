@@ -1,7 +1,9 @@
 import { loadStripe } from '@stripe/stripe-js';
 import cart from './cart';
+import { getenv } from './utils';
 
 (function () {
+    const BASE_URL = process.env.BASE_URL
     const STRIPE_PUBLIC_KEY = 'pk_test_51Qm7P4LzVET2sxhTd2FmcuB9bpBFZW58h9x45HcKNzgm5wpSa1BOYVRXd5UxHgFZtPrPX24CvpbPhWLCJb4PpPTu00RHFRjPkN'; // Replace with your Stripe public key
     const paymentElement = document.getElementById('paymentOptions');
     const addressElement = document.getElementById('addressElement');
@@ -19,6 +21,7 @@ import cart from './cart';
 
     async function load() {
         
+
         if (!paymentElement || !stripeClientSecret) {
             console.error('Payment options or client secret is missing.');
             return;
@@ -88,7 +91,6 @@ import cart from './cart';
             
             // Check the address completeness after a short delay to account for user input
             if (!isAddressInFocus) {
-                console.log("address not focused");
                 checkAndTriggerTaxCalculation(addressValue);
             }
              
@@ -128,7 +130,7 @@ import cart from './cart';
                 elements,
                 redirect: 'if_required',
                 confirmParams: {
-                    return_url: 'http://localhost:3000/src/pages/thank-you.php', 
+                    return_url: `${BASE_URL}/src/pages/thank-you.php`, 
                 },
             });
     
@@ -148,11 +150,11 @@ import cart from './cart';
                 await processTransaction(paymentIntentId, email.value);
                 // Hide the overlay
                 loadingOverlay.style.display = 'none';
-                window.location.href = `http://localhost:3000/src/pages/thank-you.php?success=true&paymentIntentId=${sResult.paymentIntent.id}`;;
+                window.location.href = `${BASE_URL}/src/pages/thank-you.php?success=true&paymentIntentId=${sResult.paymentIntent.id}`;;
             } else if (sResult.paymentIntent.status === 'requires_action') {
                 // Handle further actions if required (e.g., Cash App validation)
             } else {
-                window.location.href = `http://localhost:3000/src/pages/thank-you.php?success=false&error=${encodeURIComponent(sResult.error.message)}`;
+                window.location.href = `${BASE_URL}/src/pages/thank-you.php?success=false&error=${encodeURIComponent(sResult.error.message)}`;
             }
 
             
@@ -240,7 +242,7 @@ import cart from './cart';
 
     async function fetchTaxCalculation(address, sku) {
          // Pass the address to your backend for tax calculation
-         const response = await fetch('../../plugins/payments/calc_price.php', {
+         const response = await fetch('/plugins/payments/calc_price.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -280,7 +282,7 @@ import cart from './cart';
     }
 
     async function cancelIntent(paymentIntentId) {
-        const response = await fetch('../../plugins/payments/cancel_intent.php', {
+        const response = await fetch('/plugins/payments/cancel_intent.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -301,7 +303,7 @@ import cart from './cart';
     }
 
     async function fetchUSPSOptions(address) {
-        const response = await fetch('../../plugins/shipping/usps/get_rates.php', {
+        const response = await fetch('/plugins/shipping/usps/get_rates.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -338,7 +340,7 @@ import cart from './cart';
     }
 
     async function processTransaction(paymentIntentId, userEmail) {
-        const response = await fetch('../../plugins/payments/process_transaction.php', {
+        const response = await fetch('/plugins/payments/process_transaction.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
