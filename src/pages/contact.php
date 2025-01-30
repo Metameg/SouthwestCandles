@@ -36,10 +36,10 @@
                 <!-- Contact Info Box -->
                 <div class="contact-info-box">
                     <p>For questions about any of our products, or help with placing your order, don't hesitate to contact us at:</p>
-                    <h3>General Inquiries</h3>
+                    <h2>General Inquiries</h2>
                     <p><a href="mailto:southwestcandles@yahoo.com">southwestcandles@yahoo.com</a></p>
                     
-                    <h3>Home Office</h3>
+                    <h2>Home Office</h2>
                     <p>5347 Wolfpen Ridge Ln</p>
                     <p>Missouri City, TX, 77459</p>
                     
