@@ -12,11 +12,23 @@ body {
   cursor: pointer;
 }
 .custom-radio:hover {
-  box-shadow: 0 0 5px #f39c12;
+  box-shadow: 0 0 5px #AA1D1D;
 }
 .custom-radio.disabled {
   opacity: 0.2;
   pointer-events: none;
+}
+
+.hidden-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .build-candle-section {
@@ -44,7 +56,7 @@ body {
 }
 .build-candle-section .step .step-number {
   min-width: 30px;
-  background-color: #f39c12;
+  background-color: #AA1D1D;
   color: #fff;
   font-size: 1.5rem;
   font-weight: bold;
@@ -93,9 +105,11 @@ body {
   align-items: flex-end;
   gap: 10px;
   width: 100%;
+  cursor: pointer;
 }
 .fragerance-list .list-item .list-text .name {
   white-space: nowrap;
+  font-size: 1.2rem;
 }
 .fragerance-list .list-item .list-text .name .tag {
   position: absolute;
@@ -109,10 +123,10 @@ body {
   text-transform: uppercase;
 }
 .fragerance-list .list-item .list-text .name .tag.NEW {
-  background-color: #f39c12;
+  background-color: #AA1D1D;
 }
 .fragerance-list .list-item .list-text .name .tag.SEASONAL {
-  background-color: #c0392b;
+  background-color: #03770d;
 }
 .fragerance-list .list-item .list-text .description {
   font-style: italic;
@@ -258,7 +272,7 @@ body {
 .product-summary .product .product-info .price {
   font-size: 1.25rem;
   font-weight: bold;
-  color: #f39c12;
+  color: #AA1D1D;
 }
 .product-summary .product .product-info .error {
   font-size: 0.8rem;

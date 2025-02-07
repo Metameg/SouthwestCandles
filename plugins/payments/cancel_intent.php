@@ -7,7 +7,7 @@ if (file_exists($dotenv_file_path)) {
     $dotenv->load();
 }
 
-\Stripe\Stripe::setApiKey($_ENV['STRIPE_SK_TEST']);
+\Stripe\Stripe::setApiKey($_ENV['STRIPE_SK_LIVE']);
 
 header('Content-Type: application/json');
 

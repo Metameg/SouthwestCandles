@@ -9,7 +9,7 @@ if (file_exists($dotenv_file_path)) {
     $dotenv = Dotenv\Dotenv::createImmutable(dirname($dotenv_file_path));
     $dotenv->load();
 }
-\Stripe\Stripe::setApiKey($_ENV['STRIPE_SK_TEST']);
+\Stripe\Stripe::setApiKey($_ENV['STRIPE_SK_LIVE']);
 
 const shipping_options = [
     'DUXP0XXXXR0' => 'USPS Ground Advantage', 

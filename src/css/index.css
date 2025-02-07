@@ -38,7 +38,7 @@ body {
   font-size: 1.2rem;
   text-align: center;
   color: #fff;
-  background-color: #f39c12;
+  background-color: #AA1D1D;
   border: none;
   border-radius: 5px;
   text-decoration: none;
@@ -46,7 +46,7 @@ body {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 .primary-btn:hover {
-  background-color: #c87f0a;
+  background-color: #7e1616;
   transform: scale(1.05);
 }
 
@@ -84,7 +84,7 @@ body {
   width: 100%;
   max-width: -moz-fit-content;
   max-width: fit-content;
-  border: 3px solid #f39c12;
+  border: 3px solid #AA1D1D;
 }
 .hero .hero-info h1 {
   font-family: "chango", "serif";
@@ -105,7 +105,7 @@ body {
 .hero .hero-info .cta-1 {
   font-family: "tangerine", "serif";
   font-size: 3.2rem;
-  color: #f39c12;
+  color: #ce5e69;
 }
 .hero .hero-info .cta-2 {
   font-family: "syne", "serif";
@@ -137,14 +137,14 @@ body {
 
 .about-section {
   text-align: center;
-  background-color: #fdf6e5;
+  background-color: #d9d0b5;
   padding: 40px 20px;
 }
 .about-section .about-title {
   font-family: "syne", serif;
   font-size: 2rem;
   font-weight: bold;
-  color: #8b724d;
+  color: #333;
   margin-bottom: 20px;
 }
 .about-section .about-content {
@@ -162,11 +162,11 @@ body {
   font-family: "chango", sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
-  color: #8b724d;
+  color: #AA1D1D;
   margin-bottom: 10px;
 }
 .about-section .about-content .about-item p {
-  font-family: "serif";
+  font-family: "syne", "serif";
   font-size: 1.2rem;
   line-height: 1.6;
   color: #4d4d4d;
@@ -250,11 +250,10 @@ body {
   text-align: left;
 }
 .promo-section .promo-content p {
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: 1px;
-  margin-bottom: 1rem;
-  color: #888;
+  font-family: "syne", "serif";
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #4d4d4d;
 }
 .promo-section .promo-content h2 {
   font-size: 2.5rem;

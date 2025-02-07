@@ -92,7 +92,7 @@ body {
         background: rgb(0 0 0 / 48%);
         width: 100%;
         max-width: fit-content;
-        border: 3px solid #f39c12;
+        border: 3px solid #AA1D1D;
 
         h1 {
             font-family: 'chango', 'serif';
@@ -116,7 +116,7 @@ body {
         .cta-1 {
             font-family: "tangerine", 'serif';
             font-size: 3.2rem;
-            color: $primary-color
+            color: $logo-color
         }
         .cta-2 {
             font-family: "syne", 'serif';
@@ -157,14 +157,14 @@ body {
 // About Section
 .about-section {
     text-align: center;
-    background-color: #fdf6e5; 
+    background-color: $background-secondary-color; 
     padding: 40px 20px;
 
     .about-title {
         font-family: 'syne', serif;
         font-size: 2rem;
         font-weight: bold;
-        color: $secondary-color; 
+        color: #333; 
         margin-bottom: 20px;
     }
 
@@ -183,12 +183,12 @@ body {
                 font-family: 'chango', sans-serif;
                 font-size: 1.1rem;
                 font-weight: 700;
-                color: #8b724d; 
+                color: $primary-color; 
                 margin-bottom: 10px;
             }
 
             p {
-                font-family: 'serif';
+                font-family: 'syne', "serif";
                 font-size: 1.2rem;
                 line-height: 1.6;
                 color: #4d4d4d; 
@@ -286,11 +286,10 @@ body {
         text-align: left;
   
         p {
-            font-size: 1rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-            color: #888;
+            font-family: 'syne', "serif";
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #4d4d4d;
         }
     
         h2 {

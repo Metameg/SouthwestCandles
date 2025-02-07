@@ -52,7 +52,7 @@ header nav .nav-links .nav-link a {
   transition: 0.3s;
 }
 header nav .nav-links .nav-link a:hover {
-  background-color: #f39c12;
+  background-color: #AA1D1D;
 }
 header nav .nav-links #cartContainer {
   list-style: none;
@@ -60,7 +60,7 @@ header nav .nav-links #cartContainer {
 }
 header nav .nav-links #cartContainer #cartNavBtn {
   font-weight: bold;
-  background-color: #f39c12;
+  background-color: #AA1D1D;
   padding: 5px 10px;
   color: white;
   border: none;
@@ -92,7 +92,7 @@ header nav .nav-links #cartContainer #cartNavBtn #cartItemCount {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 header nav .nav-links #cartContainer #cartNavBtn:hover {
-  background-color: #c87f0a;
+  background-color: #7e1616;
 }
 header nav .nav-links #cartContainer #continueShoppingLink {
   color: #495aaa;

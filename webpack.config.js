@@ -34,6 +34,6 @@ module.exports = (env) => {
 				},
 			],
       	},
-    //   watch: true,  // Enable watch mode
+      watch: true,  // Enable watch mode
   	};
 }

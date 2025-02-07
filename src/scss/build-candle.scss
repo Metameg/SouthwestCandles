@@ -23,6 +23,18 @@ body {
 	}
 }
 
+.hidden-label {
+	position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 .build-candle-section {
     padding: 2rem;
     font-family: 'Arial', sans-serif;
@@ -49,7 +61,7 @@ body {
 
         .step-number {
             min-width: 30px;
-            background-color: #f39c12;
+            background-color: $primary-color;
             color: #fff;
             font-size: 1.5rem;
             font-weight: bold;
@@ -102,9 +114,11 @@ body {
 			align-items: flex-end;
 			gap: 10px;
 			width: 100%;
+			cursor: pointer;
 	
 			.name {
 				white-space: nowrap;
+				font-size: 1.2rem;
 				.tag {
 					position: absolute;
 					top: 10px;
@@ -118,11 +132,11 @@ body {
 				}
 
 				.tag.NEW {
-					background-color: #f39c12; 
+					background-color: $primary-color; 
 				}
 	
 				.tag.SEASONAL{
-					background-color: #c0392b;
+					background-color: #03770d;
 				}
 			}
 	
@@ -295,7 +309,7 @@ body {
             .price {
                 font-size: 1.25rem;
                 font-weight: bold;
-                color: #f39c12;
+                color: $primary-color;
             }
 
 			.error {
