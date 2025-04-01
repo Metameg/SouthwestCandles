@@ -6,6 +6,7 @@
   },
   "scripts": {
     "build": "webpack",
+    "build-prod": "webpack --env production=true",
     "test": "jest"
   },
   "babel": {

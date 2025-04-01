@@ -11,7 +11,8 @@ if (file_exists($dotenv_file_path)) {
     $dotenv->load();
 }
 
-\Stripe\Stripe::setApiKey($_ENV['STRIPE_SK_LIVE']);
+\Stripe\Stripe::setApiKey($_ENV['STRIPE_SK_TEST']);
+// \Stripe\Stripe::setApiKey($_ENV['STRIPE_SK_LIVE']);
 
 header('Content-Type: application/json');
 
@@ -76,10 +77,10 @@ function processTransaction($payment_intent_id, $user_email) {
         $stmt->bindParam(':latest_charge_id', $args['latest_charge_id'], PDO::PARAM_STR);
 
         // Email order
-        \Stripe\PaymentIntent::update(
-            $payment_intent_id,
-            ['receipt_email' => $user_email]
-        );
+        // \Stripe\PaymentIntent::update(
+        //     $payment_intent_id,
+        //     ['receipt_email' => $user_email]
+        // );
         
         send_order($args);
         // Execute the statement and send to db
@@ -100,6 +101,13 @@ function processTransaction($payment_intent_id, $user_email) {
     } catch (Exception $e) {
         // Log or handle the error as needed
         error_log("Error adding transaction: " . $e->getMessage());
+        // Return a JSON response with the error
+        header('Content-Type: application/json');
+        echo json_encode([
+            'success' => false,
+            'message' => 'Error processing transaction',
+            'error' => $e->getMessage()
+        ]);
         exit;
     }
 }

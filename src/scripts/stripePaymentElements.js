@@ -3,6 +3,7 @@ import cart from './cart';
 
 (function () {
     const BASE_URL = process.env.BASE_URL;
+    // const STRIPE_PUBLIC_KEY = 'pk_test_51Qm7P4LzVET2sxhTd2FmcuB9bpBFZW58h9x45HcKNzgm5wpSa1BOYVRXd5UxHgFZtPrPX24CvpbPhWLCJb4PpPTu00RHFRjPkN'; // Replace with your Stripe public key
     const STRIPE_PUBLIC_KEY = 'pk_live_51Qm7P4LzVET2sxhT2urRpFV6u1zWjy2QdE67BlaREpEjGYyW7TFmSpR0sOVEDEZOhgV3Cdo7avJcxG2do6nhZEyn00WmgvTSaK'; // Replace with your Stripe public key
     const paymentElement = document.getElementById('paymentOptions');
     const addressElement = document.getElementById('addressElement');
@@ -129,6 +130,7 @@ import cart from './cart';
                 elements,
                 redirect: 'if_required',
                 confirmParams: {
+                    receipt_email: email.value,
                     return_url: `${BASE_URL}/src/pages/thank-you.php`, 
                 },
             });
@@ -269,7 +271,6 @@ import cart from './cart';
             errorMsg.textContent = result.error;
             errorMsg.style.display = "block";
             payBtn.disabled = true;
-            // console.error('Error calculating price:', result.error);
             return;
         } else {
             payBtn.disabled = false;

@@ -29,6 +29,7 @@ function send_order($args) {
     $subject = 'New Candle Order!';
     $to = 'southwestcandles@yahoo.com';
     $from = 'Southwest Candles';
+    error_log("EMAIL: " . $args['user_email']);
 
     $body = generate_body($args);
 
@@ -66,7 +67,7 @@ function send_order($args) {
         }
     
     } catch (Exception $e) {
-        // echo "Oops! Something went wrong. Please try again later. Error: {$mail->ErrorInfo}";
+        error_log("Oops! Something went wrong. Please try again later. Error: {$mail->ErrorInfo}");
     }
 }
 
