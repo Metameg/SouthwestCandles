@@ -14,11 +14,12 @@ function createPaymentIntent($amount, $line_items, $currency = 'USD') {
     try {
         // Create the PaymentIntent
         $paymentIntent = Stripe\PaymentIntent::create([
-            'amount' => $amount * 100,
+            'amount' => 50,
+            // 'amount' => $amount * 100,
             'currency' => $currency,
             'automatic_payment_methods' => ['enabled' => true],
             'description' => 'Thanks for your purchase!',
-            'receipt_email' => 'metameg8@gmail.com',
+            // 'receipt_email' => 'metameg8@gmail.com',
             'metadata' => [
                 'line_items' => json_encode($line_items), // Add line_items to metadata
             ],
@@ -45,7 +46,8 @@ function updatePaymentIntent($paymentIntentId, $amount,  $tax_calculation_id, $s
         $updatedPaymentIntent = Stripe\PaymentIntent::update(
             $paymentIntentId,  
             [
-                'amount' => $amount,  
+                'amount' => 50,  
+                // 'amount' => $amount,  
                 'metadata' => [
                     'taxCalculationId' => $tax_calculation_id,  
                     'shippingOption' => $shipping_option,  
@@ -53,6 +55,7 @@ function updatePaymentIntent($paymentIntentId, $amount,  $tax_calculation_id, $s
                 ],
             ]
         );
+        return $updatedPaymentIntent;
         
         
     } catch (\Stripe\Exception\ApiErrorException $e) {

@@ -80,7 +80,7 @@ function generate_body($args) {
     $body .= "<hr>";
     $body .= "<h4>Payment Information:</h4>";
     $body .= "<p><strong>Payment Intent ID:</strong> $payment_intent_id<br>";
-    $body .= "<strong>Amount:</strong> $" . number_format($amount / 100, 2) . "</p>";
+    $body .= "<strong>Amount:</strong> $" . number_format($amount, 2) . "</p>";
 
     $body .= "<h4>User Information:</h4>";
     $body .= "<p><strong>Email:</strong> $user_email</p>";

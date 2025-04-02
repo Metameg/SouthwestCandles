@@ -128,13 +128,17 @@ $amount_total = $calculation['amount_total'];
 $amount_tax =  $calculation['tax_amount_exclusive'];
 $amount_shipping = $calculation['shipping_cost']['amount'];
 $tax_calculation_id = $calculation['id'];
-updatePaymentIntent($payment_intent_id, $amount_total,  $tax_calculation_id, $shipping_option, $address);
+$updatedIntent = updatePaymentIntent($payment_intent_id, $amount_total,  $tax_calculation_id, $shipping_option, $address);
 
 echo json_encode([
     'success' => true,
-    'subtotal' => $amount_total - $amount_tax - $amount_shipping,
-    'shipping_price' => $amount_shipping,
-    'estimated_tax' => $amount_tax,
-    'total_price' => $amount_total
+    'subtotal' => 0,
+    // 'subtotal' => $amount_total - $amount_tax - $amount_shipping,
+    'shipping_price' => 0,
+    'estimated_tax' => 0,
+    'total_price' => 0
+    // 'shipping_price' => $amount_shipping,
+    // 'estimated_tax' => $amount_tax,
+    // 'total_price' => $amount_total
 ]);
 ?>

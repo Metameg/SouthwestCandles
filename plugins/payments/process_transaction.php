@@ -77,10 +77,10 @@ function processTransaction($payment_intent_id, $user_email) {
         $stmt->bindParam(':latest_charge_id', $args['latest_charge_id'], PDO::PARAM_STR);
 
         // Email order
-        // \Stripe\PaymentIntent::update(
-        //     $payment_intent_id,
-        //     ['receipt_email' => $user_email]
-        // );
+        \Stripe\PaymentIntent::update(
+            $payment_intent_id,
+            ['receipt_email' => $user_email]
+        );
         
         send_order($args);
         // Execute the statement and send to db
